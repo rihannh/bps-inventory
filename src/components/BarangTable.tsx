@@ -90,7 +90,7 @@ export function BarangTable<TData, TValue>({
 
   return (
     <>
-      <div className='flex items-center justify-between gap-4 py-4'>
+      <div className='flex lg:items-center flex-col lg:flex-row lg:justify-between gap-4 py-4'>
         <div className='flex gap-4 w-full'>
           <Input
             placeholder='Cari nama...'
@@ -141,7 +141,7 @@ export function BarangTable<TData, TValue>({
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant='outline' className='ml-auto'>
+            <Button variant='outline' className='mr-auto lg:mr-0'>
               Columns <ChevronDown />
             </Button>
           </DropdownMenuTrigger>

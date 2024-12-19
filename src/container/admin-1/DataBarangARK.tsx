@@ -15,13 +15,13 @@ export default function DataBarangARK() {
   return (
     <>
       <Card className='p-6'>
-        <div className='flex justify-between'>
+        <div className='flex flex-col lg:flex-row lg:justify-between'>
           <h1
             className={`mb-6 ml-5 text-2xl font-semibold relative before:absolute before:-left-5 before:w-1 before:bg-violet-500  before:border-0 before:h-full before:rounded-md`}
           >
             Data Barang ARK
           </h1>
-          <div className='flex gap-2'>
+          <div className='flex items-start flex-col lg:flex-row gap-2'>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>

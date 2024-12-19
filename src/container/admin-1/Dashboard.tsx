@@ -5,7 +5,7 @@ import {dataDashboard} from '@/lib/data/dashboard-dummy';
 export default function Dashboard() {
   return (
     <>
-      <div className=' grid grid-cols-4 gap-4'>
+      <div className='grid lg:grid-cols-4 gap-4'>
         {dataDashboard.map((data, index) => (
           <Card key={index} className='flex items-center gap-4 p-3'>
             <figure className={`rounded-lg p-4 bg-${data.color}-200/40 h-fit`}>

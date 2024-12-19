@@ -62,18 +62,18 @@ export function UserTable<TData, TValue>({
 
   return (
     <>
-      <div className='flex items-center justify-end gap-4 py-4'>
+      <div className='flex lg:items-center flex-col lg:flex-row lg:justify-between gap-4 py-4'>
         <Input
           placeholder='Cari nama...'
           value={(table.getColumn('nama')?.getFilterValue() as string) ?? ''}
           onChange={(event) =>
             table.getColumn('nama')?.setFilterValue(event.target.value)
           }
-          className='max-w-md'
+          className='lg:max-w-md'
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant='outline' className='ml-auto'>
+            <Button variant='outline' className='w-fit'>
               Columns <ChevronDown />
             </Button>
           </DropdownMenuTrigger>

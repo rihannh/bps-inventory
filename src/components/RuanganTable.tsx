@@ -62,7 +62,7 @@ export function RuanganTable<TData, TValue>({
 
   return (
     <>
-      <div className='flex items-center justify-end gap-4 py-4'>
+      <div className='flex lg:items-center flex-col lg:flex-row lg:justify-between gap-4 py-4'>
         <Input
           placeholder='Cari ruangan...'
           value={(table.getColumn('nama')?.getFilterValue() as string) ?? ''}
@@ -73,7 +73,7 @@ export function RuanganTable<TData, TValue>({
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant='outline' className='ml-auto'>
+            <Button variant='outline' className='mr-auto lg:mr-0'>
               Columns <ChevronDown />
             </Button>
           </DropdownMenuTrigger>
