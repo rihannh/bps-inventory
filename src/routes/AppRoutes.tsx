@@ -14,7 +14,7 @@ import PermintaanBarang from '@/container/admin-1/PermintaanBarang'
 import LaporanPengajuan from '@/container/admin-1/LaporanPengajuan'
 import LaporanPermintaan from '@/container/admin-1/LaporanPermintaan'
 import LaporanStok from '@/container/admin-1/LaporanStok'
-import DataBarangATK from '@/container/admin-1/DataBarangAtk'
+import DataBarangATK from '@/container/admin-1/DataBarangATK'
 import DataBarangARK from '@/container/admin-1/DataBarangARK'
 
 const router = createBrowserRouter(

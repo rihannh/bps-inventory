@@ -1,6 +1,6 @@
-import { RuanganType } from "@/lib/types/ruangan";
+import { Ruangan } from "@/lib/types/ruangan";
 
-export const dataRuangan: RuanganType[] = [
+export const dataRuangan: Ruangan[] = [
   { id: '1', nama: 'Aula Utama', jabatan: 'Penyelenggaraan Acara', pj: 'Shadiq Alwi' },
   { id: '2', nama: 'Ruang Meeting 1', jabatan: 'Perencanaan', pj: 'Rizky Alwi' },
   { id: '3', nama: 'Ruang IT', jabatan: 'Teknisi IT', pj: 'Mega Sari' },

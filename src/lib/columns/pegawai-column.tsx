@@ -1,8 +1,7 @@
 import {ColumnDef} from '@tanstack/react-table';
 import {Pencil, Trash2} from 'lucide-react';
 import {Link} from 'react-router-dom';
-import {User} from '@/lib/columns/admin-column';
-
+import { User } from '@/lib/types/user';
 export const pegawaiColumns: ColumnDef<User>[] = [
   {
     header: 'No',

@@ -8,7 +8,7 @@ import {
   TooltipProvider,
 } from '@/components/ui/tooltip';
 import { BarangTable } from '@/components/BarangTable';
-import { dataBarang } from '@/lib/data/barang-DUMMY';
+import { dataBarang } from '@/lib/data/barang';
 import { barangColumns } from '@/lib/columns/barang-column';
 
 export default function DataBarangATK() {

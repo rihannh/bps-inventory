@@ -1,8 +1,8 @@
 import {ColumnDef} from '@tanstack/react-table';
 import {Pencil, Trash2} from 'lucide-react';
 import {Link} from 'react-router-dom';
-import { UserType } from '@/lib//types/User';
-export const adminColumns: ColumnDef<UserType>[] = [
+import { User } from '@/lib/types/user';
+export const adminColumns: ColumnDef<User>[] = [
   {
     header: 'No',
     cell: (row) => row.row.index + 1,

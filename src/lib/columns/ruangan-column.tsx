@@ -1,9 +1,9 @@
 import {ColumnDef} from '@tanstack/react-table';
 import {Pencil, Trash2} from 'lucide-react';
 import {Link} from 'react-router-dom';
-import { RuanganType } from '@/lib/types/ruangan';
+import { Ruangan } from '@/lib/types/ruangan';
 
-export const ruanganColumns: ColumnDef<RuanganType>[] = [
+export const ruanganColumns: ColumnDef<Ruangan>[] = [
   {
     header: 'No',
     cell: (row) => row.row.index + 1,

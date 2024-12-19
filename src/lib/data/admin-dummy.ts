@@ -1,6 +1,6 @@
-import {UserType} from '@/lib/types/User';
+import { User } from "../types/user";
 
-export const dataAdmin: UserType[] = [
+export const dataAdmin: User[] = [
   {
     id: '1',
     nama: 'Shadiq Alwi',
