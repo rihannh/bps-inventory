@@ -1,10 +1,22 @@
-import { Navigate, Outlet } from "react-router-dom"
-import { getUser } from "@/lib/network/authServices"
+import {Navigate, Outlet, useLocation} from 'react-router-dom';
+import {getUser, getUserRole} from '@/lib/network/authServices';
+import { convertToSlug } from '@/lib/utils';
 
 export default function RequireAuth() {
-  const user = getUser()
+  const user = getUser();
+  const role = getUserRole();
+  const location = useLocation();
+
+  const normalizedRole = role ? convertToSlug(role) : '';
+
   if (!user) {
-    return <Navigate to="/login" />
+    return <Navigate to='/login' />;
   }
-  return <Outlet />
+  if (location.pathname === '/') {
+      return <Navigate to={`/${normalizedRole}/dashboard`} />;
+    }if (location.pathname === `/${normalizedRole}`|| location.pathname === `/${normalizedRole}/`) {
+      return <Navigate to={`/${normalizedRole}/dashboard`} />;
+    }
+
+  return <Outlet />;
 }
