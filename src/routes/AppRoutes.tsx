@@ -7,7 +7,6 @@ import Dashboard from '@/container/admin-1/Dashboard'
 import DataAdmin from '@/container/admin-1/DataAdmin'
 import DataPegawai from '@/container/admin-1/DataPegawai'
 import DataAdminPengajuan from '@/container/admin-1/DataAdminPengajuan'
-import DataBarang from '@/container/admin-1/DataBarang'
 import DataRuangan from '@/container/admin-1/DataRuangan'
 import BarangMasuk from '@/container/admin-1/BarangMasuk'
 import BarangKeluar from '@/container/admin-1/BarangKeluar'
@@ -15,6 +14,8 @@ import PermintaanBarang from '@/container/admin-1/PermintaanBarang'
 import LaporanPengajuan from '@/container/admin-1/LaporanPengajuan'
 import LaporanPermintaan from '@/container/admin-1/LaporanPermintaan'
 import LaporanStok from '@/container/admin-1/LaporanStok'
+import DataBarangATK from '@/container/admin-1/DataBarangAtk'
+import DataBarangARK from '@/container/admin-1/DataBarangARK'
 
 const router = createBrowserRouter(
   [
@@ -33,7 +34,8 @@ const router = createBrowserRouter(
               {path: 'data-admin', element: <DataAdmin />},
               {path: 'data-pegawai', element: <DataPegawai />},
               {path: 'data-admin-pengajuan', element: <DataAdminPengajuan />},
-              {path: 'data-barang', element: <DataBarang />},
+              {path: 'data-barang-atk', element: <DataBarangATK />},
+              {path: 'data-barang-ark', element: <DataBarangARK />},
               {path: 'data-ruangan', element: <DataRuangan />},
 
               {path: 'barang-masuk', element: <BarangMasuk />},

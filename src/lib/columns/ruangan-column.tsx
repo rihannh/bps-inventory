@@ -1,23 +1,24 @@
 import {ColumnDef} from '@tanstack/react-table';
 import {Pencil, Trash2} from 'lucide-react';
 import {Link} from 'react-router-dom';
-import { UserType } from '@/lib//types/User';
-export const adminColumns: ColumnDef<UserType>[] = [
+import { RuanganType } from '@/lib/types/ruangan';
+
+export const ruanganColumns: ColumnDef<RuanganType>[] = [
   {
     header: 'No',
     cell: (row) => row.row.index + 1,
   },
   {
     accessorKey: 'nama',
-    header: 'Nama',
+    header: 'Nama Ruangan',
   },
   {
-    accessorKey: 'email',
-    header: 'username',
+    accessorKey: 'jabatan',
+    header: 'Jabatan',
   },
   {
-    accessorKey: 'username',
-    header: 'Username',
+    accessorKey: 'pj',
+    header: 'Penanggung Jawab',
   },
   {
     header: 'Action',
