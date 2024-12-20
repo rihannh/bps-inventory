@@ -15,6 +15,13 @@ import {Popover, PopoverContent, PopoverTrigger} from './ui/popover';
 import {CalendarIcon} from 'lucide-react';
 import {Calendar} from './ui/calendar';
 import {format} from 'date-fns';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from './ui/select';
 
 const permintaanSchema = z.object({
   tanggal: z.date({
@@ -37,11 +44,11 @@ export default function PermintaanEdit() {
     resolver: zodResolver(permintaanSchema),
     defaultValues: {
       tanggal: new Date(),
-      kode: '',
-      nama: '',
-      satuan: '',
-      jumlah: 0,
-      ruangan: '',
+      kode: 'LPTP-001',
+      nama: 'Laptop',
+      satuan: 'pcs',
+      jumlah: 1,
+      ruangan: 'IPDS',
       status: 'pending',
     },
   });
@@ -158,9 +165,18 @@ export default function PermintaanEdit() {
           render={({field}) => (
             <FormItem>
               <FormLabel>Status</FormLabel>
-              <FormControl>
-                <Input placeholder='Status' {...field} />
-              </FormControl>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder='Pilih Status' />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value='pending'>Pending</SelectItem>
+                  <SelectItem value='approved'>Approved</SelectItem>
+                  <SelectItem value='rejected'>Rejected</SelectItem>
+                </SelectContent>
+              </Select>
               <FormMessage />
             </FormItem>
           )}
