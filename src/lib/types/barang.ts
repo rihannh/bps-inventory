@@ -7,3 +7,23 @@ export type Barang = {
   harga_satuan: number;
   harga_pengajuan: number;
 };
+
+export type BarangTrans = {
+  id: string;
+  tanggal: string;
+  kode: string;
+  nama: string;
+  satuan: string;
+  jumlah: number;
+  ruangan: string;
+};
+export type BarangTransaction = {
+  id: string;
+  tanggal: string;
+  kode: string;
+  nama: string;
+  satuan: string;
+  jumlah: number;
+  ruangan: string;
+  status: string;
+};
