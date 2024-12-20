@@ -10,6 +10,13 @@ import {
   TooltipContent,
   TooltipProvider,
 } from '@/components/ui/tooltip';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import UserForm from '@/components/UserForm';
 
 export default function DataAdmin() {
   return (
@@ -41,9 +48,19 @@ export default function DataAdmin() {
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger>
-                  <Button>
-                    <PlusCircle /> Tambah Pegawai
-                  </Button>
+                  <Dialog>
+                    <DialogTrigger>
+                      <Button>
+                        <PlusCircle /> Tambah Pegawai
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader className='text-xl font-semibold'>
+                        Tambah Pegawai
+                      </DialogHeader>
+                      <UserForm />
+                    </DialogContent>
+                  </Dialog>
                 </TooltipTrigger>
                 <TooltipContent>Tambah Pegawai</TooltipContent>
               </Tooltip>

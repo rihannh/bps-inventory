@@ -33,7 +33,7 @@ export default function AppSidebar({role}: {role: string}) {
       <SidebarHeader>
         <SidebarMenuButton className='h-12 hover:bg-transparent active:bg-transparent space-x-3'>
           <img
-            src='/logo-bps.png'
+            src='/logo-bps.webp'
             alt=''
             className='h-full w-fit object-contain'
           />

@@ -10,6 +10,13 @@ import {
 import {RuanganTable} from '@/components/RuanganTable';
 import {dataRuangan} from '@/lib/data/ruangan-dummy';
 import {ruanganColumns} from '@/lib/columns/ruangan-column';
+import RuanganForm from '@/components/RuanganForm';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 
 export default function DataRuangan() {
   return (
@@ -24,11 +31,21 @@ export default function DataRuangan() {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger className='mr-auto lg:mr-0'>
-                <Button>
-                  <PlusCircle /> Tambah Admin
-                </Button>
+                <Dialog>
+                  <DialogTrigger>
+                    <Button>
+                      <PlusCircle /> Tambah Ruangan
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader className='text-xl font-semibold'>
+                      Tambah Ruangan
+                    </DialogHeader>
+                    <RuanganForm />
+                  </DialogContent>
+                </Dialog>
               </TooltipTrigger>
-              <TooltipContent>Tambah Admin</TooltipContent>
+              <TooltipContent>Tambah Ruangan</TooltipContent>
             </Tooltip>
           </TooltipProvider>
         </div>

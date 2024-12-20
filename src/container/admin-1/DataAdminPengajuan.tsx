@@ -10,6 +10,13 @@ import {
   TooltipContent,
   TooltipProvider,
 } from '@/components/ui/tooltip';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import UserForm from '@/components/UserForm';
 
 export default function DataAdminPengajuan() {
   return (
@@ -24,9 +31,19 @@ export default function DataAdminPengajuan() {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger className='mr-auto lg:mr-0'>
-                <Button>
-                  <PlusCircle /> Tambah Admin Pengajuan
-                </Button>
+                <Dialog>
+                  <DialogTrigger>
+                    <Button>
+                      <PlusCircle /> Tambah Admin Pengajuan
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader className='text-xl font-semibold'>
+                      Tambah Admin Pengajuan
+                    </DialogHeader>
+                    <UserForm />
+                  </DialogContent>
+                </Dialog>
               </TooltipTrigger>
               <TooltipContent>Tambah Admin Pengajuan</TooltipContent>
             </Tooltip>

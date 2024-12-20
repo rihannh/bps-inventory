@@ -1,6 +1,6 @@
 import {Navigate, Outlet, useLocation} from 'react-router-dom';
 import {getUser, getUserRole} from '@/lib/network/authServices';
-import { convertToSlug } from '@/lib/utils';
+import {convertToSlug} from '@/lib/utils';
 
 export default function RequireAuth() {
   const user = getUser();
@@ -13,10 +13,14 @@ export default function RequireAuth() {
     return <Navigate to='/login' />;
   }
   if (location.pathname === '/') {
-      return <Navigate to={`/${normalizedRole}/dashboard`} />;
-    }if (location.pathname === `/${normalizedRole}`|| location.pathname === `/${normalizedRole}/`) {
-      return <Navigate to={`/${normalizedRole}/dashboard`} />;
-    }
+    return <Navigate to={`/${normalizedRole}/dashboard`} />;
+  }
+  if (
+    location.pathname === `/${normalizedRole}` ||
+    location.pathname === `/${normalizedRole}/`
+  ) {
+    return <Navigate to={`/${normalizedRole}/dashboard`} />;
+  }
 
   return <Outlet />;
 }

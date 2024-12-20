@@ -1,11 +1,13 @@
 import {Card} from '@/components/ui/card';
 import {Chart} from './tes';
 import {dataDashboard} from '@/lib/data/dashboard-dummy';
+import {Dialog, DialogContent, DialogTrigger} from '@/components/ui/dialog';
+import AdminForm from '@/components/AdminForm';
 
 export default function Dashboard() {
   return (
     <>
-      <div className='grid lg:grid-cols-4 gap-4'>
+      <div className='grid lg:grid-cols-2 2xl:grid-cols-4 gap-4'>
         {dataDashboard.map((data, index) => (
           <Card key={index} className='flex items-center gap-4 p-3'>
             <figure className={`rounded-lg p-4 bg-${data.color}-200/40 h-fit`}>
@@ -26,6 +28,13 @@ export default function Dashboard() {
       <div className='w-2/3 mt-6'>
         <Chart />
       </div>
+
+      <Dialog>
+        <DialogTrigger>asdasd</DialogTrigger>
+        <DialogContent>
+          <AdminForm />
+        </DialogContent>
+      </Dialog>
     </>
   );
 }

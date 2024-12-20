@@ -7,9 +7,16 @@ import {
   TooltipContent,
   TooltipProvider,
 } from '@/components/ui/tooltip';
-import { BarangTable } from '@/components/BarangTable';
-import { dataBarang } from '@/lib/data/barang';
-import { barangColumns } from '@/lib/columns/barang-column';
+import {BarangTable} from '@/components/BarangTable';
+import {dataBarang} from '@/lib/data/barang';
+import {barangColumns} from '@/lib/columns/barang-column';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import BarangForm from '@/components/BarangForm';
 
 export default function DataBarangARK() {
   return (
@@ -41,9 +48,19 @@ export default function DataBarangARK() {
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger>
-                  <Button>
-                    <PlusCircle /> Tambah Barang
-                  </Button>
+                  <Dialog>
+                    <DialogTrigger>
+                      <Button>
+                        <PlusCircle /> Tambah Barang
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader className='text-xl font-semibold'>
+                        Tambah Barang ARK
+                      </DialogHeader>
+                      <BarangForm />
+                    </DialogContent>
+                  </Dialog>
                 </TooltipTrigger>
                 <TooltipContent>Tambah Barang ARK</TooltipContent>
               </Tooltip>
