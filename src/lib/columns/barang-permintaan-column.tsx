@@ -40,7 +40,7 @@ export const barangPermintaanColumns: ColumnDef<BarangPermintaan>[] = [
     cell: (row) => {
       const status = row.row.original.status;
       return (
-        <Badge variant={status as 'pending' | 'approved' | 'rejected'}>
+        <Badge variant={status as 'Pending' | 'Approved' | 'Rejected'}>
           {status}
         </Badge>
       );
