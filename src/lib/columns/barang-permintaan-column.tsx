@@ -2,7 +2,12 @@ import {ColumnDef} from '@tanstack/react-table';
 import {Pencil} from 'lucide-react';
 import {BarangPermintaan} from '@/lib/types/barang';
 import {Badge} from '@/components/ui/badge';
-import {Dialog, DialogContent, DialogHeader, DialogTrigger} from '@/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import PermintaanEdit from '@/components/PermintaanEditForm';
 
 export const barangPermintaanColumns: ColumnDef<BarangPermintaan>[] = [
@@ -21,6 +26,10 @@ export const barangPermintaanColumns: ColumnDef<BarangPermintaan>[] = [
   {
     accessorKey: 'nama',
     header: 'Nama Barang',
+  },
+  {
+    accessorKey: 'jenis',
+    header: 'Jenis Barang',
   },
   {
     accessorKey: 'satuan',

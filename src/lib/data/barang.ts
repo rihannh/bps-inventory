@@ -462,6 +462,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 5,
     ruangan: 'Ruang 101',
+    jenis: 'ARK',
   },
   {
     id: 'BM002',
@@ -471,6 +472,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 3,
     ruangan: 'Ruang 102',
+    jenis: 'ATK',
   },
   {
     id: 'BM003',
@@ -480,6 +482,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 10,
     ruangan: 'Ruang 103',
+    jenis: 'ARK',
   },
   {
     id: 'BM004',
@@ -489,6 +492,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 15,
     ruangan: 'Ruang 104',
+    jenis: 'ARK',
   },
   {
     id: 'BM005',
@@ -498,6 +502,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 2,
     ruangan: 'Ruang 105',
+    jenis: 'ARK',
   },
   {
     id: 'BM006',
@@ -507,6 +512,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 20,
     ruangan: 'Ruang 106',
+    jenis: 'ATK',
   },
   {
     id: 'BM007',
@@ -516,6 +522,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 4,
     ruangan: 'Ruang 107',
+    jenis: 'ARK',
   },
   {
     id: 'BM008',
@@ -525,6 +532,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 6,
     ruangan: 'Ruang 108',
+    jenis: 'ARK',
   },
   {
     id: 'BM009',
@@ -534,6 +542,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 8,
     ruangan: 'Ruang 109',
+    jenis: 'ARK',
   },
   {
     id: 'BM010',
@@ -543,6 +552,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 12,
     ruangan: 'Ruang 110',
+    jenis: 'ARK',
   },
   {
     id: 'BM011',
@@ -552,6 +562,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 4,
     ruangan: 'Ruang 101',
+    jenis: 'ARK',
   },
   {
     id: 'BM012',
@@ -561,6 +572,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 2,
     ruangan: 'Ruang 102',
+    jenis: 'ATK',
   },
   {
     id: 'BM013',
@@ -570,6 +582,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 5,
     ruangan: 'Ruang 103',
+    jenis: 'ARK',
   },
   {
     id: 'BM014',
@@ -579,6 +592,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 7,
     ruangan: 'Ruang 104',
+    jenis: 'ARK',
   },
   {
     id: 'BM015',
@@ -588,6 +602,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 1,
     ruangan: 'Ruang 105',
+    jenis: 'ARK',
   },
   {
     id: 'BM016',
@@ -597,6 +612,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 30,
     ruangan: 'Ruang 106',
+    jenis: 'ATK',
   },
   {
     id: 'BM017',
@@ -606,6 +622,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 3,
     ruangan: 'Ruang 107',
+    jenis: 'ARK',
   },
   {
     id: 'BM018',
@@ -615,6 +632,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 10,
     ruangan: 'Ruang 108',
+    jenis: 'ARK',
   },
   {
     id: 'BM019',
@@ -624,6 +642,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 4,
     ruangan: 'Ruang 109',
+    jenis: 'ARK',
   },
   {
     id: 'BM020',
@@ -633,6 +652,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 3,
     ruangan: 'Ruang 110',
+    jenis: 'ARK',
   },
   {
     id: 'BM021',
@@ -642,6 +662,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 6,
     ruangan: 'Ruang 101',
+    jenis: 'ARK',
   },
   {
     id: 'BM022',
@@ -651,6 +672,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 1,
     ruangan: 'Ruang 102',
+    jenis: 'ATK',
   },
   {
     id: 'BM023',
@@ -660,6 +682,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 9,
     ruangan: 'Ruang 103',
+    jenis: 'ARK',
   },
   {
     id: 'BM024',
@@ -669,6 +692,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 8,
     ruangan: 'Ruang 104',
+    jenis: 'ARK',
   },
   {
     id: 'BM025',
@@ -678,6 +702,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 2,
     ruangan: 'Ruang 105',
+    jenis: 'ARK',
   },
   {
     id: 'BM026',
@@ -687,6 +712,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 15,
     ruangan: 'Ruang 106',
+    jenis: 'ATK',
   },
   {
     id: 'BM027',
@@ -696,6 +722,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 5,
     ruangan: 'Ruang 107',
+    jenis: 'ARK',
   },
   {
     id: 'BM028',
@@ -705,6 +732,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 7,
     ruangan: 'Ruang 108',
+    jenis: 'ARK',
   },
   {
     id: 'BM029',
@@ -714,6 +742,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 5,
     ruangan: 'Ruang 109',
+    jenis: 'ARK',
   },
   {
     id: 'BM030',
@@ -723,6 +752,7 @@ export const dataBarangMasuk = [
     satuan: 'unit',
     jumlah: 6,
     ruangan: 'Ruang 110',
+    jenis: 'ARK',
   },
 ];
 
@@ -735,6 +765,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 2,
     ruangan: 'Ruang 101',
+    jenis: 'ARK',
   },
   {
     id: 'BK002',
@@ -744,6 +775,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 1,
     ruangan: 'Ruang 102',
+    jenis: 'ATK',
   },
   {
     id: 'BK003',
@@ -753,6 +785,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 3,
     ruangan: 'Ruang 103',
+    jenis: 'ARK',
   },
   {
     id: 'BK004',
@@ -762,6 +795,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 4,
     ruangan: 'Ruang 104',
+    jenis: 'ARK',
   },
   {
     id: 'BK005',
@@ -771,6 +805,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 1,
     ruangan: 'Ruang 105',
+    jenis: 'ARK',
   },
   {
     id: 'BK006',
@@ -780,6 +815,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 5,
     ruangan: 'Ruang 106',
+    jenis: 'ATK',
   },
   {
     id: 'BK007',
@@ -789,6 +825,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 2,
     ruangan: 'Ruang 107',
+    jenis: 'ARK',
   },
   {
     id: 'BK008',
@@ -798,6 +835,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 4,
     ruangan: 'Ruang 108',
+    jenis: 'ARK',
   },
   {
     id: 'BK009',
@@ -807,6 +845,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 3,
     ruangan: 'Ruang 109',
+    jenis: 'ARK',
   },
   {
     id: 'BK010',
@@ -816,6 +855,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 4,
     ruangan: 'Ruang 110',
+    jenis: 'ARK',
   },
   {
     id: 'BK011',
@@ -825,6 +865,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 3,
     ruangan: 'Ruang 101',
+    jenis: 'ARK',
   },
   {
     id: 'BK012',
@@ -834,6 +875,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 1,
     ruangan: 'Ruang 102',
+    jenis: 'ATK',
   },
   {
     id: 'BK013',
@@ -843,6 +885,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 4,
     ruangan: 'Ruang 103',
+    jenis: 'ARK',
   },
   {
     id: 'BK014',
@@ -852,6 +895,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 5,
     ruangan: 'Ruang 104',
+    jenis: 'ARK',
   },
   {
     id: 'BK015',
@@ -861,6 +905,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 2,
     ruangan: 'Ruang 105',
+    jenis: 'ARK',
   },
   {
     id: 'BK016',
@@ -870,6 +915,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 10,
     ruangan: 'Ruang 106',
+    jenis: 'ATK',
   },
   {
     id: 'BK017',
@@ -879,6 +925,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 1,
     ruangan: 'Ruang 107',
+    jenis: 'ARK',
   },
   {
     id: 'BK018',
@@ -888,6 +935,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 3,
     ruangan: 'Ruang 108',
+    jenis: 'ARK',
   },
   {
     id: 'BK019',
@@ -897,6 +945,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 2,
     ruangan: 'Ruang 109',
+    jenis: 'ARK',
   },
   {
     id: 'BK020',
@@ -906,6 +955,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 2,
     ruangan: 'Ruang 110',
+    jenis: 'ARK',
   },
   {
     id: 'BK021',
@@ -915,6 +965,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 5,
     ruangan: 'Ruang 101',
+    jenis: 'ARK',
   },
   {
     id: 'BK022',
@@ -924,6 +975,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 3,
     ruangan: 'Ruang 102',
+    jenis: 'ATK',
   },
   {
     id: 'BK023',
@@ -933,6 +985,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 2,
     ruangan: 'Ruang 103',
+    jenis: 'ARK',
   },
   {
     id: 'BK024',
@@ -942,6 +995,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 2,
     ruangan: 'Ruang 104',
+    jenis: 'ARK',
   },
   {
     id: 'BK025',
@@ -951,6 +1005,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 3,
     ruangan: 'Ruang 105',
+    jenis: 'ARK',
   },
   {
     id: 'BK026',
@@ -960,6 +1015,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 12,
     ruangan: 'Ruang 106',
+    jenis: 'ATK',
   },
   {
     id: 'BK027',
@@ -969,6 +1025,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 2,
     ruangan: 'Ruang 107',
+    jenis: 'ARK',
   },
   {
     id: 'BK028',
@@ -978,6 +1035,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 3,
     ruangan: 'Ruang 108',
+    jenis: 'ARK',
   },
   {
     id: 'BK029',
@@ -987,6 +1045,7 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 1,
     ruangan: 'Ruang 109',
+    jenis: 'ARK',
   },
   {
     id: 'BK030',
@@ -996,8 +1055,10 @@ export const dataBarangKeluar = [
     satuan: 'unit',
     jumlah: 3,
     ruangan: 'Ruang 110',
+    jenis: 'ARK',
   },
 ];
+
 
 export const dataBarangPermintaan = [
   {

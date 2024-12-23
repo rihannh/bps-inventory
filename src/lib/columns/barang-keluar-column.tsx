@@ -21,6 +21,10 @@ export const barangKeluarColumns: ColumnDef<BarangTrans>[] = [
     header: 'Nama Barang',
   },
   {
+    accessorKey: 'jenis',
+    header: 'Jenis Barang',
+  },
+  {
     accessorKey: 'satuan',
     header: 'Satuan',
   },
