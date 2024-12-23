@@ -1,11 +1,11 @@
 import {ColumnDef} from '@tanstack/react-table';
 import {Pencil} from 'lucide-react';
-import {BarangTransaction} from '@/lib/types/barang';
+import {BarangPermintaan} from '@/lib/types/barang';
 import {Badge} from '@/components/ui/badge';
 import {Dialog, DialogContent, DialogHeader, DialogTrigger} from '@/components/ui/dialog';
 import PermintaanEdit from '@/components/PermintaanEditForm';
 
-export const barangPermintaanColumns: ColumnDef<BarangTransaction>[] = [
+export const barangPermintaanColumns: ColumnDef<BarangPermintaan>[] = [
   {
     header: 'No',
     cell: (row) => row.row.index + 1,
@@ -57,7 +57,7 @@ export const barangPermintaanColumns: ColumnDef<BarangTransaction>[] = [
           <DialogTrigger className='bg-yellow-500  h-fit p-1 rounded-md hover:bg-yellow-900/90'>
             <Pencil size={18} color='white' />
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className='h-[80%] overflow-auto'>
             <DialogHeader className='text-xl font-semibold'>
               Edit Permintaan
             </DialogHeader>

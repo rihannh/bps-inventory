@@ -1,6 +1,6 @@
 import { TransaksiTable } from '@/components/TransaksiTable';
 import {Card} from '@/components/ui/card';
-import { barangMasukColumns } from '@/lib/columns/barang-masuk-column copy 2';
+import { barangMasukColumns } from '@/lib/columns/barang-masuk-column';
 import { dataBarangMasuk } from '@/lib/data/barang';
 
 export default function BarangKeluar() {
