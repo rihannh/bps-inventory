@@ -35,8 +35,8 @@ interface User {
 
 export const loginUser = (email: string, password: string): User | null => {
   const fakeUsers = [
-    { email: 'admin1@test.com', name:'Rihan Meja' ,password: '12341234', role: 'Admin Sepuh' },
-    { email: 'admin2@test.com', name:'Naufal Kenalpot' ,password: '12341234', role: 'Admin Junior' },
+    { email: 'admin1@test.com', name:'Rihan Meja' ,password: '12341234', role: 'Admin' },
+    { email: 'admin2@test.com', name:'Naufal Kenalpot' ,password: '12341234', role: 'Admin Pengajuan' },
   ];
 
   const user = fakeUsers.find(u => u.email === email && u.password === password);

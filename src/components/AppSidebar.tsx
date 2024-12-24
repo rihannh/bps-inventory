@@ -23,9 +23,9 @@ import {
 
 export default function AppSidebar({role}: {role: string}) {
   let sidebarItems;
-  if (role === 'Admin Sepuh') {
+  if (role === 'Admin') {
     sidebarItems = admin1Items;
-  } else if (role === 'Admin Junior') {
+  } else if (role === 'Admin Pengajuan') {
     sidebarItems = admin2Items;
   }
   return (

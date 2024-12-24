@@ -1,4 +1,4 @@
-import {Home, Package, ScrollText, FileText} from 'lucide-react';
+import {Package, ScrollText, FileText, LayoutDashboard} from 'lucide-react';
 
 export const admin1Items = [
   {
@@ -34,14 +34,13 @@ export const admin1Items = [
 ];
 export const admin2Items = [
   {
-    label: 'Data Master',
-    icon: Home,
+    label: 'Dashboard',
+    icon: LayoutDashboard,
     contents: [
-      {title: 'Data Admin', url: '#'},
-      {title: 'Data Pegawai', url: '#'},
-      {title: 'Data Admin Pengajuan', url: '#'},
-      {title: 'Data Barang', url: '#'},
-      {title: 'Data Ruangan', url: '#'},
+      {title: 'Data Barang ATK', url: 'data-barang-atk'},
+      {title: 'Data Barang ARK', url: 'data-barang-ark'},
+      {title: 'Pengajuan Barang', url: 'pengajuan-barang'},
+      {title: 'Laporan Pengajuan', url: 'laporan-pengajuan'},
     ],
   },
 ];

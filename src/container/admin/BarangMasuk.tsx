@@ -3,7 +3,7 @@ import {Card} from '@/components/ui/card';
 import { barangMasukColumns } from '@/lib/columns/barang-masuk-column';
 import { dataBarangMasuk } from '@/lib/data/barang';
 
-export default function BarangKeluar() {
+export default function BarangMasuk() {
   return (
     <Card className='p-6'>
       <h1
