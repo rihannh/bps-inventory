@@ -1,8 +1,6 @@
 import {Card} from '@/components/ui/card';
 import {Chart} from './tes';
 import {dataDashboard} from '@/lib/data/dashboard-dummy';
-import {Dialog, DialogContent, DialogTrigger} from '@/components/ui/dialog';
-import AdminForm from '@/components/AdminForm';
 
 export default function Dashboard() {
   return (
@@ -29,12 +27,7 @@ export default function Dashboard() {
         <Chart />
       </div>
 
-      <Dialog>
-        <DialogTrigger>asdasd</DialogTrigger>
-        <DialogContent>
-          <AdminForm />
-        </DialogContent>
-      </Dialog>
+      
     </>
   );
 }

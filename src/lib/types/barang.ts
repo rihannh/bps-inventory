@@ -3,6 +3,7 @@ export type Barang = {
   kode_barang: string;
   nama: string;
   stok: number;
+  stok_dasar: number;
   satuan: string;
   harga_satuan: number;
   harga_pengajuan: number;
@@ -41,5 +42,18 @@ export type BarangPengajuan = {
   harga_pengajuan: number;
   harga_total: number;
   status: string;
-}
+};
+
+export type SummaryPermintaan = {
+  id: number;
+  tanggal_permintaan: string;
+  jumlah_permintaan: number;
+};
+export type SummaryPengajuan = {
+  id: number;
+  tanggal_pengajuan: string;
+  jumlah_pengajuan: number;
+};
+
+
 

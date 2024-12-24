@@ -21,6 +21,10 @@ export const barangColumns: ColumnDef<Barang>[] = [
     header: 'Stok',
   },
   {
+    accessorKey: 'stok_dasar',
+    header: 'Stok Dasar',
+  },
+  {
     accessorKey: 'satuan',
     header: 'Satuan',
   },

@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/tooltip';
 import {BarangTable} from '@/components/BarangTable';
 import {dataBarang} from '@/lib/data/barang';
-import {barangColumns} from '@/lib/columns/barang-column';
+import {barangColumns} from '@/lib/columns/barang-column-edit';
 import {
   Dialog,
   DialogContent,

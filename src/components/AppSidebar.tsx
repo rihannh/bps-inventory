@@ -1,4 +1,4 @@
-import {admin1Items, admin2Items} from '@/lib/items/sidebar-items';
+import {admin1Items, admin2Items, admin3Items} from '@/lib/items/sidebar-items';
 import {
   Collapsible,
   CollapsibleTrigger,
@@ -27,6 +27,8 @@ export default function AppSidebar({role}: {role: string}) {
     sidebarItems = admin1Items;
   } else if (role === 'Admin Pengajuan') {
     sidebarItems = admin2Items;
+  } else if (role === 'Operator Ruangan') {
+    sidebarItems = admin3Items;
   }
   return (
     <Sidebar collapsible='icon'>

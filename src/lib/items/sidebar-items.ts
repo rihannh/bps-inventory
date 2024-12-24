@@ -44,3 +44,15 @@ export const admin2Items = [
     ],
   },
 ];
+export const admin3Items = [
+  {
+    label: 'Dashboard',
+    icon: LayoutDashboard,
+    contents: [
+      {title: 'Data Barang ATK', url: 'data-barang-atk'},
+      {title: 'Data Barang ARK', url: 'data-barang-ark'},
+      {title: 'Pengajuan Barang', url: 'pengajuan-barang'},
+      {title: 'Permintaan Barang', url: 'permintaan-barang'},
+    ],
+  },
+];
