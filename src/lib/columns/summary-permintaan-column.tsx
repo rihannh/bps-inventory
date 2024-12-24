@@ -1,6 +1,5 @@
 import {ColumnDef} from '@tanstack/react-table';
 import {SummaryPermintaan} from '@/lib/types/barang';
-import {Link} from 'react-router-dom';
 import {Eye} from 'lucide-react';
 import {
   Dialog,
