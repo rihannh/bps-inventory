@@ -41,7 +41,7 @@ export default function DataAdminPengajuan() {
                     <DialogHeader className='text-xl font-semibold'>
                       Tambah Admin Pengajuan
                     </DialogHeader>
-                    <UserForm />
+                    <UserForm type='add' />
                   </DialogContent>
                 </Dialog>
               </TooltipTrigger>

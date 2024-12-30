@@ -41,7 +41,7 @@ export default function DataAdmin() {
                     <DialogHeader className='text-xl font-semibold'>
                       Tambah Admin
                     </DialogHeader>
-                    <AdminForm />
+                    <AdminForm type='add' />
                   </DialogContent>
                 </Dialog>
               </TooltipTrigger>

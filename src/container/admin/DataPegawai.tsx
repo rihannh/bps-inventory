@@ -17,8 +17,11 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import UserForm from '@/components/UserForm';
+import useExcel from '@/hooks/use-excel';
 
 export default function DataAdmin() {
+  const {handleExcel} = useExcel();
+
   return (
     <>
       <Card className='p-6'>
@@ -40,7 +43,7 @@ export default function DataAdmin() {
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger>
-                  <Button variant={'blue'}>
+                  <Button onClick={()=> handleExcel(dataAdmin, 'data_pegawai')} variant={'blue'}>
                     <Download /> Download
                   </Button>
                 </TooltipTrigger>
@@ -58,7 +61,7 @@ export default function DataAdmin() {
                       <DialogHeader className='text-xl font-semibold'>
                         Tambah Pegawai
                       </DialogHeader>
-                      <UserForm />
+                      <UserForm type='add' />
                     </DialogContent>
                   </Dialog>
                 </TooltipTrigger>

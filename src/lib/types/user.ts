@@ -5,4 +5,5 @@ export type User = {
   jabatan: string;
   email: string;
   username: string;
+  password: string;
 };

@@ -1,17 +1,5 @@
 import React from 'react';
 
-import {zodResolver} from '@hookform/resolvers/zod';
-import {useForm} from 'react-hook-form';
-import {z} from 'zod';
-import {Popover, PopoverContent, PopoverTrigger} from '@/components/ui/popover';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
 import {Input} from '@/components/ui/input';
 import {
   ColumnDef,
@@ -21,6 +9,8 @@ import {
   getCoreRowModel,
   getPaginationRowModel,
   getFilteredRowModel,
+  getSortedRowModel,
+  SortingState,
   useReactTable,
 } from '@tanstack/react-table';
 import {
@@ -38,16 +28,12 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import {Button} from './ui/button';
-import {ChevronDown, SlidersHorizontal} from 'lucide-react';
+import {ChevronDown} from 'lucide-react';
 
 interface BarangTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
-
-const filterSchema = z.object({
-  harga_pengajuan: z.number().optional(),
-});
 
 export function BarangTable<TData, TValue>({
   columns,
@@ -58,16 +44,7 @@ export function BarangTable<TData, TValue>({
   );
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
-  const form = useForm<z.infer<typeof filterSchema>>({
-    resolver: zodResolver(filterSchema),
-    defaultValues: {
-      harga_pengajuan: undefined,
-    },
-  });
-
-  function onSubmit(values: z.infer<typeof filterSchema>) {
-    console.log(values);
-  }
+  const [sorting, setSorting] = React.useState<SortingState>([]);
 
   const table = useReactTable({
     data,
@@ -77,7 +54,10 @@ export function BarangTable<TData, TValue>({
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
+    onSortingChange: setSorting,
+    getSortedRowModel: getSortedRowModel(),
     state: {
+      sorting,
       columnFilters,
       columnVisibility,
     },
@@ -91,53 +71,14 @@ export function BarangTable<TData, TValue>({
   return (
     <>
       <div className='flex lg:items-center flex-col lg:flex-row lg:justify-between gap-4 py-4'>
-        <div className='flex gap-4 w-full'>
-          <Input
-            placeholder='Cari nama...'
-            value={(table.getColumn('nama')?.getFilterValue() as string) ?? ''}
-            onChange={(event) =>
-              table.getColumn('nama')?.setFilterValue(event.target.value)
-            }
-            className='max-w-md'
-          />
-          <Popover>
-            <PopoverTrigger>
-              <span className='flex items-center gap-2'>
-                <SlidersHorizontal size={18} /> Filter
-              </span>
-            </PopoverTrigger>
-            <PopoverContent>
-              <Form {...form}>
-                <form
-                  onSubmit={form.handleSubmit(onSubmit)}
-                  className='space-y-8'
-                >
-                  <FormField
-                    control={form.control}
-                    name='harga_pengajuan'
-                    render={({field}) => (
-                      <FormItem>
-                        <FormLabel>Harga Pengajuan</FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder='Harga Pengajuan...'
-                            type='number'
-                            {...field}
-                            onChange={(e) =>
-                              field.onChange(e.target.valueAsNumber)
-                            }
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <Button type='submit'>Submit</Button>
-                </form>
-              </Form>
-            </PopoverContent>
-          </Popover>
-        </div>
+        <Input
+          placeholder='Cari nama...'
+          value={(table.getColumn('nama')?.getFilterValue() as string) ?? ''}
+          onChange={(event) =>
+            table.getColumn('nama')?.setFilterValue(event.target.value)
+          }
+          className='max-w-md'
+        />
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

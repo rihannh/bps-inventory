@@ -11,6 +11,8 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import {Input} from '@/components/ui/input';
+import { useEffect } from 'react';
+import { dataAdmin } from '@/lib/data/admin-dummy';
 
 const userSchema = z.object({
   nama: z
@@ -43,7 +45,7 @@ const userSchema = z.object({
   // .regex(/[@$!%*?&#]/, { message: 'Password harus memiliki setidaknya satu karakter spesial.' }),
 });
 
-export default function UserForm() {
+export default function UserForm({id, type}: {id?: string; type: 'edit' | 'add'}) {
   const form = useForm<z.infer<typeof userSchema>>({
     resolver: zodResolver(userSchema),
     defaultValues: {
@@ -55,8 +57,26 @@ export default function UserForm() {
     },
   });
 
+  const {setValue} = form;
+
+  useEffect(() => {
+      if (id) {
+        const detailAdmin = dataAdmin.find((admin) => admin.id === id);
+        if (detailAdmin) {
+          Object.entries(detailAdmin).forEach(([key, value]) => {
+            setValue(key as keyof z.infer<typeof userSchema>, value);
+          });
+        }
+      }
+    }, [id, setValue]);
+
   function onSubmit(values: z.infer<typeof userSchema>) {
-    console.log(values);
+    if (type === 'add') {
+      console.log('add', values);
+    }
+    if (type === 'edit') {
+      console.log('edit', values);
+    }
   }
   return (
     <Form {...form}>

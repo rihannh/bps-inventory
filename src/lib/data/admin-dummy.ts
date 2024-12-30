@@ -1,6 +1,4 @@
-import { User } from "../types/user";
-
-export const dataAdmin: User[] = [
+export const dataAdmin = [
   {
     id: '1',
     nama: 'Shadiq Alwi',
@@ -8,6 +6,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Kepala',
     username: 'shadiqalwi',
     email: 'shadiq.alwi@example.com',
+    password: 'shadiq123',
   },
   {
     id: '2',
@@ -16,6 +15,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Wakil Kepala',
     username: 'rizkyalwi',
     email: 'rizky.alwi@example.com',
+    password: 'rizky123',
   },
   {
     id: '3',
@@ -24,6 +24,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Operator Tata Ruang',
     username: 'asep',
     email: 'asep@example.com',
+    password: 'asep123',
   },
   {
     id: '4',
@@ -32,6 +33,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Keuangan',
     username: 'budi.santoso',
     email: 'budi.santoso@example.com',
+    password: 'budi123',
   },
   {
     id: '5',
@@ -40,6 +42,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Umum',
     username: 'dewi.lestari',
     email: 'dewi.lestari@example.com',
+    password: 'dewi123',
   },
   {
     id: '6',
@@ -48,6 +51,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Teknisi IT',
     username: 'fajar.setiawan',
     email: 'fajar.setiawan@example.com',
+    password: 'fajar123',
   },
   {
     id: '7',
@@ -56,6 +60,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Staf Administrasi',
     username: 'gilang.pratama',
     email: 'gilang.pratama@example.com',
+    password: 'gilang123',
   },
   {
     id: '8',
@@ -64,6 +69,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Pendaftaran',
     username: 'hana.puspita',
     email: 'hana.puspita@example.com',
+    password: 'hana123',
   },
   {
     id: '9',
@@ -72,6 +78,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Sekretaris',
     username: 'indah.permata',
     email: 'indah.permata@example.com',
+    password: 'indah123',
   },
   {
     id: '10',
@@ -80,6 +87,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Logistik',
     username: 'joko.susilo',
     email: 'joko.susilo@example.com',
+    password: 'joko123',
   },
   {
     id: '11',
@@ -88,6 +96,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Staf Acara',
     username: 'karina.widya',
     email: 'karina.widya@example.com',
+    password: 'karina123',
   },
   {
     id: '12',
@@ -96,6 +105,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Data',
     username: 'lutfi.hakim',
     email: 'lutfi.hakim@example.com',
+    password: 'lutfi123',
   },
   {
     id: '13',
@@ -104,6 +114,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin IT',
     username: 'mega.sari',
     email: 'mega.sari@example.com',
+    password: 'mega123',
   },
   {
     id: '14',
@@ -112,6 +123,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Staf Pengembangan',
     username: 'niko.pradana',
     email: 'niko.pradana@example.com',
+    password: 'niko123',
   },
   {
     id: '15',
@@ -120,6 +132,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Keuangan',
     username: 'oka.wardhana',
     email: 'oka.wardhana@example.com',
+    password: 'oka123',
   },
   {
     id: '16',
@@ -128,6 +141,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Staf Acara',
     username: 'putri.amelia',
     email: 'putri.amelia@example.com',
+    password: 'putri123',
   },
   {
     id: '17',
@@ -136,6 +150,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Logistik',
     username: 'raka.ardi',
     email: 'raka.ardi@example.com',
+    password: 'raka123',
   },
   {
     id: '18',
@@ -144,6 +159,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Staf Administrasi',
     username: 'sari.murni',
     email: 'sari.murni@example.com',
+    password: 'sari123',
   },
   {
     id: '19',
@@ -152,6 +168,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Pendaftaran',
     username: 'taufik.hidayat',
     email: 'taufik.hidayat@example.com',
+    password: 'taufik123',
   },
   {
     id: '20',
@@ -160,6 +177,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin IT',
     username: 'utami.dewi',
     email: 'utami.dewi@example.com',
+    password: 'utami123',
   },
   {
     id: '21',
@@ -168,6 +186,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Pendaftaran',
     username: 'vina.safitri',
     email: 'vina.safitri@example.com',
+    password: 'vina123',
   },
   {
     id: '22',
@@ -176,6 +195,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Teknisi IT',
     username: 'yudi.hermawan',
     email: 'yudi.hermawan@example.com',
+    password: 'yudi123',
   },
   {
     id: '23',
@@ -184,6 +204,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Staf Acara',
     username: 'zahra.putri',
     email: 'zahra.putri@example.com',
+    password: 'zahra123',
   },
   {
     id: '24',
@@ -192,6 +213,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Keuangan',
     username: 'agung.santoso',
     email: 'agung.santoso@example.com',
+    password: 'agung123',
   },
   {
     id: '25',
@@ -200,6 +222,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Umum',
     username: 'bella.wijaya',
     email: 'bella.wijaya@example.com',
+    password: 'bella123',
   },
   {
     id: '26',
@@ -208,6 +231,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Sekretaris',
     username: 'citra.ayu',
     email: 'citra.ayu@example.com',
+    password: 'citra123',
   },
   {
     id: '27',
@@ -216,6 +240,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Logistik',
     username: 'denny.prasetyo',
     email: 'denny.prasetyo@example.com',
+    password: 'denny123',
   },
   {
     id: '28',
@@ -224,6 +249,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Staf Administrasi',
     username: 'elisa.sari',
     email: 'elisa.sari@example.com',
+    password: 'elisa123',
   },
   {
     id: '29',
@@ -232,6 +258,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin IT',
     username: 'farhan.rafi',
     email: 'farhan.rafi@example.com',
+    password: 'farhan123',
   },
   {
     id: '30',
@@ -240,6 +267,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Keuangan',
     username: 'gita.maharani',
     email: 'gita.maharani@example.com',
+    password: 'gita123',
   },
   {
     id: '31',
@@ -248,6 +276,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Staf Pengembangan',
     username: 'hendra.kurniawan',
     email: 'hendra.kurniawan@example.com',
+    password: 'hendra123',
   },
   {
     id: '32',
@@ -256,6 +285,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Data',
     username: 'irma.suryani',
     email: 'irma.suryani@example.com',
+    password: 'irma123',
   },
   {
     id: '33',
@@ -264,6 +294,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Staf Acara',
     username: 'juliana.pratiwi',
     email: 'juliana.pratiwi@example.com',
+    password: 'juliana123',
   },
   {
     id: '34',
@@ -272,6 +303,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Logistik',
     username: 'kevin.aditya',
     email: 'kevin.aditya@example.com',
+    password: 'kevin123',
   },
   {
     id: '35',
@@ -280,6 +312,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Pendaftaran',
     username: 'laila.nabila',
     email: 'laila.nabila@example.com',
+    password: 'laila123',
   },
   {
     id: '36',
@@ -288,6 +321,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Teknisi IT',
     username: 'mahendra.jaya',
     email: 'mahendra.jaya@example.com',
+    password: 'mahendra123',
   },
   {
     id: '37',
@@ -296,6 +330,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Staf Administrasi',
     username: 'nia.kusuma',
     email: 'nia.kusuma@example.com',
+    password: 'nia123',
   },
   {
     id: '38',
@@ -304,6 +339,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Sekretaris',
     username: 'olivia.melati',
     email: 'olivia.melati@example.com',
+    password: 'olivia123',
   },
   {
     id: '39',
@@ -312,6 +348,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Keuangan',
     username: 'putra.arif',
     email: 'putra.arif@example.com',
+    password: 'putra123',
   },
   {
     id: '40',
@@ -320,6 +357,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Staf Acara',
     username: 'rina.dewi',
     email: 'rina.dewi@example.com',
+    password: 'rina123',
   },
   {
     id: '41',
@@ -328,6 +366,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin IT',
     username: 'sandi.firmansyah',
     email: 'sandi.firmansyah@example.com',
+    password: 'sandi123',
   },
   {
     id: '42',
@@ -336,6 +375,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Logistik',
     username: 'tasya.anggraini',
     email: 'tasya.anggraini@example.com',
+    password: 'tasya123',
   },
   {
     id: '43',
@@ -344,6 +384,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Pendaftaran',
     username: 'umi.lestari',
     email: 'umi.lestari@example.com',
+    password: 'umi123',
   },
   {
     id: '44',
@@ -352,6 +393,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Data',
     username: 'vino.alamsyah',
     email: 'vino.alamsyah@example.com',
+    password: 'vino123',
   },
   {
     id: '45',
@@ -360,6 +402,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Staf Pengembangan',
     username: 'wahyu.nugroho',
     email: 'wahyu.nugroho@example.com',
+    password: 'wahyu123',
   },
   {
     id: '46',
@@ -368,6 +411,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Keuangan',
     username: 'xenia.amira',
     email: 'xenia.amira@example.com',
+    password: 'xenia123',
   },
   {
     id: '47',
@@ -376,6 +420,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Teknisi IT',
     username: 'yuliana.sari',
     email: 'yuliana.sari@example.com',
+    password: 'yuliana123',
   },
   {
     id: '48',
@@ -384,6 +429,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Staf Acara',
     username: 'zainal.arifin',
     email: 'zainal.arifin@example.com',
+    password: 'zainal123',
   },
   {
     id: '49',
@@ -392,6 +438,7 @@ export const dataAdmin: User[] = [
     jabatan: 'Staf Administrasi',
     username: 'aldo.prasetyo',
     email: 'aldo.prasetyo@example.com',
+    password: 'aldo123',
   },
   {
     id: '50',
@@ -400,5 +447,6 @@ export const dataAdmin: User[] = [
     jabatan: 'Admin Pendaftaran',
     username: 'bella.amanda',
     email: 'bella.amanda@example.com',
+    password: 'bella123',
   },
 ];

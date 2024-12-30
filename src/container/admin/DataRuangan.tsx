@@ -14,7 +14,7 @@ import RuanganForm from '@/components/RuanganForm';
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
+  DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
 
@@ -38,10 +38,10 @@ export default function DataRuangan() {
                     </Button>
                   </DialogTrigger>
                   <DialogContent>
-                    <DialogHeader className='text-xl font-semibold'>
+                    <DialogTitle className='text-xl font-semibold'>
                       Tambah Ruangan
-                    </DialogHeader>
-                    <RuanganForm />
+                    </DialogTitle>
+                    <RuanganForm type='add' />
                   </DialogContent>
                 </Dialog>
               </TooltipTrigger>

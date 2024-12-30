@@ -11,6 +11,8 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import {Input} from '@/components/ui/input';
+import {useEffect} from 'react';
+import {dataAdmin} from '@/lib/data/admin-dummy';
 
 const adminSchema = z.object({
   nama: z
@@ -30,13 +32,15 @@ const adminSchema = z.object({
     .string()
     .min(8, {message: 'Password harus memiliki minimal 8 karakter.'})
     .max(50, {message: 'Password tidak boleh lebih dari 50 karakter.'}),
-  // .regex(/[A-Z]/, { message: 'Password harus memiliki setidaknya satu huruf besar.' })
-  // .regex(/[a-z]/, { message: 'Password harus memiliki setidaknya satu huruf kecil.' })
-  // .regex(/[0-9]/, { message: 'Password harus memiliki setidaknya satu angka.' })
-  // .regex(/[@$!%*?&#]/, { message: 'Password harus memiliki setidaknya satu karakter spesial.' }),
 });
 
-export default function AdminForm() {
+export default function AdminForm({
+  id,
+  type,
+}: {
+  id?: string;
+  type: 'edit' | 'add';
+}) {
   const form = useForm<z.infer<typeof adminSchema>>({
     resolver: zodResolver(adminSchema),
     defaultValues: {
@@ -46,8 +50,26 @@ export default function AdminForm() {
       password: '',
     },
   });
+
+  const {setValue} = form;
+  useEffect(() => {
+    if (id) {
+      const detailAdmin = dataAdmin.find((admin) => admin.id === id);
+      if (detailAdmin) {
+        Object.entries(detailAdmin).forEach(([key, value]) => {
+          setValue(key as keyof z.infer<typeof adminSchema>, value);
+        });
+      }
+    }
+  }, [id, setValue]);
+
   function onSubmit(values: z.infer<typeof adminSchema>) {
-    console.log(values);
+    if (type === 'add') {
+      console.log('add', values);
+    }
+    if (type === 'edit') {
+      console.log('edit', values);
+    }
   }
   return (
     <Form {...form}>
