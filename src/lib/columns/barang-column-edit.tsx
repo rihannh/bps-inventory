@@ -135,7 +135,7 @@ export const barangColumns: ColumnDef<Barang>[] = [
             <DialogTrigger className='bg-yellow-500 p-1 rounded-md hover:bg-yellow-900/90'>
               <Pencil size={18} color='white' />
             </DialogTrigger>
-            <DialogContent>
+            <DialogContent className='max-h-[80%] overflow-auto'>
               <DialogTitle className='text-xl font-semibold'>
                 Edit Barang
               </DialogTitle>

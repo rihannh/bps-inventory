@@ -2,7 +2,7 @@ import {ColumnDef} from '@tanstack/react-table';
 import {BarangPermintaan} from '@/lib/types/barang';
 import {Badge} from '@/components/ui/badge';
 
-export const detailPermintaanColumns: ColumnDef<BarangPermintaan>[] = [
+export const detailPermintaanOperatorColumns: ColumnDef<BarangPermintaan>[] = [
   {
     header: 'No',
     cell: (row) => row.row.index + 1,

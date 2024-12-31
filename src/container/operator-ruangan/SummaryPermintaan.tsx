@@ -1,6 +1,6 @@
 import { TransaksiTable } from '@/components/TransaksiTable';
 import {Card} from '@/components/ui/card';
-import { summaryPermintaanColumns } from '@/lib/columns/summary-permintaan-column';
+import { summaryPermintaanOperatorColumns } from '@/lib/columns/summary-permintaan-operator-column';
 import { dataSummaryPermintaan } from '@/lib/data/barang';
 
 export default function SummaryPermintaan() {
@@ -11,7 +11,7 @@ export default function SummaryPermintaan() {
       >
         Data Permintaan Barang
       </h1>
-      <TransaksiTable columns={summaryPermintaanColumns} data={dataSummaryPermintaan} />
+      <TransaksiTable columns={summaryPermintaanOperatorColumns} data={dataSummaryPermintaan} />
     </Card>
   );
 }

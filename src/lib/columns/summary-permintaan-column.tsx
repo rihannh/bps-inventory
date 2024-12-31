@@ -1,13 +1,14 @@
 import {ColumnDef} from '@tanstack/react-table';
 import {SummaryPermintaan} from '@/lib/types/barang';
-import {Eye} from 'lucide-react';
+import {Eye, Printer} from 'lucide-react';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import DetailPermintaan from '@/container/operator-ruangan/DetailPermintaan';
+import DetailPermintaan from '@/container/admin/DetailPermintaan';
+import {Button} from '@/components/ui/button';
 
 export const summaryPermintaanColumns: ColumnDef<SummaryPermintaan>[] = [
   {
@@ -23,9 +24,31 @@ export const summaryPermintaanColumns: ColumnDef<SummaryPermintaan>[] = [
     header: 'Jumlah Perminataan',
   },
   {
+    accessorKey: 'ruangan',
+    header: 'Ruangan',
+  },
+  {
+    accessorKey: 'status',
+    header: 'Status',
+    cell: (row) => {
+      const status = row.row.original.status;
+      return (
+        <ul className='list-disc list-inside first:marker:text-green-500 [&:nth-child(2)]:marker:text-yellow-500 last:marker:text-red-500'>
+          {Object.entries(status).map(([key, value]) => (
+            <li key={key}>
+              {key} : {value}
+            </li>
+          ))}
+        </ul>
+      );
+    },
+  },
+  {
     header: 'Action',
-    cell: () => (
-      <Dialog>
+    cell: (row) => {
+      const hasPending = row.row.original.status['Pending'] > 0;
+      return (
+        <Dialog>
         <div className='flex space-x-3 justify-center items-center'>
           <DialogTrigger className='bg-green-500 p-1 rounded-md hover:bg-yellow-900/90'>
             <Eye size={18} color='white' />
@@ -36,6 +59,9 @@ export const summaryPermintaanColumns: ColumnDef<SummaryPermintaan>[] = [
             </DialogHeader>
             <DetailPermintaan />
           </DialogContent>
+          <Button disabled={hasPending} className='p-1.5 h-fit'>
+            <Printer size={18} />
+          </Button>
           {/* <Link
           to={'detail'}
           className='bg-yellow-500 p-1 rounded-md hover:bg-yellow-900/90'
@@ -53,6 +79,7 @@ export const summaryPermintaanColumns: ColumnDef<SummaryPermintaan>[] = [
         </Link> */}
         </div>
       </Dialog>
-    ),
+      )
+    },
   },
 ];

@@ -2001,54 +2001,116 @@ export const dataSummaryPermintaan = [
   {
     id: 1,
     tanggal_permintaan: '2024-12-14',
+    ruangan: 'Perpustakaan',
     jumlah_permintaan: 12,
+    status: {
+      Approved: 4,
+      Pending: 0,
+      Rejected: 3,
+    },
   },
   {
     id: 2,
     tanggal_permintaan: '2024-12-15',
+    ruangan: 'Ruang Meeting',
     jumlah_permintaan: 18,
+    status: {
+      Approved: 8,
+      Pending: 0,
+      Rejected: 4,
+    },
   },
   {
     id: 3,
     tanggal_permintaan: '2024-12-16',
+    ruangan: 'Ruang Kerja',
     jumlah_permintaan: 9,
+    status: {
+      Approved: 5,
+      Pending: 2,
+      Rejected: 2,
+    },
   },
   {
     id: 4,
     tanggal_permintaan: '2024-12-17',
+    ruangan: 'Ruang Tamu',
     jumlah_permintaan: 23,
+    status: {
+      Approved: 8,
+      Pending: 10,
+      Rejected: 5,
+    },
   },
   {
     id: 5,
     tanggal_permintaan: '2024-12-18',
+    ruangan: 'Ruang IT',
     jumlah_permintaan: 28,
+    status: {
+      Approved: 10,
+      Pending: 12,
+      Rejected: 6,
+    },
   },
   {
     id: 6,
     tanggal_permintaan: '2024-12-19',
+    ruangan: 'Ruang Pantry',
     jumlah_permintaan: 16,
+    status: {
+      Approved: 6,
+      Pending: 7,
+      Rejected: 3,
+    },
   },
   {
     id: 7,
     tanggal_permintaan: '2024-12-20',
+    ruangan: 'Ruang Administrasi',
     jumlah_permintaan: 20,
+    status: {
+      Approved: 8,
+      Pending: 9,
+      Rejected: 3,
+    },
   },
   {
     id: 8,
     tanggal_permintaan: '2024-12-21',
+    ruangan: 'Ruang Audio',
     jumlah_permintaan: 15,
+    status: {
+      Approved: 5,
+      Pending: 6,
+      Rejected: 4,
+    },
   },
   {
     id: 9,
     tanggal_permintaan: '2024-12-22',
+    ruangan: 'Ruang Keamanan',
     jumlah_permintaan: 17,
+    status: {
+      Approved: 6,
+      Pending: 8,
+      Rejected: 3,
+    },
   },
   {
     id: 10,
     tanggal_permintaan: '2024-12-23',
+    ruangan: 'Ruang Kelas',
     jumlah_permintaan: 22,
+    status: {
+      Approved: 9,
+      Pending: 10,
+      Rejected: 3,
+    },
   },
 ];
+
+
 
 export const dataDetailPengajuan = [
   {

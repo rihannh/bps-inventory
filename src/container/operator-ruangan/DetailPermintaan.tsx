@@ -1,11 +1,11 @@
 import {TransaksiTable} from '@/components/TransaksiTable';
-import { detailPermintaanColumns } from '@/lib/columns/detail-permintaan-column';
+import { detailPermintaanOperatorColumns } from '@/lib/columns/detail-permintaan-operator-column';
 import {dataDetailPermintaan} from '@/lib/data/barang';
 
 export default function DetailPermintaan() {
   return (
     <TransaksiTable
-      columns={detailPermintaanColumns}
+      columns={detailPermintaanOperatorColumns}
       data={dataDetailPermintaan}
     />
   );

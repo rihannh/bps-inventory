@@ -1,5 +1,5 @@
 import {Card} from '@/components/ui/card';
-import {BarangTable} from '@/components/BarangTable';
+import DataTable from '@/components/DataTable';
 import {dataBarang} from '@/lib/data/barang';
 import {barangViewColumns} from '@/lib/columns/barang-column-view';
 
@@ -14,7 +14,7 @@ export default function DataBarangARK() {
             Data Barang ARK
           </h1>
         </div>
-        <BarangTable data={dataBarang} columns={barangViewColumns} />
+        <DataTable data={dataBarang} columns={barangViewColumns} />
       </Card>
     </>
   );

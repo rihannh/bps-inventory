@@ -47,6 +47,8 @@ export type BarangPengajuan = {
 export type SummaryPermintaan = {
   id: number;
   tanggal_permintaan: string;
+  ruangan: string;
+  status: Record<string,number>;
   jumlah_permintaan: number;
 };
 export type SummaryPengajuan = {

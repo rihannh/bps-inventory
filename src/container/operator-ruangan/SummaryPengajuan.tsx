@@ -1,6 +1,6 @@
 import { TransaksiTable } from '@/components/TransaksiTable';
 import {Card} from '@/components/ui/card';
-import { summaryPengajuanColumns } from '@/lib/columns/summary-pengajuan-column';
+import { summaryPengajuanOperatorColumns } from '@/lib/columns/summary-pengajuan-operator-column';
 import { dataSummaryPengajuan } from '@/lib/data/barang';
 
 export default function SummaryPengajuan() {
@@ -11,7 +11,7 @@ export default function SummaryPengajuan() {
       >
         Data Pengajuan Barang
       </h1>
-      <TransaksiTable columns={summaryPengajuanColumns} data={dataSummaryPengajuan} />
+      <TransaksiTable columns={summaryPengajuanOperatorColumns} data={dataSummaryPengajuan} />
     </Card>
   );
 }

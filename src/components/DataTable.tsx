@@ -30,15 +30,15 @@ import {
 import {Button} from './ui/button';
 import {ChevronDown} from 'lucide-react';
 
-interface BarangTableProps<TData, TValue> {
+interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
 
-export function BarangTable<TData, TValue>({
+export default function DataTable<TData, TValue>({
   columns,
   data,
-}: BarangTableProps<TData, TValue>) {
+}: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );

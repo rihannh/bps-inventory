@@ -7,7 +7,7 @@ import {
   TooltipContent,
   TooltipProvider,
 } from '@/components/ui/tooltip';
-import {BarangTable} from '@/components/BarangTable';
+
 import {dataBarang} from '@/lib/data/barang';
 import {barangColumns} from '@/lib/columns/barang-column-edit';
 import {
@@ -30,7 +30,8 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import {Input} from '@/components/ui/input';
+import DataTable from '@/components/DataTable';
 
 const filterSchema = z.object({
   harga_pengajuan: z.number().optional(),
@@ -135,7 +136,7 @@ export default function DataBarangATK() {
             </TooltipProvider>
           </div>
         </div>
-        <BarangTable data={dataBarang} columns={barangColumns} />
+        <DataTable data={dataBarang} columns={barangColumns} />
       </Card>
     </>
   );

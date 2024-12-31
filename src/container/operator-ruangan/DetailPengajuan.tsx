@@ -1,11 +1,11 @@
 import {TransaksiTable} from '@/components/TransaksiTable';
-import { detailPengajuanColumns } from '@/lib/columns/detail-pengajuan-column';
+import {detailPengajuanOperatorColumns} from '@/lib/columns/detail-pengajuan-operator-column';
 import {dataDetailPengajuan} from '@/lib/data/barang';
 
 export default function DetailPengajuan() {
   return (
     <TransaksiTable
-      columns={detailPengajuanColumns}
+      columns={detailPengajuanOperatorColumns}
       data={dataDetailPengajuan}
     />
   );

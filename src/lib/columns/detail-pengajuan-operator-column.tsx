@@ -2,7 +2,7 @@ import {ColumnDef} from '@tanstack/react-table';
 import {BarangPengajuan} from '@/lib/types/barang';
 import {Badge} from '@/components/ui/badge';
 
-export const detailPengajuanColumns: ColumnDef<BarangPengajuan>[] = [
+export const detailPengajuanOperatorColumns: ColumnDef<BarangPengajuan>[] = [
   {
     header: 'No',
     cell: (row) => row.row.index + 1,
