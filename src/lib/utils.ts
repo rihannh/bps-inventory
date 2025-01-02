@@ -20,3 +20,4 @@ export const downloadExcel = (data: object[], fileName: string) => {
   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
   XLSX.writeFile(wb, fileName + '.xlsx');
 };
+

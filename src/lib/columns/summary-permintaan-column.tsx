@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/dialog';
 import DetailPermintaan from '@/container/admin/DetailPermintaan';
 import {Button} from '@/components/ui/button';
+import { generateBlanko } from '../helper/generateBlanko';
 
 export const summaryPermintaanColumns: ColumnDef<SummaryPermintaan>[] = [
   {
@@ -59,7 +60,7 @@ export const summaryPermintaanColumns: ColumnDef<SummaryPermintaan>[] = [
             </DialogHeader>
             <DetailPermintaan />
           </DialogContent>
-          <Button disabled={hasPending} className='p-1.5 h-fit'>
+          <Button disabled={hasPending} onClick={generateBlanko} className='p-1.5 h-fit'>
             <Printer size={18} />
           </Button>
           {/* <Link
