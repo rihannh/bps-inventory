@@ -5,7 +5,7 @@ import LayoutDashboard from '@/pages/LayoutDashboard';
 import Login from '@/pages/Login';
 import Dashboard from '@/container/admin/Dashboard';
 import DataAdmin from '@/container/admin/DataAdmin';
-import DataPegawai from '@/container/admin/DataPegawai';
+import DataPegawai from '@/container/admin/DataOperator';
 import DataAdminPengajuan from '@/container/admin/DataAdminPengajuan';
 import DataRuangan from '@/container/admin/DataRuangan';
 import BarangMasuk from '@/container/admin/BarangMasuk';

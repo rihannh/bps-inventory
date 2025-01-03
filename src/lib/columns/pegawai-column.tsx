@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/dialog';
 import {Button} from '@/components/ui/button';
 import UserForm from '@/components/UserForm';
-export const pegawaiColumns: ColumnDef<User>[] = [
+export const operatorColumns: ColumnDef<User>[] = [
   {
     header: 'No',
     cell: (row) => row.row.index + 1,
@@ -42,7 +42,7 @@ export const pegawaiColumns: ColumnDef<User>[] = [
             </DialogTrigger>
             <DialogContent>
               <DialogTitle className='text-xl font-semibold'>
-                Edit Admin
+                Edit Operator
               </DialogTitle>
               <UserForm id={detail} type='edit' />
             </DialogContent>

@@ -11,14 +11,14 @@ import DetailPermintaan from '@/container/admin/DetailPermintaan';
 import {Button} from '@/components/ui/button';
 import { generateBlanko } from '../helper/generateBlanko';
 
-export const summaryPermintaanColumns: ColumnDef<SummaryPermintaan>[] = [
+export const summaryPengajuanColumns: ColumnDef<SummaryPermintaan>[] = [
   {
     header: 'No',
     cell: (row) => row.row.index + 1,
   },
   {
     accessorKey: 'tanggal_permintaan',
-    header: 'Tanggal Permintaan',
+    header: 'Tanggal Pengajuan',
   },
   {
     accessorKey: 'jumlah_permintaan',

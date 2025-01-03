@@ -1,7 +1,7 @@
 import {UserTable} from '@/components/UserTable';
 import {Button} from '@/components/ui/button';
 import {Card} from '@/components/ui/card';
-import {pegawaiColumns} from '@/lib/columns/pegawai-column';
+import {operatorColumns} from '@/lib/columns/pegawai-column';
 import {dataAdmin} from '@/lib/data/admin-dummy';
 import {Download, PlusCircle, Upload} from 'lucide-react';
 import {
@@ -19,7 +19,7 @@ import {
 import UserForm from '@/components/UserForm';
 import useExcel from '@/hooks/use-excel';
 
-export default function DataAdmin() {
+export default function DataOperator() {
   const {handleExcel} = useExcel();
 
   return (
@@ -29,7 +29,7 @@ export default function DataAdmin() {
           <h1
             className={`mb-6 ml-5 text-2xl font-semibold relative before:absolute before:-left-5 before:w-1 before:bg-violet-500  before:border-0 before:h-full before:rounded-md`}
           >
-            Data Pegawai
+            Data Operator Ruangan
           </h1>
           <div className='flex items-start flex-col lg:flex-row gap-2'>
             <TooltipProvider>
@@ -43,7 +43,10 @@ export default function DataAdmin() {
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger>
-                  <Button onClick={()=> handleExcel(dataAdmin, 'data_pegawai')} variant={'blue'}>
+                  <Button
+                    onClick={() => handleExcel(dataAdmin, 'data_pegawai')}
+                    variant={'blue'}
+                  >
                     <Download /> Download
                   </Button>
                 </TooltipTrigger>
@@ -54,23 +57,23 @@ export default function DataAdmin() {
                   <Dialog>
                     <DialogTrigger>
                       <Button>
-                        <PlusCircle /> Tambah Pegawai
+                        <PlusCircle /> Tambah Operator
                       </Button>
                     </DialogTrigger>
                     <DialogContent>
                       <DialogHeader className='text-xl font-semibold'>
-                        Tambah Pegawai
+                        Tambah Operator
                       </DialogHeader>
                       <UserForm type='add' />
                     </DialogContent>
                   </Dialog>
                 </TooltipTrigger>
-                <TooltipContent>Tambah Pegawai</TooltipContent>
+                <TooltipContent>Tambah Operator</TooltipContent>
               </Tooltip>
             </TooltipProvider>
           </div>
         </div>
-        <UserTable data={dataAdmin} columns={pegawaiColumns} />
+        <UserTable data={dataAdmin} columns={operatorColumns} />
       </Card>
     </>
   );

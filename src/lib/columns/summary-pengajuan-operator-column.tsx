@@ -19,7 +19,7 @@ export const summaryPengajuanOperatorColumns: ColumnDef<SummaryPengajuan>[] = [
     header: 'Tanggal Pengajuan',
   },
   {
-    accessorKey: 'jumlah_pengajuan',
+    accessorKey: 'Jenis Barang',
     header: 'Jumlah pengajuan',
   },
   {

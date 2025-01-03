@@ -1,7 +1,7 @@
-import { TransaksiTable } from '@/components/TransaksiTable';
+import DataTable from '@/components/DataTable';
 import {Card} from '@/components/ui/card';
-import { barangPengajuanColumns } from '@/lib/columns/barang-pengajuan-column';
-import { dataBarangPengajuan } from '@/lib/data/barang';
+import {summaryPermintaanColumns} from '@/lib/columns/summary-permintaan-column';
+import {dataSummaryPermintaan} from '@/lib/data/barang';
 
 export default function PengajuanBarang() {
   return (
@@ -11,7 +11,10 @@ export default function PengajuanBarang() {
       >
         Data Pengajuan Barang
       </h1>
-      <TransaksiTable columns={barangPengajuanColumns} data={dataBarangPengajuan} />
+      <DataTable
+        columns={summaryPermintaanColumns}
+        data={dataSummaryPermintaan}
+      />
     </Card>
   );
 }

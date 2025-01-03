@@ -20,7 +20,7 @@ export const summaryPermintaanOperatorColumns: ColumnDef<SummaryPermintaan>[] = 
   },
   {
     accessorKey: 'jumlah_permintaan',
-    header: 'Jumlah Perminataan',
+    header: 'Jenis Barang',
   },
   {
     header: 'Action',
