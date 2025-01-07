@@ -8,8 +8,7 @@ import {
   TooltipProvider,
 } from '@/components/ui/tooltip';
 
-import {dataBarang} from '@/lib/data/barang';
-import {barangColumns} from '@/lib/columns/barang-column-edit';
+import {barangATKColumns} from '@/lib/columns/barang-atk-column';
 import {
   Dialog,
   DialogContent,
@@ -32,6 +31,8 @@ import {
 } from '@/components/ui/form';
 import {Input} from '@/components/ui/input';
 import DataTable from '@/components/DataTable';
+import {useQuery} from '@tanstack/react-query';
+import {fetchBarangATK} from '@/lib/network/barangServices';
 
 const filterSchema = z.object({
   harga_pengajuan: z.number().optional(),
@@ -46,6 +47,21 @@ export default function DataBarangATK() {
     },
   });
 
+  const {data, isLoading, error} = useQuery({
+    queryKey: ['data-barang-atk'],
+    queryFn: fetchBarangATK,
+  });
+  if (isLoading) return <div>Loading...</div>;
+  if (error)
+    return (
+      <div>
+        Error: {error instanceof Error ? error.message : 'Unknown error'}
+      </div>
+    );
+
+  const dataBarang = data?.data ?? [];
+  // console.log(dataBarang);
+
   function onSubmit(values: z.infer<typeof filterSchema>) {
     console.log(values);
   }
@@ -55,7 +71,7 @@ export default function DataBarangATK() {
       <Card className='p-6'>
         <div className='flex flex-col lg:flex-row lg:justify-between'>
           <h1 className='mb-6 ml-5 text-2xl font-semibold relative before:absolute before:-left-5 before:w-1 before:bg-violet-500  before:border-0 before:h-full before:rounded-md'>
-            Data Barang ARK
+            Data Barang ATK (521811)
           </h1>
           <div className='flex items-center flex-col lg:flex-row gap-2'>
             <Popover>
@@ -123,7 +139,7 @@ export default function DataBarangATK() {
                         <PlusCircle /> Tambah Barang
                       </Button>
                     </DialogTrigger>
-                    <DialogContent>
+                    <DialogContent className='max-h-[80%] overflow-auto'>
                       <DialogTitle className='text-xl font-semibold'>
                         Tambah Barang ATK
                       </DialogTitle>
@@ -136,7 +152,12 @@ export default function DataBarangATK() {
             </TooltipProvider>
           </div>
         </div>
-        <DataTable data={dataBarang} columns={barangColumns} />
+        <DataTable
+          data={dataBarang}
+          columns={barangATKColumns}
+          column_name='nama_barang'
+          search_placeholder='nama barang'
+        />
       </Card>
     </>
   );

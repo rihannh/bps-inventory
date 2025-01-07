@@ -33,11 +33,15 @@ import {ChevronDown} from 'lucide-react';
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  column_name?: string;
+  search_placeholder?: string;
 }
 
 export default function DataTable<TData, TValue>({
   columns,
   data,
+  column_name= 'name',
+  search_placeholder = 'nama',
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -72,10 +76,10 @@ export default function DataTable<TData, TValue>({
     <>
       <div className='flex lg:items-center flex-col lg:flex-row lg:justify-between gap-4 py-4'>
         <Input
-          placeholder='Cari nama...'
-          value={(table.getColumn('nama')?.getFilterValue() as string) ?? ''}
+          placeholder={`Cari ${search_placeholder}...`}
+          value={(table.getColumn(column_name)?.getFilterValue() as string) ?? ''}
           onChange={(event) =>
-            table.getColumn('nama')?.setFilterValue(event.target.value)
+            table.getColumn(column_name)?.setFilterValue(event.target.value)
           }
           className='max-w-md'
         />

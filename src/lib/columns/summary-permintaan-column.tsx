@@ -18,7 +18,7 @@ export const summaryPermintaanColumns: ColumnDef<SummaryPermintaan>[] = [
   },
   {
     accessorKey: 'tanggal_permintaan',
-    header: 'Tanggal Permintaan',
+    header: 'Tanggal',
   },
   {
     accessorKey: 'jumlah_permintaan',

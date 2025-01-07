@@ -1,5 +1,5 @@
 export type Barang = {
-  id: string;
+  id_barang: string;
   kode_barang: string;
   nama: string;
   stok: number;

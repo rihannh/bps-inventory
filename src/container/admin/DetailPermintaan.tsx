@@ -1,32 +1,47 @@
 import DataTable from '@/components/DataTable';
-import { Button } from '@/components/ui/button';
+import {Button} from '@/components/ui/button';
 import {barangPermintaanColumns} from '@/lib/columns/barang-permintaan-column';
 import {dataBarangPermintaan} from '@/lib/data/barang';
 import {useState} from 'react';
 
 export default function DetailPermintaan() {
-  const [statuses, setStatuses] = useState<Record<string, string>>(() =>
-    Object.fromEntries(
-      dataBarangPermintaan.map((item) => [item.id, item.status])
-    )
+  const [newData, setNewData] = useState(() =>
+    dataBarangPermintaan.map((item) => ({
+      id: item.id,
+      jumlah: item.jumlah,
+      status: item.status,
+    }))
   );
 
-  function handleStatusChange(id: string, value: string) {
-    setStatuses((prev) => ({...prev, [id]: value}));
+  function handleDataChange(id: string, newJumlah: number | undefined, newStatus: string |undefined) {
+    setNewData((prev) =>
+      prev.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              jumlah: newJumlah !== undefined ? newJumlah : item.jumlah,
+              status: newStatus !== undefined ? newStatus : item.status,
+            }
+          : item
+      )
+    );
   }
 
-  function submitForm(){
-    console.log(statuses);
+  function submitForm() {
+    console.log(newData);
   }
-
 
   return (
     <>
       <DataTable
-        columns={barangPermintaanColumns(handleStatusChange, statuses)}
+        columns={barangPermintaanColumns(handleDataChange, newData)}
         data={dataBarangPermintaan}
+        search_placeholder='barang'
+        column_name='nama'
       />
-      <Button className='w-fit px-8 ml-auto' onClick={submitForm}>Submit</Button>
+      <Button className='w-fit px-8 ml-auto' onClick={submitForm}>
+        Submit
+      </Button>
     </>
   );
 }

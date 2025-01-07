@@ -1,5 +1,5 @@
 import {ColumnDef} from '@tanstack/react-table';
-import {ArrowUpDown, Pencil, Trash2} from 'lucide-react';
+import {ArrowUpDown, Pencil} from 'lucide-react';
 import {Barang} from '@/lib/types/barang';
 import {
   Dialog,
@@ -9,14 +9,15 @@ import {
 } from '@/components/ui/dialog';
 import BarangForm from '@/components/BarangForm';
 import {Button} from '@/components/ui/button';
+import {DeleteButton} from '@/components/DeleteButton';
 
-export const barangColumns: ColumnDef<Barang>[] = [
+export const barangATKColumns: ColumnDef<Barang>[] = [
   {
     header: 'No',
     cell: (row) => row.row.index + 1,
   },
   {
-    accessorKey: 'kode_barang',
+    accessorKey: 'kd_barang',
     header: ({column}) => {
       return (
         <Button
@@ -31,7 +32,7 @@ export const barangColumns: ColumnDef<Barang>[] = [
     },
   },
   {
-    accessorKey: 'nama',
+    accessorKey: 'nama_barang',
     header: ({column}) => {
       return (
         <Button
@@ -128,7 +129,8 @@ export const barangColumns: ColumnDef<Barang>[] = [
   {
     header: 'Action',
     cell: (row) => {
-      const detail = row.row.original.id;
+      const id = row.row.original.id_barang;
+      // console.log(id);
       return (
         <Dialog>
           <div className='flex space-x-3 justify-center items-center'>
@@ -139,11 +141,13 @@ export const barangColumns: ColumnDef<Barang>[] = [
               <DialogTitle className='text-xl font-semibold'>
                 Edit Barang
               </DialogTitle>
-              <BarangForm id={detail} type='edit' />
+              <BarangForm id={id} type='edit' />
             </DialogContent>
-            <Button className='bg-red-500 p-1 h-fit rounded-md hover:bg-red-900/90'>
-              <Trash2 size={18} color='white' />
-            </Button>
+            <DeleteButton
+              url='hapus_barang'
+              urlId={id}
+              query_key='data-barang-atk'
+            />
           </div>
         </Dialog>
       );

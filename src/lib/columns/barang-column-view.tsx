@@ -7,11 +7,11 @@ export const barangViewColumns: ColumnDef<Barang>[] = [
     cell: (row) => row.row.index + 1,
   },
   {
-    accessorKey: 'kode_barang',
+    accessorKey: 'kd_barang',
     header: 'Kode Barang',
   },
   {
-    accessorKey: 'nama',
+    accessorKey: 'nama_barang',
     header: 'Nama',
   },
   {

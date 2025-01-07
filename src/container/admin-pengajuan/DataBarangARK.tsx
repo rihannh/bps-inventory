@@ -1,9 +1,25 @@
 import {Card} from '@/components/ui/card';
 import DataTable from '@/components/DataTable';
-import {dataBarang} from '@/lib/data/barang';
 import {barangViewColumns} from '@/lib/columns/barang-column-view';
+import {useQuery} from '@tanstack/react-query';
+import {fetchBarangARK} from '@/lib/network/barangServices';
 
 export default function DataBarangARK() {
+  const {data, isLoading, error} = useQuery({
+    queryKey: ['data-barang-ark'],
+    queryFn: fetchBarangARK,
+  });
+  console.log(data);
+  if (isLoading) return <div>Loading...</div>;
+  if (error)
+    return (
+      <div>
+        Error: {error instanceof Error ? error.message : 'Unknown error'}
+      </div>
+    );
+
+  const dataBarang = data?.data ?? [];
+
   return (
     <>
       <Card className='p-6'>
