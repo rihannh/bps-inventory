@@ -1,22 +1,61 @@
 import DataTable from '@/components/DataTable';
 import {Button} from '@/components/ui/button';
 import {barangPermintaanColumns} from '@/lib/columns/barang-permintaan-column';
-import {dataBarangPermintaan} from '@/lib/data/barang';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import {fetchDetailPermintaaan} from '@/lib/helper/fetch';
+import {useQuery, useQueryClient} from '@tanstack/react-query';
+import {LoadingSpinner} from '@/components/ui/loading';
+import {base} from '@/lib/network/base';
+import {useToast} from '@/hooks/use-toast';
 
-export default function DetailPermintaan() {
-  const [newData, setNewData] = useState(() =>
-    dataBarangPermintaan.map((item) => ({
-      id: item.id,
-      jumlah: item.jumlah,
-      status: item.status,
-    }))
-  );
+export default function DetailPermintaan({
+  ruanganID,
+  tanggal,
+}: {
+  ruanganID: string;
+  tanggal: string;
+}) {
+  const queryClient = useQueryClient();
+  const toast = useToast();
+  const {data, isLoading, error} = useQuery({
+    queryKey: ['detail-permintaan', ruanganID, tanggal],
+    queryFn: () => fetchDetailPermintaaan(ruanganID, tanggal),
+  });
 
-  function handleDataChange(id: string, newJumlah: number | undefined, newStatus: string |undefined) {
+  const [newData, setNewData] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (data?.data) {
+      const formattedData = data.data.map((item: any) => ({
+        id_permintaan: item.id_permintaan,
+        jumlah: item.jumlah,
+        status: item.status,
+      }));
+      // console.log('data:' ,data.data);
+      // console.log('formated',formattedData);
+      setNewData(formattedData);
+    }
+  }, [data]);
+
+  if (isLoading) return <LoadingSpinner />;
+  if (error) {
+    return (
+      <div>
+        Error: {error instanceof Error ? error.message : 'Unknown error'}
+      </div>
+    );
+  }
+  const dataPermintaanBarang = data?.data ?? [];
+  // console.log(dataPermintaanBarang);
+
+  function handleDataChange(
+    id: string,
+    newJumlah: string | undefined,
+    newStatus: string | undefined
+  ) {
     setNewData((prev) =>
       prev.map((item) =>
-        item.id === id
+        item.id_permintaan === id
           ? {
               ...item,
               jumlah: newJumlah !== undefined ? newJumlah : item.jumlah,
@@ -25,19 +64,38 @@ export default function DetailPermintaan() {
           : item
       )
     );
+    console.log('new data',newData);
   }
-
-  function submitForm() {
-    console.log(newData);
+  async function submitForm() {
+    try {
+      const response = await base.put('/update_status', newData, {
+        headers: {
+          'Content-Type': 'application/json', 
+        },
+      });
+      console.log('response', response);
+      toast.toast({
+        title: 'Berhasil',
+        description: response.data.message || 'Data berhasil diproses.',
+      });
+      queryClient.invalidateQueries({queryKey: ['data-permintaan']});
+    } catch (error) {
+      console.log('error', error);
+      toast.toast({
+        variant: 'destructive',
+        title: 'Gagal',
+        description: 'Gagal menyimpan data barang',
+      });
+    }
   }
 
   return (
     <>
       <DataTable
         columns={barangPermintaanColumns(handleDataChange, newData)}
-        data={dataBarangPermintaan}
+        data={dataPermintaanBarang} // Use original data here
         search_placeholder='barang'
-        column_name='nama'
+        column_name='nama_barang'
       />
       <Button className='w-fit px-8 ml-auto' onClick={submitForm}>
         Submit

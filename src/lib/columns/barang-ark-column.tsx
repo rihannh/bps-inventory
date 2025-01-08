@@ -7,9 +7,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import BarangForm from '@/components/BarangForm';
 import {Button} from '@/components/ui/button';
 import {DeleteButton} from '@/components/DeleteButton';
+import EditBarangForm from '@/components/EditBarangForm';
 
 export const barangARKColumns: ColumnDef<Barang>[] = [
   {
@@ -137,11 +137,11 @@ export const barangARKColumns: ColumnDef<Barang>[] = [
             <DialogTrigger className='bg-yellow-500 p-1 rounded-md hover:bg-yellow-900/90'>
               <Pencil size={18} color='white' />
             </DialogTrigger>
-            <DialogContent className='max-h-[80%] overflow-auto'>
+            <DialogContent className='min-h-[40%] max-h-[80%] overflow-auto'>
               <DialogTitle className='text-xl font-semibold'>
                 Edit Barang
               </DialogTitle>
-              <BarangForm id={id} type='edit' />
+              <EditBarangForm id={id} />
             </DialogContent>
             <DeleteButton
               url='hapus_barang'

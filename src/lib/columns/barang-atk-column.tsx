@@ -7,9 +7,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import BarangForm from '@/components/BarangForm';
 import {Button} from '@/components/ui/button';
 import {DeleteButton} from '@/components/DeleteButton';
+import EditBarangForm from '@/components/EditBarangForm';
 
 export const barangATKColumns: ColumnDef<Barang>[] = [
   {
@@ -141,7 +141,7 @@ export const barangATKColumns: ColumnDef<Barang>[] = [
               <DialogTitle className='text-xl font-semibold'>
                 Edit Barang
               </DialogTitle>
-              <BarangForm id={id} type='edit' />
+              <EditBarangForm id={id} />
             </DialogContent>
             <DeleteButton
               url='hapus_barang'

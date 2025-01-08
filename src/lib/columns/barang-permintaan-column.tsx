@@ -13,8 +13,12 @@ import {
 import {Input} from '@/components/ui/input';
 
 export const barangPermintaanColumns = (
-  handleDataChange: (id: string, newJumlah: number | undefined, newStatus: string |undefined) => void,
-  newData: {id: string; jumlah: number; status: string}[]
+  handleDataChange: (
+    id_permintaan: string,
+    newJumlah: string | undefined,
+    newStatus: string | undefined
+  ) => void,
+  newData: {id_permintaan: string; jumlah: string; status: string}[]
 ): ColumnDef<BarangPermintaan>[] => [
   {
     header: 'No',
@@ -25,15 +29,15 @@ export const barangPermintaanColumns = (
     header: 'Tanggal Permintaan',
   },
   {
-    accessorKey: 'kode',
+    accessorKey: 'kd_barang',
     header: 'Kode Barang',
   },
   {
-    accessorKey: 'nama',
+    accessorKey: 'nama_barang',
     header: 'Nama Barang',
   },
   {
-    accessorKey: 'jenis',
+    accessorKey: 'kategori',
     header: 'Jenis Barang',
   },
   {
@@ -45,16 +49,18 @@ export const barangPermintaanColumns = (
     header: 'Jumlah',
     cell: (row) => {
       const currentJumlah = newData.find(
-        (item) => item.id === row.row.original.id
-      )?.jumlah;      return (
+        (item) => item.id_permintaan === row.row.original.id_permintaan
+      )?.jumlah;
+      // console.log('currentJumlah', currentJumlah);
+      return (
         <Input
           type='number'
           defaultValue={currentJumlah}
           onBlur={(e) =>
             handleDataChange(
-              row.row.original.id,
-              Number(e.target.value),
-              undefined 
+              row.row.original.id_permintaan,
+              e.target.value,
+              undefined
             )
           }
         />
@@ -62,7 +68,7 @@ export const barangPermintaanColumns = (
     },
   },
   {
-    accessorKey: 'ruangan',
+    accessorKey: 'id_ruangan',
     header: 'Ruangan',
   },
   {
@@ -70,7 +76,7 @@ export const barangPermintaanColumns = (
     header: 'Status',
     cell: (row) => {
       const status = newData.find(
-        (item) => item.id === row.row.original.id
+        (item) => item.id_permintaan === row.row.original.id_permintaan
       )?.status;
       return (
         <Badge variant={status as 'Pending' | 'Approved' | 'Rejected'}>
@@ -83,13 +89,17 @@ export const barangPermintaanColumns = (
     header: 'Pilih Status',
     cell: (row) => {
       const currentStatus = newData.find(
-        (item) => item.id === row.row.original.id
+        (item) => item.id_permintaan === row.row.original.id_permintaan
       )?.status;
       return (
         <Select
           value={currentStatus}
           onValueChange={(newStatus) =>
-            handleDataChange(row.row.original.id, undefined, newStatus)
+            handleDataChange(
+              row.row.original.id_permintaan,
+              undefined,
+              newStatus
+            )
           }
         >
           <SelectTrigger>

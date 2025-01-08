@@ -22,6 +22,7 @@ import {
   SelectItem,
 } from './ui/select';
 import {useQuery, useQueryClient} from '@tanstack/react-query';
+// import {useQuery} from '@tanstack/react-query';
 import {LoadingSpinner} from './ui/loading';
 
 async function fetchBarangbyID(id: string) {
@@ -52,13 +53,7 @@ const barangSchema = z.object({
     .positive({message: 'Harga barang harus lebih dari 0.'}),
 });
 
-export default function BarangForm({
-  id,
-  type,
-}: {
-  id?: string;
-  type: 'edit' | 'add';
-}) {
+export default function EditBarangForm({id}: {id: string}) {
   const {data, isLoading, error} = useQuery({
     queryKey: ['barang-by-id', id],
     queryFn: () =>
@@ -107,27 +102,41 @@ export default function BarangForm({
     );
 
   async function onSubmit(values: z.infer<typeof barangSchema>) {
+    const payload = {
+      ...values,
+      stok: values.stok.toString(),
+      stok_dasar: values.stok_dasar.toString(),
+      harga_satuan: values.harga_satuan.toString(),
+    };
+
     try {
-      const endpoint = type === 'add' ? '/insert_barang' : `/ubah_barang/${id}`;
-      const method = type === 'add' ? 'post' : 'put';
-      console.log(endpoint, method);
-      console.log(values);
-      const response = await base[method](endpoint, values);
-      toast.toast({
-        title: 'Berhasil',
-        description: response.data.message || 'Data berhasil diproses.',
+      console.log('Data yang akan dikirim:', payload);
+
+      const response = await base.put(`/ubah_barang/${id}`, payload, {
+        headers: {
+          'Content-Type': 'application/json', 
+        },
       });
 
-      queryClient.invalidateQueries({queryKey: ['data-barang']});
+      console.log('Response dari server:', response.data);
+      await Promise.all([
+        queryClient.invalidateQueries({queryKey: ['data-barang-ark']}),
+        queryClient.invalidateQueries({queryKey: ['data-barang-atk']}),
+      ]);
+      toast.toast({
+        title: 'Berhasil',
+        description: response.data.message,
+      });
     } catch (error) {
+      console.error('Gagal mengupdate data:', error);
       toast.toast({
         variant: 'destructive',
         title: 'Gagal',
-        description: 'Gagal menyimpan data barang',
+        description: 'Gagal mengupdate data barang',
       });
-      console.error(error);
     }
   }
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className=' space-y-8'>

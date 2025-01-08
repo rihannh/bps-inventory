@@ -19,14 +19,14 @@ export type BarangTrans = {
   ruangan: string;
 };
 export type BarangPermintaan = {
-  id: string;
+  id_permintaan: string;
   tanggal: string;
-  kode: string;
-  nama: string;
-  jenis: string;
+  kd_barang: string;
+  nama_barang: string;
+  kategori: string;
   satuan: string;
   jumlah: number;
-  ruangan: string;
+  id_ruangan: string;
   status: string;
 };
 
@@ -45,11 +45,14 @@ export type BarangPengajuan = {
 };
 
 export type SummaryPermintaan = {
-  id: number;
-  tanggal_permintaan: string;
+  id_user: number;
+  id_ruangan: string;
+  tanggal: string;
   ruangan: string;
-  status: Record<string,number>;
   jumlah_permintaan: number;
+  Approved: number;
+  Pending: number;
+  Rejected: number;
 };
 export type SummaryPengajuan = {
   id: number;
