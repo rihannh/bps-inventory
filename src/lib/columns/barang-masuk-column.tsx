@@ -13,15 +13,15 @@ export const barangMasukColumns: ColumnDef<BarangTrans>[] = [
     header: 'Tanggal Masuk',
   },
   {
-    accessorKey: 'kode',
+    accessorKey: 'kd_barang',
     header: 'Kode Barang',
   },
   {
-    accessorKey: 'nama',
+    accessorKey: 'nama_barang',
     header: 'Nama Barang',
   },
   {
-    accessorKey: 'jenis',
+    accessorKey: 'kategori',
     header: 'Jenis Barang',
   },
   {

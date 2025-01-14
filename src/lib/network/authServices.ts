@@ -1,6 +1,8 @@
 // import {baseInstance} from '@/lib/network/base/base';
 // import {normalizeRole} from '@/lib/utils';
 
+import { base } from "./base";
+
 // interface LoginResponse {
 //   data: {
 //     id: string;
@@ -14,17 +16,18 @@
 //   token: string;
 // }
 
-// export const login = async (
-//   email: string,
-//   password: string
-// ): Promise<LoginResponse> => {
-//   const formData = new URLSearchParams();
-//   formData.append('email', email);
-//   formData.append('password', password);
+export const login = async (
+  email: string,
+  password: string
+) => {
+  const formData = new URLSearchParams();
+  formData.append('username', email);
+  formData.append('password', password);
 
-//   const {data} = await baseInstance.post('/login', formData);
-//   return data;
-// };
+  const data = await base.post('/login', formData);
+  console.log(data);
+  return data;
+};
 
 interface User {
   email: string;

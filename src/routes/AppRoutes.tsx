@@ -32,7 +32,7 @@ const router = createBrowserRouter(
       children: [
         {
           path: 'admin',
-          element: <RoleAuth requiredRole='Admin' />,
+          element: <RoleAuth requiredRole='admin' />,
           children: [
             {
               path: '',
@@ -59,7 +59,7 @@ const router = createBrowserRouter(
         },
         {
           path: 'admin-pengajuan',
-          element: <RoleAuth requiredRole='Admin Pengajuan' />,
+          element: <RoleAuth requiredRole='admin_pengajuan' />,
           children: [
             {
               path: '',
@@ -76,7 +76,7 @@ const router = createBrowserRouter(
         },
         {
           path: 'operator-ruangan',
-          element: <RoleAuth requiredRole='Operator Ruangan' />,
+          element: <RoleAuth requiredRole='user' />,
           children: [
             {
               path: '',

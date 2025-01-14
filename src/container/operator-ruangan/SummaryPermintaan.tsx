@@ -36,7 +36,7 @@ export default function SummaryPermintaan() {
                     <PlusCircle /> Buat Permintaan Barang
                   </Button>
                 </DialogTrigger>
-                <DialogContent className='max-h-[80%] overflow-auto'>
+                <DialogContent className='max-h-[80%] max-w-[90%] overflow-auto'>
                   <DialogHeader className='text-xl font-semibold'>
                     Permintaan Barang
                   </DialogHeader>

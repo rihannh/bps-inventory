@@ -1,9 +1,30 @@
-import { TransaksiTable } from '@/components/TransaksiTable';
+import PermintaanForm from '@/components/PermintaanForm';
+import {TransaksiTable} from '@/components/TransaksiTable';
+import {Button} from '@/components/ui/button';
 import {Card} from '@/components/ui/card';
-import { barangMasukColumns } from '@/lib/columns/barang-masuk-column';
-import { dataBarangMasuk } from '@/lib/data/barang';
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import {LoadingSpinner} from '@/components/ui/loading';
+import {barangMasukColumns} from '@/lib/columns/barang-masuk-column';
+import {fetchBarangMasuk} from '@/lib/services/fetch';
+import {useQuery} from '@tanstack/react-query';
+import {PlusCircle} from 'lucide-react';
 
 export default function BarangMasuk() {
+  const {data, isLoading, error} = useQuery({
+    queryKey: ['barang-masuk'],
+    queryFn: fetchBarangMasuk,
+  });
+
+  const dataBarangMasuk = data?.data ?? [];
+
+  if (isLoading) return <LoadingSpinner />;
+  if (error) return <div>An error has occurred: {error.message}</div>;
+
   return (
     <Card className='p-6'>
       <h1
@@ -11,6 +32,19 @@ export default function BarangMasuk() {
       >
         Data Barang Masuk
       </h1>
+      <Dialog>
+        <DialogTrigger>
+          <Button>
+            <PlusCircle /> Tambah Barang
+          </Button>
+        </DialogTrigger>
+        <DialogContent className='max-h-[80%] overflow-auto'>
+          <DialogTitle className='text-xl font-semibold'>
+            Tambah Barang Masuk
+          </DialogTitle>
+          <h1>asdsad</h1>
+        </DialogContent>
+      </Dialog>
       <TransaksiTable columns={barangMasukColumns} data={dataBarangMasuk} />
     </Card>
   );

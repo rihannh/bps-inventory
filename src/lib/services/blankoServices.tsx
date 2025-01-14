@@ -1,9 +1,8 @@
 import { Blanko } from "@/components/Blanko";
 import { PDFViewer } from "@react-pdf/renderer";
 import ReactDOM from "react-dom";
-import { blankoDummy } from "../data/blanko-dummy";
 
-export const generateBlanko = () => {
+export const generateBlanko = ({letterData,letterDesc}) => {
   const newWindow = window.open('', '_blank');
   if (newWindow) {
     newWindow.document.write(`
@@ -26,7 +25,7 @@ export const generateBlanko = () => {
 
       ReactDOM.render(
         <PDFViewer width='100%' height='100%'>
-          <Blanko blankoData={blankoDummy} />
+          <Blanko data={letterData} desc={letterDesc}/>
         </PDFViewer>,
         root
       );

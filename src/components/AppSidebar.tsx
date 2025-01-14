@@ -23,11 +23,11 @@ import {
 
 export default function AppSidebar({role}: {role: string}) {
   let sidebarItems;
-  if (role === 'Admin') {
+  if (role === 'admin') {
     sidebarItems = admin1Items;
-  } else if (role === 'Admin Pengajuan') {
+  } else if (role === 'admin_pengajuan') {
     sidebarItems = admin2Items;
-  } else if (role === 'Operator Ruangan') {
+  } else if (role === 'user') {
     sidebarItems = admin3Items;
   }
   return (

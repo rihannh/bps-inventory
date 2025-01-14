@@ -36,7 +36,7 @@ export default function SummaryPengajuan() {
                     <PlusCircle /> Buat Pengajuan Barang
                   </Button>
                 </DialogTrigger>
-                <DialogContent className='max-h-[80%] overflow-auto'>
+                <DialogContent className='max-h-[80%] max-w-[90%] overflow-auto'>
                   <DialogHeader className='text-xl font-semibold'>
                     Pengajuan Barang
                   </DialogHeader>

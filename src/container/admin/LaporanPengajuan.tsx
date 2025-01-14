@@ -1,4 +1,3 @@
-import {LaporanTable} from '@/components/LaporanTable';
 import {laporanPengajuanColumns} from '@/lib/columns/laporan-pengajuan-column';
 import {dataBarangPengajuan} from '@/lib/data/barang';
 import {zodResolver} from '@hookform/resolvers/zod';
@@ -15,30 +14,57 @@ import {
 } from '@/components/ui/form';
 import {format} from 'date-fns';
 import {Popover, PopoverContent, PopoverTrigger} from '@/components/ui/popover';
-import {CalendarIcon} from 'lucide-react';
+import {CalendarIcon, Printer} from 'lucide-react';
 import {Calendar} from '@/components/ui/calendar';
 import {Card} from '@/components/ui/card';
+import DataTable from '@/components/DataTable';
+// import {generateKAK} from '@/lib/services/pengajuanService';
+import {base} from '@/lib/network/base';
+import {useState} from 'react';
+import {generateKAK} from '@/lib/services/pengajuanService';
 
 const laporanSchema = z.object({
-  tanggal_mulai: z.date({
+  tgl_mulai: z.date({
     required_error: 'Tanggal Mulai tidak boleh kosong.',
   }),
-  tanggal_selesai: z.date({
+  tgl_akhir: z.date({
     required_error: 'Tanggal Selesai tidak boleh kosong.',
   }),
 });
 export default function LaporanPengajuan() {
+  const [dataPengajuan, setDataPengajuan] = useState([]);
+
   const form = useForm<z.infer<typeof laporanSchema>>({
     resolver: zodResolver(laporanSchema),
     defaultValues: {
-      tanggal_mulai: new Date(),
-      tanggal_selesai: new Date(),
+      tgl_mulai: new Date(),
+      tgl_akhir: new Date(),
     },
   });
 
-  function onSubmit(values: z.infer<typeof laporanSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof laporanSchema>) {
+    const formatedValues = {
+      tgl_mulai: format(values.tgl_mulai, 'yyyy-MM-dd'),
+      tgl_akhir: format(values.tgl_akhir, 'yyyy-MM-dd'),
+    };
+    console.log(formatedValues);
+    const response = await base.post('/cetak_kak', formatedValues);
+    // console.log(response.data);
+    setDataPengajuan(response.data);
   }
+
+  const dataForTable = dataPengajuan?.data?.list_barang ?? [];
+  const dataForKAK = dataPengajuan?.data ?? [];
+  // console.log('data for table', dataForTable);
+  // console.log('data for KAK', dataForKAK);
+
+  function printKAK() {
+    const dataKAK = { dataKAK: dataForKAK }; // Bungkus data ke dalam objek
+    console.log('data for KAK', dataKAK);
+    generateKAK(dataKAK);
+  }
+  
+
   return (
     <Card className='p-6'>
       <h1
@@ -53,7 +79,7 @@ export default function LaporanPengajuan() {
         >
           <FormField
             control={form.control}
-            name='tanggal_mulai'
+            name='tgl_mulai'
             render={({field}) => (
               <FormItem>
                 <FormLabel>Tanggal Mulai</FormLabel>
@@ -66,7 +92,7 @@ export default function LaporanPengajuan() {
                       >
                         <CalendarIcon />
                         {field.value ? (
-                          format(field.value, 'PPP')
+                          format(field.value, 'yyyy-MM-dd')
                         ) : (
                           <span>Pick a date</span>
                         )}
@@ -88,7 +114,7 @@ export default function LaporanPengajuan() {
           />
           <FormField
             control={form.control}
-            name='tanggal_selesai'
+            name='tgl_akhir'
             render={({field}) => (
               <FormItem>
                 <FormLabel>Tanggal Selesai</FormLabel>
@@ -101,7 +127,7 @@ export default function LaporanPengajuan() {
                       >
                         <CalendarIcon />
                         {field.value ? (
-                          format(field.value, 'PPP')
+                          format(field.value, 'yyyy-MM-dd')
                         ) : (
                           <span>Pick a date</span>
                         )}
@@ -121,13 +147,15 @@ export default function LaporanPengajuan() {
               </FormItem>
             )}
           />
-          <Button type='submit'>Submit</Button>
+          <div className='flex gap-2'>
+            <Button type='submit'>Submit</Button>
+            <Button onClick={printKAK} className='bg-green-500'>
+              <Printer />
+            </Button>
+          </div>
         </form>
       </Form>
-      <LaporanTable
-        columns={laporanPengajuanColumns}
-        data={dataBarangPengajuan}
-      />
+      <DataTable columns={laporanPengajuanColumns} data={dataForTable} />
     </Card>
   );
 }

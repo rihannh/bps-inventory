@@ -1,4 +1,5 @@
-import { BlankoProps } from '@/lib/types/blanko';
+import {BlankoProps} from '@/lib/types/blanko';
+import {toTitleCase} from '@/lib/utils';
 import {
   Document,
   Page,
@@ -8,8 +9,6 @@ import {
   Image,
   Font,
 } from '@react-pdf/renderer';
-
-
 
 Font.register({
   family: 'Times New Roman',
@@ -81,7 +80,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const Blanko: React.FC<BlankoProps> = ({ blankoData}) => (
+export const Blanko = ({data, desc}) => (
   <Document>
     <Page size='A4' style={styles.page}>
       <View style={styles.header}>
@@ -100,9 +99,9 @@ export const Blanko: React.FC<BlankoProps> = ({ blankoData}) => (
           Badan Pusat Statistik Provinsi Jambi
         </Text>
         <Text style={styles.centeredText}>Permintaan ATK/ARK</Text>
-        <Text>No Dokumen:</Text>
-        <Text>No Bukti:</Text>
-        <Text style={{marginTop: 10}}>Dari Bidang/Bagian:</Text>
+        <Text>No Dokumen: {desc.no_dokumen}</Text>
+        <Text>No Bukti: {desc.no_bukti}</Text>
+        <Text style={{marginTop: 10}}>Dari Bidang/Bagian: {desc.ruangan}</Text>
       </View>
 
       <View style={styles.table}>
@@ -120,14 +119,16 @@ export const Blanko: React.FC<BlankoProps> = ({ blankoData}) => (
             Keterangan
           </Text>
         </View>
-        {blankoData.map((item) => (
-          <View style={styles.tableRow} key={item.no}>
-            <Text style={[styles.tableCol, {width: '5%'}]}>{item.no}</Text>
+        {data.map((item) => (
+          <View style={styles.tableRow} key={item.id_permintaan}>
+            <Text style={[styles.tableCol, {width: '5%'}]}>
+              {data.indexOf(item) + 1}
+            </Text>
             <Text style={[styles.tableCol, {width: '20%'}]}>
               {item.jumlah} {item.satuan}
             </Text>
             <Text style={[styles.tableCol, {width: '37.5%'}]}>
-              {item.jenisBarang}
+              {toTitleCase(item.nama_barang)}
             </Text>
             <Text style={[styles.tableCol, {width: '37.5%'}]}>
               {item.keterangan}
@@ -143,7 +144,7 @@ export const Blanko: React.FC<BlankoProps> = ({ blankoData}) => (
           <Text style={styles.signatureText}>----------------------</Text>
         </View>
         <View style={styles.signatureColumn}>
-          <Text>Jambi, 06 Maret 2023</Text>
+          <Text>Jambi, {desc.tanggal}</Text>
           <Text>Yang menyerahkan ATK</Text>
           <Text>Bagian Umum</Text>
           <Text style={styles.signatureText}>Sutino, SE</Text>

@@ -1,9 +1,30 @@
 import DataTable from '@/components/DataTable';
 import {Card} from '@/components/ui/card';
-import {summaryPermintaanColumns} from '@/lib/columns/summary-permintaan-column';
-import {dataSummaryPermintaan} from '@/lib/data/barang';
+import {LoadingSpinner} from '@/components/ui/loading';
+import { summaryPengajuanColumns } from '@/lib/columns/summary-pengajuan-column';
+import { fetchPengajuan } from '@/lib/services/pengajuanService';
+import {useQuery} from '@tanstack/react-query';
 
 export default function PengajuanBarang() {
+  const {data, isLoading, error} = useQuery({
+    queryKey: ['data-pengajuan'],
+    queryFn: fetchPengajuan,
+  });
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+  if (error) {
+    return (
+      <div>
+        Error: {error instanceof Error ? error.message : 'Unknown error'}
+      </div>
+    );
+  }
+
+  const dataSummaryPengajuan = data?.data ?? [];
+  console.log(dataSummaryPengajuan);
+
   return (
     <Card className='p-6'>
       <h1
@@ -12,8 +33,9 @@ export default function PengajuanBarang() {
         Data Pengajuan Barang
       </h1>
       <DataTable
-        columns={summaryPermintaanColumns}
-        data={dataSummaryPermintaan}
+        columns={summaryPengajuanColumns}
+        data={dataSummaryPengajuan}
+        column_name='ruangan'
       />
     </Card>
   );

@@ -3,6 +3,7 @@ import DataTable from '@/components/DataTable';
 import {barangViewColumns} from '@/lib/columns/barang-column-view';
 import {useQuery} from '@tanstack/react-query';
 import {fetchBarangARK} from '@/lib/network/barangServices';
+import {LoadingSpinner} from '@/components/ui/loading';
 
 export default function DataBarangARK() {
   const {data, isLoading, error} = useQuery({
@@ -10,7 +11,7 @@ export default function DataBarangARK() {
     queryFn: fetchBarangARK,
   });
   console.log(data);
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingSpinner size={50} className='mx-auto mt-[25%]' />;
   if (error)
     return (
       <div>

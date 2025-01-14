@@ -2,7 +2,7 @@ import DataTable from '@/components/DataTable';
 import {Button} from '@/components/ui/button';
 import {barangPermintaanColumns} from '@/lib/columns/barang-permintaan-column';
 import {useEffect, useState} from 'react';
-import {fetchDetailPermintaaan} from '@/lib/helper/fetch';
+import {fetchDetailPermintaaan} from '@/lib/services/fetch';
 import {useQuery, useQueryClient} from '@tanstack/react-query';
 import {LoadingSpinner} from '@/components/ui/loading';
 import {base} from '@/lib/network/base';
@@ -64,13 +64,13 @@ export default function DetailPermintaan({
           : item
       )
     );
-    console.log('new data',newData);
+    console.log('new data', newData);
   }
   async function submitForm() {
     try {
       const response = await base.put('/update_status', newData, {
         headers: {
-          'Content-Type': 'application/json', 
+          'Content-Type': 'application/json',
         },
       });
       console.log('response', response);

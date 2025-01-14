@@ -103,7 +103,7 @@ export const barangPermintaanColumns = (
           }
         >
           <SelectTrigger>
-            <SelectValue placeholder='Pilih Status' />
+            <SelectValue placeholder='Pilih status' />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>

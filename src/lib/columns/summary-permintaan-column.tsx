@@ -1,6 +1,6 @@
 import {ColumnDef} from '@tanstack/react-table';
 import {SummaryPermintaan} from '@/lib/types/barang';
-import {Eye, Printer} from 'lucide-react';
+import {ArrowUpDown, Eye, Printer} from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -8,8 +8,8 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import DetailPermintaan from '@/container/admin/DetailPermintaan';
-import {Button} from '@/components/ui/button';
-import {generateBlanko} from '../helper/generateBlanko';
+import BlankoForm from '@/components/BlankoForm';
+import { Button } from '@/components/ui/button';
 
 export const summaryPermintaanColumns: ColumnDef<SummaryPermintaan>[] = [
   {
@@ -18,7 +18,17 @@ export const summaryPermintaanColumns: ColumnDef<SummaryPermintaan>[] = [
   },
   {
     accessorKey: 'tanggal',
-    header: 'Tanggal',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost" className='p-0'
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Tanggal Permintaan
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
   },
   {
     accessorKey: 'jumlah_permintaan',
@@ -26,7 +36,17 @@ export const summaryPermintaanColumns: ColumnDef<SummaryPermintaan>[] = [
   },
   {
     accessorKey: 'ruangan',
-    header: 'Ruangan',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost" className='p-0'
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Ruangan
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
   },
   {
     accessorKey: 'status',
@@ -53,10 +73,11 @@ export const summaryPermintaanColumns: ColumnDef<SummaryPermintaan>[] = [
     cell: (row) => {
       const hasPending = row.row.original.Pending > 0;
       const id_ruangan = row.row.original.id_ruangan;
-      const tanggal = row.row.original.tanggal
+      const ruangan = row.row.original.ruangan;
+      const tanggal = row.row.original.tanggal;
       return (
-        <Dialog>
-          <div className='flex space-x-3 justify-center items-center'>
+        <div className='flex space-x-3 justify-center items-center'>
+          <Dialog>
             <DialogTrigger className='bg-green-500 p-1 rounded-md hover:bg-yellow-900/90'>
               <Eye size={18} color='white' />
             </DialogTrigger>
@@ -66,30 +87,19 @@ export const summaryPermintaanColumns: ColumnDef<SummaryPermintaan>[] = [
               </DialogHeader>
               <DetailPermintaan ruanganID={id_ruangan} tanggal={tanggal} />
             </DialogContent>
-            <Button
-              disabled={hasPending}
-              onClick={generateBlanko}
-              className='p-1.5 h-fit'
-            >
-              <Printer size={18} />
-            </Button>
-            {/* <Link
-          to={'detail'}
-          className='bg-yellow-500 p-1 rounded-md hover:bg-yellow-900/90'
-        >
-          <Pencil size={18} color='white' />
-        </Link> */}
-            {/* <Link to={'/'} className='bg-sky-500 p-1 rounded-md hover:bg-sky-900/90'>
-          <Download size={18} color='white' />
-        </Link> */}
-            {/* <Link
-          to={'/'}
-          className='bg-red-500 p-1 rounded-md hover:bg-red-900/90'
-        >
-          <Trash2 size={18} color='white' />
-        </Link> */}
-          </div>
-        </Dialog>
+          </Dialog>
+          <Dialog>
+            <DialogTrigger disabled={hasPending} className={`bg-violet-500 p-1 rounded-md hover:bg-yellow-900/90 ${hasPending && 'cursor-not-allowed bg-violet-500/40 hover:bg-violet-500/40'}`}>
+              <Printer size={18} color='white' />
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader className='text-2xl font-semibold'>
+                Blanko Pengajuan
+              </DialogHeader>
+              <BlankoForm ruanganID={id_ruangan} tanggal={tanggal} ruangan={ruangan} />
+            </DialogContent>
+          </Dialog>
+        </div>
       );
     },
   },

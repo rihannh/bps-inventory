@@ -1,4 +1,3 @@
-import {LaporanTable} from '@/components/LaporanTable';
 import {laporanPermintaanColumns} from '@/lib/columns/laporan-permintaan-column';
 import {dataBarangPermintaan} from '@/lib/data/barang';
 import {zodResolver} from '@hookform/resolvers/zod';
@@ -14,13 +13,20 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import {Card} from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {Input} from '@/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import DataTable from '@/components/DataTable';
 
 const laporanSchema = z.object({
   nama: z.string(),
   jenis: z.string(),
-  ruangan: z.string()
+  ruangan: z.string(),
 });
 
 export default function LaporanStok() {
@@ -62,52 +68,58 @@ export default function LaporanStok() {
             )}
           />
           <FormField
-          control={form.control}
-          name='jenis'
-          render={({field}) => (
-            <FormItem>
-              <FormLabel>Jenis Barang</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder='Pilih Jenis Barang' />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem value='ATK'>ATK</SelectItem>
-                  <SelectItem value='ARK'>ARK</SelectItem>
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+            control={form.control}
+            name='jenis'
+            render={({field}) => (
+              <FormItem>
+                <FormLabel>Jenis Barang</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder='Pilih Jenis Barang' />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value='ATK'>ATK</SelectItem>
+                    <SelectItem value='ARK'>ARK</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <FormField
-          control={form.control}
-          name='ruangan'
-          render={({field}) => (
-            <FormItem>
-              <FormLabel>Ruangan</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder='Pilih Ruangan' />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem value='pending'>Pending</SelectItem>
-                  <SelectItem value='approved'>Approved</SelectItem>
-                  <SelectItem value='rejected'>Rejected</SelectItem>
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+            control={form.control}
+            name='ruangan'
+            render={({field}) => (
+              <FormItem>
+                <FormLabel>Ruangan</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder='Pilih Ruangan' />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value='pending'>Pending</SelectItem>
+                    <SelectItem value='approved'>Approved</SelectItem>
+                    <SelectItem value='rejected'>Rejected</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <Button type='submit'>Submit</Button>
         </form>
       </Form>
-      <LaporanTable
+      <DataTable
         columns={laporanPermintaanColumns}
         data={dataBarangPermintaan}
       />

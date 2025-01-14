@@ -10,10 +10,21 @@ import {
   SelectLabel,
   SelectItem,
 } from '@/components/ui/select';
+import {Input} from '@/components/ui/input';
 
 export const barangPengajuanColumns = (
-  handleStatusChange: (id: string, newStatus: string) => void,
-  statuses:Record<string,string>
+  handleDataChange: (
+    id_pengajuan: string,
+    newKategori: string | undefined,
+    newJumlah: string | undefined,
+    newStatus: string | undefined
+  ) => void,
+  newData: {
+    id_pengajuan: string;
+    kategori: string;
+    jumlah: string;
+    status: string;
+  }[]
 ): ColumnDef<BarangPengajuan>[] => [
   {
     header: 'No',
@@ -24,16 +35,44 @@ export const barangPengajuanColumns = (
     header: 'Tanggal Pengajuan',
   },
   {
-    accessorKey: 'kode',
+    accessorKey: 'kd_barang',
     header: 'Kode Barang',
   },
   {
-    accessorKey: 'nama',
+    accessorKey: 'nama_barang',
     header: 'Nama Barang',
   },
   {
-    accessorKey: 'jenis',
     header: 'Jenis Barang',
+    cell: (row) => {
+      const currentKategori = newData.find(
+        (item) => item.id_pengajuan === row.row.original.id_pengajuan
+      )?.kategori;
+
+      return(
+        <Select
+        value={currentKategori}
+        onValueChange={(newKategori)=>
+          handleDataChange(
+            row.row.original.id_pengajuan,
+            newKategori,
+            undefined,
+            undefined
+          )
+        }
+        >
+          <SelectTrigger>
+            <SelectValue placeholder='Pilih jenis barang'/>
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem value='ATK'>ATK</SelectItem>
+              <SelectItem value='ARK'>ARK</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      )
+    },
   },
   {
     accessorKey: 'satuan',
@@ -42,16 +81,38 @@ export const barangPengajuanColumns = (
   {
     accessorKey: 'jumlah',
     header: 'Jumlah',
+    cell: (row) => {
+      const currentJumlah = newData.find(
+        (item) => item.id_pengajuan === row.row.original.id_pengajuan
+      )?.jumlah;
+      // console.log('currentJumlah', currentJumlah);
+      return (
+        <Input
+          type='number'
+          defaultValue={currentJumlah}
+          onBlur={(e) =>
+            handleDataChange(
+              row.row.original.id_pengajuan,
+              undefined,
+              e.target.value,
+              undefined
+            )
+          }
+        />
+      );
+    },
   },
   {
-    accessorKey: 'ruangan',
+    accessorKey: 'id_ruangan',
     header: 'Ruangan',
   },
   {
     accessorKey: 'status',
     header: 'Status',
     cell: (row) => {
-      const status = statuses[row.row.original.id];
+      const status = newData.find(
+        (item) => item.id_pengajuan === row.row.original.id_pengajuan
+      )?.status;
       return (
         <Badge variant={status as 'Pending' | 'Approved' | 'Rejected'}>
           {status}
@@ -61,23 +122,35 @@ export const barangPengajuanColumns = (
   },
   {
     header: 'Pilih Status',
-    cell: (row) => (
-      <Select
-      value={statuses[row.row.original.id]}
-      onValueChange={(newStatus)=>handleStatusChange(row.row.original.id, newStatus)}
-      >
-        <SelectTrigger>
-          <SelectValue placeholder='Pilih Status' />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>Ubah Status</SelectLabel>
-            <SelectItem value='Approved'>Approved</SelectItem>
-            <SelectItem value='Rejected'>Rejected</SelectItem>
-            <SelectItem value='Pending'>Pending</SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-    ),
+    cell: (row) => {
+      const currentStatus = newData.find(
+        (item) => item.id_pengajuan === row.row.original.id_pengajuan
+      )?.status;
+      return (
+        <Select
+          value={currentStatus}
+          onValueChange={(newStatus) =>
+            handleDataChange(
+              row.row.original.id_pengajuan,
+              undefined,
+              undefined,
+              newStatus
+            )
+          }
+        >
+          <SelectTrigger>
+            <SelectValue placeholder='Pilih Status' />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Ubah Status</SelectLabel>
+              <SelectItem value='Approved'>Approved</SelectItem>
+              <SelectItem value='Rejected'>Rejected</SelectItem>
+              <SelectItem value='Pending'>Pending</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      );
+    },
   },
 ];

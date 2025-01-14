@@ -1,38 +1,61 @@
 import {ColumnDef} from '@tanstack/react-table';
-import {SummaryPermintaan} from '@/lib/types/barang';
-import {Eye, Printer} from 'lucide-react';
+import {SummaryPengajuan} from '@/lib/types/barang';
+import {ArrowUpDown, Eye} from 'lucide-react';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import DetailPermintaan from '@/container/admin/DetailPermintaan';
-import {Button} from '@/components/ui/button';
-import { generateBlanko } from '../helper/generateBlanko';
+import DetailPengajuan from '@/container/admin-pengajuan/DetailPengajuan';
+import { Button } from '@/components/ui/button';
 
-export const summaryPengajuanColumns: ColumnDef<SummaryPermintaan>[] = [
+export const summaryPengajuanColumns: ColumnDef<SummaryPengajuan>[] = [
   {
     header: 'No',
     cell: (row) => row.row.index + 1,
   },
   {
-    accessorKey: 'tanggal_permintaan',
-    header: 'Tanggal Pengajuan',
+    accessorKey: 'tanggal',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost" className='p-0'
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Tanggal Pengajuan
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
   },
   {
-    accessorKey: 'jumlah_permintaan',
+    accessorKey: 'jumlah_pengajuan',
     header: 'Jenis Barang',
   },
   {
     accessorKey: 'ruangan',
-    header: 'Ruangan',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost" className='p-0'
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Ruangan
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
   },
   {
     accessorKey: 'status',
     header: 'Status',
     cell: (row) => {
-      const status = row.row.original.status;
+      const status = {
+        Approved: row.row.original.Approved,
+        Pending: row.row.original.Pending,
+        Rejected: row.row.original.Rejected,
+      };
       return (
         <ul className='list-disc list-inside first:marker:text-green-500 [&:nth-child(2)]:marker:text-yellow-500 last:marker:text-red-500'>
           {Object.entries(status).map(([key, value]) => (
@@ -47,40 +70,23 @@ export const summaryPengajuanColumns: ColumnDef<SummaryPermintaan>[] = [
   {
     header: 'Action',
     cell: (row) => {
-      const hasPending = row.row.original.status['Pending'] > 0;
+      const id_ruangan = row.row.original.id_ruangan;
+      const tanggal = row.row.original.tanggal
       return (
         <Dialog>
-        <div className='flex space-x-3 justify-center items-center'>
-          <DialogTrigger className='bg-green-500 p-1 rounded-md hover:bg-yellow-900/90'>
-            <Eye size={18} color='white' />
-          </DialogTrigger>
-          <DialogContent className='max-w-[70%]'>
-            <DialogHeader className='text-2xl font-semibold'>
-              Detail Pengajuan
-            </DialogHeader>
-            <DetailPermintaan />
-          </DialogContent>
-          <Button disabled={hasPending} onClick={generateBlanko} className='p-1.5 h-fit'>
-            <Printer size={18} />
-          </Button>
-          {/* <Link
-          to={'detail'}
-          className='bg-yellow-500 p-1 rounded-md hover:bg-yellow-900/90'
-        >
-          <Pencil size={18} color='white' />
-        </Link> */}
-          {/* <Link to={'/'} className='bg-sky-500 p-1 rounded-md hover:bg-sky-900/90'>
-          <Download size={18} color='white' />
-        </Link> */}
-          {/* <Link
-          to={'/'}
-          className='bg-red-500 p-1 rounded-md hover:bg-red-900/90'
-        >
-          <Trash2 size={18} color='white' />
-        </Link> */}
-        </div>
-      </Dialog>
-      )
+          <div className='flex space-x-3 justify-center items-center'>
+            <DialogTrigger className='bg-green-500 p-1 rounded-md hover:bg-yellow-900/90'>
+              <Eye size={18} color='white' />
+            </DialogTrigger>
+            <DialogContent className='max-w-[70%]'>
+              <DialogHeader className='text-2xl font-semibold'>
+                Detail Pengajuan
+              </DialogHeader>
+             <DetailPengajuan ruanganID={id_ruangan} tanggal={tanggal} />
+            </DialogContent>
+          </div>
+        </Dialog>
+      );
     },
   },
 ];

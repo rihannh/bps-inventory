@@ -1,4 +1,3 @@
-import {LaporanTable} from '@/components/LaporanTable';
 import {laporanPermintaanColumns} from '@/lib/columns/laporan-permintaan-column';
 import {dataBarangPermintaan} from '@/lib/data/barang';
 import {zodResolver} from '@hookform/resolvers/zod';
@@ -18,6 +17,7 @@ import {Popover, PopoverContent, PopoverTrigger} from '@/components/ui/popover';
 import {CalendarIcon} from 'lucide-react';
 import {Calendar} from '@/components/ui/calendar';
 import {Card} from '@/components/ui/card';
+import DataTable from '@/components/DataTable';
 
 const laporanSchema = z.object({
   tanggal_mulai: z.date({
@@ -125,7 +125,7 @@ export default function LaporanPermintaan() {
           <Button type='submit'>Submit</Button>
         </form>
       </Form>
-      <LaporanTable
+      <DataTable
         columns={laporanPermintaanColumns}
         data={dataBarangPermintaan}
       />

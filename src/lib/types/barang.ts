@@ -1,7 +1,7 @@
 export type Barang = {
   id_barang: string;
-  kode_barang: string;
-  nama: string;
+  kd_barang: string;
+  nama_barang: string;
   stok: number;
   stok_dasar: number;
   satuan: string;
@@ -12,9 +12,10 @@ export type Barang = {
 export type BarangTrans = {
   id: string;
   tanggal: string;
-  kode: string;
-  nama: string;
+  kd_barang: string;
+  nama_barang: string;
   satuan: string;
+  kategori: string;
   jumlah: number;
   ruangan: string;
 };
@@ -31,16 +32,16 @@ export type BarangPermintaan = {
 };
 
 export type BarangPengajuan = {
-  id: string;
+  id_pengajuan: string;
   tanggal: string;
-  kode: string;
-  nama: string;
-  jenis: string;
+  kd_barang: string;
+  nama_barang: string;
+  kategori: string;
   satuan: string;
   jumlah: number;
   harga_satuan: number;
   harga_pengajuan: number;
-  harga_total: number;
+  total_harga: number;
   status: string;
 };
 
@@ -55,10 +56,19 @@ export type SummaryPermintaan = {
   Rejected: number;
 };
 export type SummaryPengajuan = {
-  id: number;
-  tanggal_pengajuan: string;
+  id_user: number;
+  id_ruangan: string;
+  tanggal: string;
+  ruangan: string;
   jumlah_pengajuan: number;
+  Approved: number;
+  Pending: number;
+  Rejected: number;
 };
 
-
-
+export type PermintaanFormType = {
+  id_barang: string;
+  id_user: string;
+  id_ruangan: string;
+  jumlah: number;
+};

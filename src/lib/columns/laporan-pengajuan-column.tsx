@@ -1,6 +1,7 @@
 import {ColumnDef} from '@tanstack/react-table';
 import {BarangPengajuan} from '@/lib/types/barang';
 import {Badge} from '@/components/ui/badge';
+import { ro } from 'date-fns/locale';
 
 export const laporanPengajuanColumns: ColumnDef<BarangPengajuan>[] = [
   {
@@ -10,17 +11,18 @@ export const laporanPengajuanColumns: ColumnDef<BarangPengajuan>[] = [
   {
     accessorKey: 'tanggal',
     header: 'Tanggal Peengajuan',
+    cell: '2021-08-01 (dummy)',
   },
   {
-    accessorKey: 'kode',
+    accessorKey: 'kd_barang',
     header: 'Kode Barang',
   },
   {
-    accessorKey: 'nama',
+    accessorKey: 'nama_barang',
     header: 'Nama Barang',
   },
   {
-    accessorKey: 'jenis',
+    accessorKey: 'kategori',
     header: 'Jenis Barang',
   },
   {
@@ -34,14 +36,36 @@ export const laporanPengajuanColumns: ColumnDef<BarangPengajuan>[] = [
   {
     accessorKey: 'harga_satuan',
     header: 'Harga Satuan',
+    cell: (row) => {
+      const number = row.row.original.harga_satuan;
+      const formattedNumber = new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(number);
+      return formattedNumber;
+    }
   },
   {
     accessorKey: 'harga_pengajuan',
     header: 'Harga Pengajuan',
+    cell: 'Rp.15.000 (dummy)',
+
   },
   {
-    accessorKey: 'harga_total',
+    accessorKey: 'total_harga',
     header: 'Harga Total',
+    cell: (row) => {
+      const number = row.row.original.total_harga;
+      const formattedNumber = new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(number);
+      return formattedNumber;
+    }
   },
   {
     accessorKey: 'status',

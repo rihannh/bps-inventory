@@ -1,9 +1,25 @@
 import {Card} from '@/components/ui/card';
 import DataTable from '@/components/DataTable';
-import {dataBarang} from '@/lib/data/barang';
 import {barangViewColumns} from '@/lib/columns/barang-column-view';
+import { fetchBarangATK } from '@/lib/network/barangServices';
+import { useQuery } from '@tanstack/react-query';
+import { LoadingSpinner } from '@/components/ui/loading';
 
 export default function DataBarangATK() {
+  const {data, isLoading, error} = useQuery({
+    queryKey: ['data-barang-atk'],
+    queryFn: fetchBarangATK,
+  });
+  console.log(data);
+  if (isLoading) return <LoadingSpinner size={50} className='mx-auto mt-[25%]' />;
+  if (error)
+    return (
+      <div>
+        Error: {error instanceof Error ? error.message : 'Unknown error'}
+      </div>
+    );
+
+  const dataBarang = data?.data ?? [];
   return (
     <>
       <Card className='p-6'>

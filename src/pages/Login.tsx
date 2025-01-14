@@ -21,16 +21,14 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import {Input} from '@/components/ui/input';
-import {loginUser} from '@/lib/network/authServices';
 import {Toaster} from '@/components/ui/toaster';
-import { convertToSlug } from '@/lib/utils';
+import {normalizeRole} from '@/lib/utils';
+import {base} from '@/lib/network/base';
 // import {normalizeRole} from '@/lib/utils';
 
 const loginFormSchema = z.object({
-  email: z.string().email({message: 'Please enter a valid email address'}),
-  password: z
-    .string()
-    .min(8, {message: 'Password must be at least 8 characters'}),
+  username: z.string().nonempty({message: 'Username must be filled'}),
+  password: z.string().nonempty({message: 'Password must be filled'}),
 });
 
 export default function Login() {
@@ -40,22 +38,25 @@ export default function Login() {
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
-      email: '',
+      username: '',
       password: '',
     },
   });
   const onSubmit = async (values: z.infer<typeof loginFormSchema>) => {
     try {
-      const user = await loginUser(values.email, values.password);
+      // const user = await login(values.username, values.password);
 
       // localStorage.setItem('token', response.token);
-      // localStorage.setItem('user', JSON.stringify(response));
 
       // const role = normalizeRole(response.role);
       // const role = response.role;
-      console.log(user);
+      // console.log(values);
+      const {data} = await base.post('/login', values);
+      localStorage.setItem('user', JSON.stringify(data.data));
+
+      // console.log(respone);
       // !Development only
-      if (user == null) {
+      if (data == null) {
         toast({
           variant: 'destructive',
           title: 'Uh oh! Something went wrong.',
@@ -63,11 +64,13 @@ export default function Login() {
         });
         return;
       }
-      const role = convertToSlug(user.role);
-      navigate(`/${role}/dashboard`);
+      const role = normalizeRole(data.data.role);
+      console.log('data ini', role);
+      // console.log(role);
+      navigate(`/${role}/dashboard`, {replace: true});
     } catch (err) {
       console.error('Login failed:', err);
-      form.setError('email', {message: 'Invalid email or password'});
+      form.setError('username', {message: 'Invalid username or password'});
     }
   };
 
@@ -85,7 +88,7 @@ export default function Login() {
             <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
               <FormField
                 control={form.control}
-                name='email'
+                name='username'
                 render={({field}) => (
                   <FormItem>
                     <FormLabel>Email</FormLabel>
