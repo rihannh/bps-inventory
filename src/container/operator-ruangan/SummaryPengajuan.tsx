@@ -18,12 +18,12 @@ import PengajuanForm from '@/components/PengajuanForm';
 import DataTable from '@/components/DataTable';
 import {useQuery} from '@tanstack/react-query';
 import { LoadingSpinner } from '@/components/ui/loading';
-import { fetchPengajuan } from '@/lib/services/pengajuanService';
+import { fetchPengajuanByUser } from '@/lib/services/pengajuanService';
 
 export default function SummaryPengajuan() {
   const {data, isLoading, error} = useQuery({
-    queryKey: ['data-pengajuan'],
-    queryFn: fetchPengajuan,
+    queryKey: ['data-pengajuan-user'],
+    queryFn: fetchPengajuanByUser,
   });
 
   if (isLoading) {

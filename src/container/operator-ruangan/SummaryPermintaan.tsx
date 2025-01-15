@@ -16,36 +16,14 @@ import {
 import {PlusCircle} from 'lucide-react';
 import {Button} from '@/components/ui/button';
 import PermintaanForm from '@/components/PermintaanForm';
-import { LoadingSpinner } from '@/components/ui/loading';
-import { useQuery } from '@tanstack/react-query';
-import { base } from '@/lib/network/base';
-
-const user = JSON.parse(localStorage.getItem('user') || '{}') as {
-  id_user: string;
-  username: string;
-  jabatan: string;
-  data_ruangan: {id_ruangan: string; ruangan: string}[];
-};
-
-async function fetchPermintaan() {
-  const response  = await base.get('/get_transaksi_permintaan');
-  console.log(response.data.data);
-
-
-   // Filter the data based on user.data_ruangan
-   const userRuanganIds = user.data_ruangan.map((r) => r.id_ruangan); // Extract ruangan IDs
-   const filteredData = response.data.data.filter((item: { id_ruangan: string }) =>
-     userRuanganIds.includes(item.id_ruangan)
-   );
- 
-   console.log(filteredData);
-   return { ...response, data: filteredData }; // Return filtered data
-}
+import {LoadingSpinner} from '@/components/ui/loading';
+import {useQuery} from '@tanstack/react-query';
+import {fetchPermintaanByUser} from '@/lib/services/permintaanService';
 
 export default function PermintaanBarang() {
   const {data, isLoading, error} = useQuery({
-    queryKey: ['data-permintaan'],
-    queryFn: fetchPermintaan,
+    queryKey: ['data-permintaan-user'],
+    queryFn: fetchPermintaanByUser,
   });
   if (isLoading) {
     return <LoadingSpinner />;

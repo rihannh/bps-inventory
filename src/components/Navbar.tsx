@@ -1,7 +1,7 @@
-import {Home, Settings} from 'lucide-react';
+import {Home} from 'lucide-react';
 import {Avatar, AvatarFallback, AvatarImage} from '@/components/ui/avatar';
 import {SidebarTrigger} from '@/components/ui/sidebar';
-import {Link, NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,8 +14,9 @@ import {logoutUser} from '@/lib/network/authServices';
 import {convertToSlug} from '@/lib/utils';
 
 interface User {
-  name: string;
+  nama: string;
   role: string;
+  jabatan: string;
 }
 
 export default function Navbar({user}: {user: User}) {
@@ -41,9 +42,9 @@ export default function Navbar({user}: {user: User}) {
               </Avatar>
               <div className='text-start -space-y-1'>
                 <h1 className='text-sm text-slate-600 font-semibold'>
-                  {user.name}
+                  {user.nama}
                 </h1>
-                <p className='text-xs text-gray-400'>{user.role}</p>
+                <p className='text-xs text-gray-400'>{user.jabatan ? user.jabatan : user.role}</p>
               </div>
             </div>
           </DropdownMenuTrigger>
@@ -56,9 +57,6 @@ export default function Navbar({user}: {user: User}) {
             <DropdownMenuItem onClick={logoutUser}>Logout</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-        <Link to='#'>
-          <Settings size={24} className='hover:text-violet-500 text-slate-600 animate-[spin_4s_linear_infinite]' />
-        </Link>
       </div>
     </header>
   );

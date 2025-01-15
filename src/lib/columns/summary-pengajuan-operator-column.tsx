@@ -1,6 +1,6 @@
 import {ColumnDef} from '@tanstack/react-table';
 import {SummaryPengajuan} from '@/lib/types/barang';
-import {Eye} from 'lucide-react';
+import {ArrowUpDown, Eye} from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -8,6 +8,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import DetailPengajuan from '@/container/operator-ruangan/DetailPengajuan';
+import {Button} from '@/components/ui/button';
 
 export const summaryPengajuanOperatorColumns: ColumnDef<SummaryPengajuan>[] = [
   {
@@ -16,11 +17,68 @@ export const summaryPengajuanOperatorColumns: ColumnDef<SummaryPengajuan>[] = [
   },
   {
     accessorKey: 'tanggal',
-    header: 'Tanggal Pengajuan',
+    header: ({column}) => {
+      return (
+        <Button
+          variant='ghost'
+          className='p-0'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        >
+          Ruangan
+          <ArrowUpDown className='ml-2 h-4 w-4' />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: 'jumlah_pengajuan',
     header: 'Jumlah pengajuan',
+  },
+  {
+    accessorKey: 'ruangan',
+    header: ({column}) => {
+      return (
+        <Button
+          variant='ghost'
+          className='p-0'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        >
+          Ruangan
+          <ArrowUpDown className='ml-2 h-4 w-4' />
+        </Button>
+      );
+    },
+  },
+  {
+    accessorKey: 'Pending',
+    header: ({column}) => {
+      return (
+        <Button
+          variant='ghost'
+          className='p-0'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        >
+          Status
+          <ArrowUpDown className='ml-2 h-4 w-4' />
+        </Button>
+      );
+    },
+    cell: (row) => {
+      const status = {
+        Approved: row.row.original.Approved,
+        Pending: row.row.original.Pending,
+        Rejected: row.row.original.Rejected,
+      };
+      return (
+        <ul className='list-disc list-inside first:marker:text-green-500 [&:nth-child(2)]:marker:text-yellow-500 last:marker:text-red-500'>
+          {Object.entries(status).map(([key, value]) => (
+            <li key={key}>
+              {key} : {value}
+            </li>
+          ))}
+        </ul>
+      );
+    },
   },
   {
     header: 'Action',

@@ -131,6 +131,7 @@ const styles = StyleSheet.create({
 });
 
 export interface ListBarang {
+  id_pengajuan: string;
   kd_barang: string;
   tanggal: string;
   harga_pengajuan: number;
@@ -143,6 +144,7 @@ export interface ListBarang {
   jumlah: string | number;
   harga_satuan: string;
   total_harga: string;
+  temp : string;
 }
 export interface KAKProps {
   total: number;
