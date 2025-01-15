@@ -1,4 +1,3 @@
-import {BlankoProps} from '@/lib/types/blanko';
 import {toTitleCase} from '@/lib/utils';
 import {
   Document,
@@ -80,7 +79,27 @@ const styles = StyleSheet.create({
   },
 });
 
-export const Blanko = ({data, desc}) => (
+export interface Desc {
+  no_dokumen: string;
+  no_bukti: string;
+  ruangan: string;
+  tanggal: string;
+}
+
+export interface DataItem {
+  id_permintaan: string;
+  jumlah: number;
+  satuan: string;
+  nama_barang: string;
+  keterangan: string;
+}
+
+export interface BlankoProps {
+  data: DataItem[];
+  desc: Desc;
+}
+
+export const Blanko = ({data, desc}: BlankoProps) => (
   <Document>
     <Page size='A4' style={styles.page}>
       <View style={styles.header}>

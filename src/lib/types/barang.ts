@@ -33,16 +33,19 @@ export type BarangPermintaan = {
 
 export type BarangPengajuan = {
   id_pengajuan: string;
-  tanggal: string;
   kd_barang: string;
-  nama_barang: string;
-  kategori: string;
-  satuan: string;
-  jumlah: number;
-  harga_satuan: number;
+  tanggal: string;
   harga_pengajuan: number;
-  total_harga: number;
   status: string;
+  kategori: string;
+  stok: string;
+  stok_dasar: string;
+  nama_barang: string;
+  satuan: string;
+  jumlah: string | number;
+  harga_satuan: string;
+  total_harga: string;
+  temp: string;
 };
 
 export type SummaryPermintaan = {

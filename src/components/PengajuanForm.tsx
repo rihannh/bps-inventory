@@ -1,31 +1,43 @@
 // Parent Component: PengajuanForm
-import { Button } from './ui/button';
-import RegisteredItemForm from './backup/RegisteredItemForm';
-import UnregisteredItemForm from './backup/UnregisteredItemForm';
+import {Button} from './ui/button';
+import RegisteredItemForm from './RegisteredItemForm';
+import UnregisteredItemForm from './UnregisteredItemForm';
 import DataTable from './DataTable';
 import {Tabs, TabsContent, TabsList, TabsTrigger} from './ui/tabs';
 import {useState} from 'react';
-import { useToast } from '@/hooks/use-toast';
-import { base } from '@/lib/network/base';
+import {useToast} from '@/hooks/use-toast';
+import {base} from '@/lib/network/base';
+
+export interface BatchData {
+  nama_barang: string;
+  kategori: string;
+  satuan: string;
+  stok: number;
+  jumlah: number;
+}
+
+export interface RequestData {
+  id_barang: string;
+  nama_barang: string;
+  kategori: string;
+  satuan: string;
+  id_user: string;
+  id_ruangan: string;
+  jumlah: number;
+}
 
 export default function PengajuanForm() {
-  const toast = useToast()
-  const [batchData, setBatchData] = useState<Array<any>>([]);
-  const [requestData, setRequestData] = useState<Array<any>>([]);
+  const toast = useToast();
+  const [batchData, setBatchData] = useState<BatchData[]>([]);
+  const [requestData, setRequestData] = useState<RequestData[]>([]);
 
-  const user = JSON.parse(localStorage.getItem('user') || '{}') as {
-    id_user: string;
-    username: string;
-    jabatan: string;
-    data_ruangan: {id_ruangan: string; ruangan: string}[];
-  };
 
-  const handleRegisteredSubmit = (newData: any, newBatchData: any) => {
+  const handleRegisteredSubmit = (newData: RequestData, newBatchData: BatchData) => {
     setRequestData((prev) => [...prev, newData]);
     setBatchData((prev) => [...prev, newBatchData]);
   };
 
-  const handleUnregisteredSubmit = (newData: any, newBatchData: any) => {
+  const handleUnregisteredSubmit = (newData: RequestData, newBatchData: BatchData) => {
     setRequestData((prev) => [...prev, newData]);
     setBatchData((prev) => [...prev, newBatchData]);
   };

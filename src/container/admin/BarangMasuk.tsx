@@ -1,5 +1,4 @@
-import PermintaanForm from '@/components/PermintaanForm';
-import {TransaksiTable} from '@/components/TransaksiTable';
+import DataTable from '@/components/DataTable';
 import {Button} from '@/components/ui/button';
 import {Card} from '@/components/ui/card';
 import {
@@ -45,7 +44,7 @@ export default function BarangMasuk() {
           <h1>asdsad</h1>
         </DialogContent>
       </Dialog>
-      <TransaksiTable columns={barangMasukColumns} data={dataBarangMasuk} />
+      <DataTable columns={barangMasukColumns} data={dataBarangMasuk} />
     </Card>
   );
 }

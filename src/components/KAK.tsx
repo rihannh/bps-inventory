@@ -130,19 +130,23 @@ const styles = StyleSheet.create({
   },
 });
 
+export interface ListBarang {
+  kd_barang: string;
+  tanggal: string;
+  harga_pengajuan: number;
+  status: string;
+  kategori: string;
+  stok: string;
+  stok_dasar: string;
+  nama_barang: string;
+  satuan: string;
+  jumlah: string | number;
+  harga_satuan: string;
+  total_harga: string;
+}
 export interface KAKProps {
   total: number;
-  list_barang: {
-    kd_barang: string;
-    kategori: string;
-    stok: string;
-    stok_dasar: string;
-    nama_barang: string;
-    satuan: string;
-    jumlah: string | number;
-    harga_satuan: string;
-    total_harga: string;
-  }[];
+  list_barang: ListBarang[];
 }
 
 export const KAK = ({data}: {data: KAKProps}) => {

@@ -16,7 +16,7 @@ import {Calendar} from '@/components/ui/calendar';
 import {CalendarIcon} from 'lucide-react';
 import {format} from 'date-fns';
 import {id} from 'date-fns/locale';
-import {cn, toTitleCase} from '@/lib/utils';
+import {cn} from '@/lib/utils';
 import {useQuery} from '@tanstack/react-query';
 import {fetchDetailPermintaaan} from '@/lib/services/fetch';
 import {LoadingSpinner} from './ui/loading';

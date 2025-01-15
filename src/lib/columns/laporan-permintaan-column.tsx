@@ -12,15 +12,15 @@ export const laporanPermintaanColumns: ColumnDef<BarangPermintaan>[] = [
     header: 'Tanggal Permintaan',
   },
   {
-    accessorKey: 'kode',
+    accessorKey: 'kd_barang',
     header: 'Kode Barang',
   },
   {
-    accessorKey: 'nama',
+    accessorKey: 'nama_barang',
     header: 'Nama Barang',
   },
   {
-    accessorKey: 'jenis',
+    accessorKey: 'kategori',
     header: 'Jenis Barang',
   },
   {

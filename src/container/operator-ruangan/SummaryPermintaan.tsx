@@ -1,4 +1,3 @@
-import {TransaksiTable} from '@/components/TransaksiTable';
 import {Card} from '@/components/ui/card';
 import {summaryPermintaanOperatorColumns} from '@/lib/columns/summary-permintaan-operator-column';
 import {dataSummaryPermintaan} from '@/lib/data/barang';
@@ -17,6 +16,7 @@ import {
 import {PlusCircle} from 'lucide-react';
 import {Button} from '@/components/ui/button';
 import PermintaanForm from '@/components/PermintaanForm';
+import DataTable from '@/components/DataTable';
 
 export default function SummaryPermintaan() {
   return (
@@ -48,7 +48,7 @@ export default function SummaryPermintaan() {
           </Tooltip>
         </TooltipProvider>
       </div>
-      <TransaksiTable
+      <DataTable
         columns={summaryPermintaanOperatorColumns}
         data={dataSummaryPermintaan}
       />

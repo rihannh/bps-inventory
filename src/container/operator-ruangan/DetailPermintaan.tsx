@@ -1,10 +1,10 @@
-import {TransaksiTable} from '@/components/TransaksiTable';
+import DataTable from '@/components/DataTable';
 import { detailPermintaanOperatorColumns } from '@/lib/columns/detail-permintaan-operator-column';
 import {dataDetailPermintaan} from '@/lib/data/barang';
 
 export default function DetailPermintaan() {
   return (
-    <TransaksiTable
+    <DataTable
       columns={detailPermintaanOperatorColumns}
       data={dataDetailPermintaan}
     />
