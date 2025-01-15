@@ -7,6 +7,7 @@ import {Tabs, TabsContent, TabsList, TabsTrigger} from './ui/tabs';
 import {useState} from 'react';
 import {useToast} from '@/hooks/use-toast';
 import {base} from '@/lib/network/base';
+import {useQueryClient} from '@tanstack/react-query';
 
 export interface BatchData {
   nama_barang: string;
@@ -28,16 +29,22 @@ export interface RequestData {
 
 export default function PengajuanForm() {
   const toast = useToast();
+  const queryClient = useQueryClient();
   const [batchData, setBatchData] = useState<BatchData[]>([]);
   const [requestData, setRequestData] = useState<RequestData[]>([]);
 
-
-  const handleRegisteredSubmit = (newData: RequestData, newBatchData: BatchData) => {
+  const handleRegisteredSubmit = (
+    newData: RequestData,
+    newBatchData: BatchData
+  ) => {
     setRequestData((prev) => [...prev, newData]);
     setBatchData((prev) => [...prev, newBatchData]);
   };
 
-  const handleUnregisteredSubmit = (newData: RequestData, newBatchData: BatchData) => {
+  const handleUnregisteredSubmit = (
+    newData: RequestData,
+    newBatchData: BatchData
+  ) => {
     setRequestData((prev) => [...prev, newData]);
     setBatchData((prev) => [...prev, newBatchData]);
   };
@@ -55,7 +62,7 @@ export default function PengajuanForm() {
         title: 'Berhasil',
         description: response.data.message,
       });
-      // queryClient.invalidateQueries({queryKey:})
+      queryClient.invalidateQueries({queryKey: 'data-pengajuan-user'});
     } catch (error) {
       console.error('Gagal mengupdate data:', error);
       toast.toast({

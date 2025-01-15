@@ -14,15 +14,14 @@ import {useQuery} from '@tanstack/react-query';
 import {PlusCircle} from 'lucide-react';
 
 export default function BarangMasuk() {
-  const {data, isLoading, error} = useQuery({
+  const {data, isLoading} = useQuery({
     queryKey: ['barang-masuk'],
     queryFn: fetchBarangMasuk,
   });
 
   const dataBarangMasuk = data?.data ?? [];
 
-  if (isLoading) return <LoadingSpinner />;
-  if (error) return <div>An error has occurred: {error.message}</div>;
+  if (isLoading) return <LoadingSpinner size={50} className='mx-auto mt-[25%]' />;
 
   return (
     <Card className='p-6'>

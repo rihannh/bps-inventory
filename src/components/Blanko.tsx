@@ -80,8 +80,7 @@ const styles = StyleSheet.create({
 });
 
 export interface Desc {
-  no_dokumen: string;
-  no_bukti: string;
+  noSurat: string;
   ruangan: string;
   tanggal: string;
 }
@@ -118,8 +117,7 @@ export const Blanko = ({data, desc}: BlankoProps) => (
           Badan Pusat Statistik Provinsi Jambi
         </Text>
         <Text style={styles.centeredText}>Permintaan ATK/ARK</Text>
-        <Text>No Dokumen: {desc.no_dokumen}</Text>
-        <Text>No Bukti: {desc.no_bukti}</Text>
+        <Text>No Bukti: {desc.noSurat}</Text>
         <Text style={{marginTop: 10}}>Dari Bidang/Bagian: {desc.ruangan}</Text>
       </View>
 
@@ -166,7 +164,8 @@ export const Blanko = ({data, desc}: BlankoProps) => (
           <Text>Jambi, {desc.tanggal}</Text>
           <Text>Yang menyerahkan ATK</Text>
           <Text>Bagian Umum</Text>
-          <Text style={styles.signatureText}>Sutino, SE</Text>
+          <Text style={styles.signatureText}>Asni Junita S.E.</Text>
+          <Text>198606292005022001</Text>
         </View>
       </View>
 
@@ -174,8 +173,9 @@ export const Blanko = ({data, desc}: BlankoProps) => (
         <Text>Diketahui oleh:</Text>
         <Text>Kepala Bagian Umum,</Text>
         <Text style={[styles.underline, {marginTop: 60}]}>
-          Syarpan Dani, SE
+          Eko Libri Ardi, S.E., M.M., CA.
         </Text>
+        <Text>197309251994031002</Text>
       </View>
     </Page>
   </Document>

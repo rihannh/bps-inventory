@@ -88,6 +88,7 @@ export const summaryPermintaanColumns: ColumnDef<SummaryPermintaan>[] = [
       const id_ruangan = row.row.original.id_ruangan;
       const ruangan = row.row.original.ruangan;
       const tanggal = row.row.original.tanggal;
+      const id_permintaan = row.row.original.id_permintaan;
       return (
         <div className='flex space-x-3 justify-center items-center'>
           <Dialog>
@@ -119,6 +120,7 @@ export const summaryPermintaanColumns: ColumnDef<SummaryPermintaan>[] = [
                 ruanganID={id_ruangan}
                 tanggal={tanggal}
                 ruangan={ruangan}
+                noSurat={id_permintaan}
               />
             </DialogContent>
           </Dialog>

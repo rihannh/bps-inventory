@@ -11,7 +11,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import {Input} from '@/components/ui/input';
-import {useQuery} from '@tanstack/react-query';
+import {useQuery, useQueryClient} from '@tanstack/react-query';
 import {fetchAllBarang} from '@/lib/services/fetch';
 import Select from 'react-select';
 import {LoadingSpinner} from './ui/loading';
@@ -57,7 +57,7 @@ export default function PermintaanForm() {
   >([]);
 
   const toast = useToast();
-  // const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
   const {
     data: dataAllBarang,
@@ -175,7 +175,7 @@ export default function PermintaanForm() {
         title: 'Berhasil',
         description: response.data.message,
       });
-      // queryClient.invalidateQueries({queryKey:})
+      queryClient.invalidateQueries({queryKey: 'data-permintaan-user'});
     } catch (error) {
       console.error('Gagal mengupdate data:', error);
       toast.toast({
@@ -186,7 +186,7 @@ export default function PermintaanForm() {
     }
   };
 
-  if (isLoading) return <LoadingSpinner />;
+  if (isLoading) return <LoadingSpinner className='mx-auto' size={24} />;
   if (error) return <div>An error has occurred: {error.message}</div>;
 
   return (

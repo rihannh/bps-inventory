@@ -26,7 +26,7 @@ export default function PermintaanBarang() {
     queryFn: fetchPermintaanByUser,
   });
   if (isLoading) {
-    return <LoadingSpinner />;
+    return <LoadingSpinner size={50} className='mx-auto mt-[25%]' />;
   }
   if (error) {
     return (
