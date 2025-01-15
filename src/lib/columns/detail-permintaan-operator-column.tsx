@@ -9,18 +9,14 @@ export const detailPermintaanOperatorColumns: ColumnDef<BarangPermintaan>[] = [
   },
   {
     accessorKey: 'tanggal',
-    header: 'Tanggal Pengajuan',
+    header: 'Tanggal Permintaan',
   },
   {
-    accessorKey: 'kode',
-    header: 'Kode Barang',
-  },
-  {
-    accessorKey: 'nama',
+    accessorKey: 'nama_barang',
     header: 'Nama Barang',
   },
   {
-    accessorKey: 'jenis',
+    accessorKey: 'kategori',
     header: 'Jenis Barang',
   },
   {
@@ -30,10 +26,6 @@ export const detailPermintaanOperatorColumns: ColumnDef<BarangPermintaan>[] = [
   {
     accessorKey: 'jumlah',
     header: 'Jumlah Permintaan',
-  },
-  {
-    accessorKey: 'ruangan',
-    header: 'Ruangan',
   },
   {
     accessorKey: 'status',
