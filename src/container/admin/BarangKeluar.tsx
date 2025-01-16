@@ -1,4 +1,4 @@
-import { TransaksiTable } from '@/components/TransaksiTable';
+import DataTable from '@/components/DataTable';
 import {Card} from '@/components/ui/card';
 import { barangKeluarColumns } from '@/lib/columns/barang-keluar-column';
 import { dataBarangKeluar } from '@/lib/data/barang';
@@ -11,7 +11,7 @@ export default function BarangKeluar() {
       >
         Data Barang Keluar
       </h1>
-      <TransaksiTable columns={barangKeluarColumns} data={dataBarangKeluar} />
+      <DataTable columns={barangKeluarColumns} data={dataBarangKeluar} />
     </Card>
   );
 }

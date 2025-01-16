@@ -1,5 +1,4 @@
 import {laporanPengajuanColumns} from '@/lib/columns/laporan-pengajuan-column';
-import {dataBarangPengajuan} from '@/lib/data/barang';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useForm} from 'react-hook-form';
 import {z} from 'zod';
@@ -22,6 +21,7 @@ import DataTable from '@/components/DataTable';
 import {base} from '@/lib/network/base';
 import {useState} from 'react';
 import {generateKAK} from '@/lib/services/pengajuanService';
+import {KAKProps, ListBarang} from '@/components/KAK';
 
 const laporanSchema = z.object({
   tgl_mulai: z.date({
@@ -31,8 +31,15 @@ const laporanSchema = z.object({
     required_error: 'Tanggal Selesai tidak boleh kosong.',
   }),
 });
+
+interface LaporanPengajuanData {
+  data: KAKProps;
+  status: boolean;
+}
+
 export default function LaporanPengajuan() {
-  const [dataPengajuan, setDataPengajuan] = useState([]);
+  const [dataCetak, setDataCetak] = useState<LaporanPengajuanData | null>(null);
+  const [dataTable, setDataTable] = useState<ListBarang[]>([]);
 
   const form = useForm<z.infer<typeof laporanSchema>>({
     resolver: zodResolver(laporanSchema),
@@ -47,23 +54,20 @@ export default function LaporanPengajuan() {
       tgl_mulai: format(values.tgl_mulai, 'yyyy-MM-dd'),
       tgl_akhir: format(values.tgl_akhir, 'yyyy-MM-dd'),
     };
-    console.log(formatedValues);
-    const response = await base.post('/cetak_kak', formatedValues);
-    // console.log(response.data);
-    setDataPengajuan(response.data);
+    const responsePrint = await base.post('/cetak_kak', formatedValues);
+    const responseTable = await base.post('/filter_pengajuan', formatedValues)
+    setDataTable(responseTable.data.data);
+    setDataCetak(responsePrint.data);
   }
-
-  const dataForTable = dataPengajuan?.data?.list_barang ?? [];
-  const dataForKAK = dataPengajuan?.data ?? [];
-  // console.log('data for table', dataForTable);
-  // console.log('data for KAK', dataForKAK);
+  const dataForTable = dataTable ?? [];
+  const dataForKAK = dataCetak?.data ?? { total: 0, list_barang: [] };
+  console.log('data for table', dataForTable);
 
   function printKAK() {
-    const dataKAK = { dataKAK: dataForKAK }; // Bungkus data ke dalam objek
+    const dataKAK = {dataKAK: dataForKAK } ; // Bungkus data ke dalam objek
     console.log('data for KAK', dataKAK);
     generateKAK(dataKAK);
   }
-  
 
   return (
     <Card className='p-6'>

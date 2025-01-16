@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/dialog';
 import DetailPermintaan from '@/container/admin/DetailPermintaan';
 import BlankoForm from '@/components/BlankoForm';
-import { Button } from '@/components/ui/button';
+import {Button} from '@/components/ui/button';
 
 export const summaryPermintaanColumns: ColumnDef<SummaryPermintaan>[] = [
   {
@@ -18,16 +18,17 @@ export const summaryPermintaanColumns: ColumnDef<SummaryPermintaan>[] = [
   },
   {
     accessorKey: 'tanggal',
-    header: ({ column }) => {
+    header: ({column}) => {
       return (
         <Button
-          variant="ghost" className='p-0'
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          variant='ghost'
+          className='p-0'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
           Tanggal Permintaan
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <ArrowUpDown className='ml-2 h-4 w-4' />
         </Button>
-      )
+      );
     },
   },
   {
@@ -36,21 +37,33 @@ export const summaryPermintaanColumns: ColumnDef<SummaryPermintaan>[] = [
   },
   {
     accessorKey: 'ruangan',
-    header: ({ column }) => {
+    header: ({column}) => {
       return (
         <Button
-          variant="ghost" className='p-0'
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          variant='ghost'
+          className='p-0'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
           Ruangan
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <ArrowUpDown className='ml-2 h-4 w-4' />
         </Button>
-      )
+      );
     },
   },
   {
-    accessorKey: 'status',
-    header: 'Status',
+    accessorKey: 'Pending',
+    header: ({column}) => {
+      return (
+        <Button
+          variant='ghost'
+          className='p-0'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        >
+          Status
+          <ArrowUpDown className='ml-2 h-4 w-4' />
+        </Button>
+      );
+    },
     cell: (row) => {
       const status = {
         Approved: row.row.original.Approved,
@@ -75,6 +88,7 @@ export const summaryPermintaanColumns: ColumnDef<SummaryPermintaan>[] = [
       const id_ruangan = row.row.original.id_ruangan;
       const ruangan = row.row.original.ruangan;
       const tanggal = row.row.original.tanggal;
+      const id_permintaan = row.row.original.id_permintaan;
       return (
         <div className='flex space-x-3 justify-center items-center'>
           <Dialog>
@@ -89,14 +103,25 @@ export const summaryPermintaanColumns: ColumnDef<SummaryPermintaan>[] = [
             </DialogContent>
           </Dialog>
           <Dialog>
-            <DialogTrigger disabled={hasPending} className={`bg-violet-500 p-1 rounded-md hover:bg-yellow-900/90 ${hasPending && 'cursor-not-allowed bg-violet-500/40 hover:bg-violet-500/40'}`}>
+            <DialogTrigger
+              disabled={hasPending}
+              className={`bg-violet-500 p-1 rounded-md hover:bg-yellow-900/90 ${
+                hasPending &&
+                'cursor-not-allowed bg-violet-500/40 hover:bg-violet-500/40'
+              }`}
+            >
               <Printer size={18} color='white' />
             </DialogTrigger>
             <DialogContent>
               <DialogHeader className='text-2xl font-semibold'>
                 Blanko Pengajuan
               </DialogHeader>
-              <BlankoForm ruanganID={id_ruangan} tanggal={tanggal} ruangan={ruangan} />
+              <BlankoForm
+                ruanganID={id_ruangan}
+                tanggal={tanggal}
+                ruangan={ruangan}
+                noSurat={id_permintaan}
+              />
             </DialogContent>
           </Dialog>
         </div>

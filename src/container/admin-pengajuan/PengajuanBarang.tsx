@@ -1,26 +1,20 @@
 import DataTable from '@/components/DataTable';
 import {Card} from '@/components/ui/card';
 import {LoadingSpinner} from '@/components/ui/loading';
-import { summaryPengajuanColumns } from '@/lib/columns/summary-pengajuan-column';
-import { fetchPengajuan } from '@/lib/services/pengajuanService';
+import {summaryPengajuanColumns} from '@/lib/columns/summary-pengajuan-column';
+import {fetchPengajuan} from '@/lib/services/pengajuanService';
 import {useQuery} from '@tanstack/react-query';
 
 export default function PengajuanBarang() {
-  const {data, isLoading, error} = useQuery({
+  const {data, isLoading} = useQuery({
     queryKey: ['data-pengajuan'],
     queryFn: fetchPengajuan,
   });
 
   if (isLoading) {
-    return <LoadingSpinner />;
+    return <LoadingSpinner size={50} className='mx-auto mt-[25%]' />;
   }
-  if (error) {
-    return (
-      <div>
-        Error: {error instanceof Error ? error.message : 'Unknown error'}
-      </div>
-    );
-  }
+  
 
   const dataSummaryPengajuan = data?.data ?? [];
   console.log(dataSummaryPengajuan);

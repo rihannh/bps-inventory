@@ -32,6 +32,7 @@ import {Input} from '@/components/ui/input';
 import DataTable from '@/components/DataTable';
 import {useQuery} from '@tanstack/react-query';
 import {fetchBarangARK} from '@/lib/network/barangServices';
+import { LoadingSpinner } from '@/components/ui/loading';
 
 const filterSchema = z.object({
   harga_pengajuan: z.number().optional(),
@@ -52,7 +53,7 @@ export default function DataBarangARK() {
     queryFn: fetchBarangARK,
   });
   console.log(data);
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingSpinner size={50} className='mx-auto mt-[25%]' />;
   if (error)
     return (
       <div>

@@ -10,23 +10,18 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import {Input} from '@/components/ui/input';
 import {Popover, PopoverContent, PopoverTrigger} from '@/components/ui/popover';
 import {Calendar} from '@/components/ui/calendar';
 import {CalendarIcon} from 'lucide-react';
 import {format} from 'date-fns';
 import {id} from 'date-fns/locale';
-import {cn, toTitleCase} from '@/lib/utils';
+import {cn} from '@/lib/utils';
 import {useQuery} from '@tanstack/react-query';
 import {fetchDetailPermintaaan} from '@/lib/services/fetch';
 import {LoadingSpinner} from './ui/loading';
 import {generateBlanko} from '@/lib/services/blankoServices';
 
 const blankoSchema = z.object({
-  no_bukti: z.string().nonempty({message: 'Nomor bukti tidak boleh kosong.'}),
-  no_dokumen: z
-    .string()
-    .nonempty({message: 'Nomor dokumen tidak boleh kosong.'}),
   tanggal: z.date(),
 });
 
@@ -34,10 +29,12 @@ export default function BlankoForm({
   ruanganID,
   tanggal,
   ruangan,
+  noSurat,
 }: {
   ruanganID: string;
   tanggal: string;
   ruangan: string;
+  noSurat: string;
 }) {
   const {data, isLoading, error} = useQuery({
     queryKey: ['detail-permintaan', ruanganID, tanggal],
@@ -46,13 +43,11 @@ export default function BlankoForm({
   const form = useForm<z.infer<typeof blankoSchema>>({
     resolver: zodResolver(blankoSchema),
     defaultValues: {
-      no_bukti: '',
-      no_dokumen: '',
       tanggal: new Date(), // Tanggal sekarang sebagai default value
     },
   });
 
-  if (isLoading) return <LoadingSpinner />;
+  if (isLoading) return <LoadingSpinner className='mx-auto' size={24} />;
   if (error) {
     return (
       <div>
@@ -66,6 +61,7 @@ export default function BlankoForm({
       ...values,
       tanggal: format(values.tanggal, 'dd MMMM yyyy', {locale: id}),
       ruangan: ruangan,
+      noSurat: noSurat,
     };
     const filteredDetail = dataDetailPermintaan.filter(
       (item: {status: string}) => item.status === 'Approved'
@@ -73,38 +69,11 @@ export default function BlankoForm({
     console.log('Formatted Data:', formattedData);
     console.log('Detail Permintaan:', filteredDetail);
     generateBlanko({letterData: filteredDetail, letterDesc: formattedData});
-    // console.log(toTitleCase('ADADJHSAD'));
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
-        <FormField
-          control={form.control}
-          name='no_bukti'
-          render={({field}) => (
-            <FormItem>
-              <FormLabel>Nomor Bukti</FormLabel>
-              <FormControl>
-                <Input placeholder='Masukkan Nomor Bukti' {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='no_dokumen'
-          render={({field}) => (
-            <FormItem>
-              <FormLabel>Nomor Dokumen</FormLabel>
-              <FormControl>
-                <Input placeholder='Masukkan Nomor Dokumen' {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
         <FormField
           control={form.control}
           name='tanggal'

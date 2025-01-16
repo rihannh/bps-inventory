@@ -1,4 +1,3 @@
-import {BlankoProps} from '@/lib/types/blanko';
 import {toTitleCase} from '@/lib/utils';
 import {
   Document,
@@ -80,7 +79,26 @@ const styles = StyleSheet.create({
   },
 });
 
-export const Blanko = ({data, desc}) => (
+export interface Desc {
+  noSurat: string;
+  ruangan: string;
+  tanggal: string;
+}
+
+export interface DataItem {
+  id_permintaan: string;
+  jumlah: number;
+  satuan: string;
+  nama_barang: string;
+  keterangan: string;
+}
+
+export interface BlankoProps {
+  data: DataItem[];
+  desc: Desc;
+}
+
+export const Blanko = ({data, desc}: BlankoProps) => (
   <Document>
     <Page size='A4' style={styles.page}>
       <View style={styles.header}>
@@ -99,8 +117,7 @@ export const Blanko = ({data, desc}) => (
           Badan Pusat Statistik Provinsi Jambi
         </Text>
         <Text style={styles.centeredText}>Permintaan ATK/ARK</Text>
-        <Text>No Dokumen: {desc.no_dokumen}</Text>
-        <Text>No Bukti: {desc.no_bukti}</Text>
+        <Text>No Bukti: {desc.noSurat}</Text>
         <Text style={{marginTop: 10}}>Dari Bidang/Bagian: {desc.ruangan}</Text>
       </View>
 
@@ -147,7 +164,8 @@ export const Blanko = ({data, desc}) => (
           <Text>Jambi, {desc.tanggal}</Text>
           <Text>Yang menyerahkan ATK</Text>
           <Text>Bagian Umum</Text>
-          <Text style={styles.signatureText}>Sutino, SE</Text>
+          <Text style={styles.signatureText}>Asni Junita S.E.</Text>
+          <Text>198606292005022001</Text>
         </View>
       </View>
 
@@ -155,8 +173,9 @@ export const Blanko = ({data, desc}) => (
         <Text>Diketahui oleh:</Text>
         <Text>Kepala Bagian Umum,</Text>
         <Text style={[styles.underline, {marginTop: 60}]}>
-          Syarpan Dani, SE
+          Eko Libri Ardi, S.E., M.M., CA.
         </Text>
+        <Text>197309251994031002</Text>
       </View>
     </Page>
   </Document>

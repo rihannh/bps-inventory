@@ -12,15 +12,15 @@ export const detailPengajuanOperatorColumns: ColumnDef<BarangPengajuan>[] = [
     header: 'Tanggal Pengajuan',
   },
   {
-    accessorKey: 'kode',
+    accessorKey: 'kd_barang',
     header: 'Kode Barang',
   },
   {
-    accessorKey: 'nama',
+    accessorKey: 'nama_barang',
     header: 'Nama Barang',
   },
   {
-    accessorKey: 'jenis',
+    accessorKey: 'kategori',
     header: 'Jenis Barang',
   },
   {
@@ -32,11 +32,7 @@ export const detailPengajuanOperatorColumns: ColumnDef<BarangPengajuan>[] = [
     header: 'Jumlah Pengajuan',
   },
   {
-    accessorKey: 'harga_total',
-    header: 'Total Harga',
-  },
-  {
-    accessorKey: 'ruangan',
+    accessorKey: 'id_ruangan',
     header: 'Ruangan',
   },
   {

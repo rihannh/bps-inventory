@@ -1,8 +1,6 @@
-import {TransaksiTable} from '@/components/TransaksiTable';
 import {Button} from '@/components/ui/button';
 import {Card} from '@/components/ui/card';
 import {summaryPengajuanOperatorColumns} from '@/lib/columns/summary-pengajuan-operator-column';
-import {dataSummaryPengajuan} from '@/lib/data/barang';
 import {
   Tooltip,
   TooltipTrigger,
@@ -17,8 +15,30 @@ import {
 } from '@/components/ui/dialog';
 import {PlusCircle} from 'lucide-react';
 import PengajuanForm from '@/components/PengajuanForm';
+import DataTable from '@/components/DataTable';
+import {useQuery} from '@tanstack/react-query';
+import { LoadingSpinner } from '@/components/ui/loading';
+import { fetchPengajuanByUser } from '@/lib/services/pengajuanService';
 
 export default function SummaryPengajuan() {
+  const {data, isLoading, error} = useQuery({
+    queryKey: ['data-pengajuan-user'],
+    queryFn: fetchPengajuanByUser,
+  });
+
+  if (isLoading) {
+    return <LoadingSpinner size={50} className='mx-auto mt-[25%]' />;
+  }
+  if (error) {
+    return (
+      <div>
+        Error: {error instanceof Error ? error.message : 'Unknown error'}
+      </div>
+    );
+  }
+
+  const dataSummaryPengajuan = data?.data ?? [];
+
   return (
     <Card className='p-6'>
       <div className='flex flex-col lg:flex-row justify-between items-center'>
@@ -49,7 +69,7 @@ export default function SummaryPengajuan() {
         </TooltipProvider>
       </div>
 
-      <TransaksiTable
+      <DataTable
         columns={summaryPengajuanOperatorColumns}
         data={dataSummaryPengajuan}
       />

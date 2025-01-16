@@ -2,10 +2,25 @@ import {base} from '../network/base';
 import {PDFViewer} from '@react-pdf/renderer';
 import {KAK, KAKProps} from '@/components/KAK';
 import ReactDOM from 'react-dom';
+import { getUser } from './userServices';
 
 export async function fetchPengajuan() {
   const response = await base.get('/get_transaksi_pengajuan');
   return response.data;
+}
+
+export async function fetchPengajuanByUser() {
+  const response = await base.get('/get_transaksi_pengajuan');
+
+  const user = getUser();
+  // Filter the data based on user.data_ruangan
+  const userRuanganIds = user.data_ruangan.map((r) => r.id_ruangan); // Extract ruangan IDs
+  const filteredData = response.data.data.filter((item: {id_ruangan: string}) =>
+    userRuanganIds.includes(item.id_ruangan)
+  );
+
+  console.log(filteredData);
+  return {...response, data: filteredData}; // Return filtered data
 }
 
 export async function fetchDetailPengajuan(ruangnaID: string, tanggal: string) {

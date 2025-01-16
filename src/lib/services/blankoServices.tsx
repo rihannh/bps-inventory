@@ -1,8 +1,10 @@
-import { Blanko } from "@/components/Blanko";
+import { Blanko, DataItem, Desc } from "@/components/Blanko";
 import { PDFViewer } from "@react-pdf/renderer";
 import ReactDOM from "react-dom";
 
-export const generateBlanko = ({letterData,letterDesc}) => {
+
+
+export const generateBlanko = ({letterData,letterDesc} : {letterData : DataItem[], letterDesc: Desc}) => {
   const newWindow = window.open('', '_blank');
   if (newWindow) {
     newWindow.document.write(`

@@ -8,6 +8,7 @@ import {Outlet} from 'react-router-dom';
 export default function LayoutDashboard() {
   const user = getUser();
   const role = getUserRole();
+  console.log(user);
 
   return (
     <SidebarProvider>

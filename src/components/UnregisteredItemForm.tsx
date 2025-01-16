@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/form';
 import Select from 'react-select';
 import {Input} from '@/components/ui/input';
+import { BatchData, RequestData } from './PengajuanForm';
 
 const unregisteredPermintaanSchema = z.object({
   id_user_unregistered: z.string(),
@@ -24,6 +25,7 @@ const unregisteredPermintaanSchema = z.object({
     .string()
     .min(1, {message: 'Ruangan harus dipilih.'}),
   tanggal_unregistered: z.string().min(1, {message: 'Tanggal harus diisi.'}),
+  id_barang_unregistered: z.string().min(1, {message: 'Barang harus dipilih.'}),
   nama_barang_unregistered: z
     .string()
     .min(1, {message: 'Nama barang tidak boleh kosong.'}),
@@ -39,10 +41,12 @@ const unregisteredPermintaanSchema = z.object({
     .positive({message: 'Jumlah permintaan harus lebih dari 0.'}),
 });
 
+
+
 export default function UnregisteredItemForm({
   onSubmit,
 }: {
-  onSubmit: (newData: any, newBatchData: any) => void;
+  onSubmit: (newData: RequestData, newBatchData: BatchData) => void;
 }) {
   const user = JSON.parse(localStorage.getItem('user') || '{}') as {
     id_user: string;
@@ -60,6 +64,7 @@ export default function UnregisteredItemForm({
       jabatan_unregistered: user.jabatan,
       id_ruangan_unregistered: '',
       tanggal_unregistered: new Date().toISOString().split('T')[0],
+      id_barang_unregistered: '0',
       nama_barang_unregistered: '',
       kategori_unregistered: '',
       satuan_unregistered: '',
@@ -79,7 +84,7 @@ export default function UnregisteredItemForm({
   function handleSubmit(values: z.infer<typeof unregisteredPermintaanSchema>) {
     console.log('Unregistered Item Form:', values);
     const newData = {
-      id_barang: '',
+      id_barang: values.id_barang_unregistered,
       nama_barang: values.nama_barang_unregistered,
       kategori: values.kategori_unregistered,
       satuan: values.satuan_unregistered,
@@ -216,11 +221,11 @@ export default function UnregisteredItemForm({
           name='jumlah_unregistered'
           render={({field}) => (
             <FormItem>
-              <FormLabel>Jumlah Permintaan</FormLabel>
+              <FormLabel>Jumlah Pengajuan</FormLabel>
               <FormControl>
                 <Input
                   type='number'
-                  placeholder='Jumlah Permintaan'
+                  placeholder='Jumlah Pengajuan'
                   {...field}
                   onChange={(e) => field.onChange(Number(e.target.value))}
                 />

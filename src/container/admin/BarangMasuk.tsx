@@ -1,5 +1,4 @@
-import PermintaanForm from '@/components/PermintaanForm';
-import {TransaksiTable} from '@/components/TransaksiTable';
+import DataTable from '@/components/DataTable';
 import {Button} from '@/components/ui/button';
 import {Card} from '@/components/ui/card';
 import {
@@ -15,15 +14,14 @@ import {useQuery} from '@tanstack/react-query';
 import {PlusCircle} from 'lucide-react';
 
 export default function BarangMasuk() {
-  const {data, isLoading, error} = useQuery({
+  const {data, isLoading} = useQuery({
     queryKey: ['barang-masuk'],
     queryFn: fetchBarangMasuk,
   });
 
   const dataBarangMasuk = data?.data ?? [];
 
-  if (isLoading) return <LoadingSpinner />;
-  if (error) return <div>An error has occurred: {error.message}</div>;
+  if (isLoading) return <LoadingSpinner size={50} className='mx-auto mt-[25%]' />;
 
   return (
     <Card className='p-6'>
@@ -45,7 +43,7 @@ export default function BarangMasuk() {
           <h1>asdsad</h1>
         </DialogContent>
       </Dialog>
-      <TransaksiTable columns={barangMasukColumns} data={dataBarangMasuk} />
+      <DataTable columns={barangMasukColumns} data={dataBarangMasuk} />
     </Card>
   );
 }

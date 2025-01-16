@@ -39,7 +39,7 @@ export default function DetailPengajuan({
     }
   }, [data]);
 
-  if (isLoading) return <LoadingSpinner />;
+  if (isLoading) return <LoadingSpinner size={50} className='mx-auto mt-[25%]' />;
   if (error) {
     return (
       <div>

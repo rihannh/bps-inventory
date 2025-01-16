@@ -93,7 +93,7 @@ export default function EditBarangForm({id}: {id: string}) {
     }
   }, [data, setValue]);
 
-  if (isLoading) return <LoadingSpinner className='mx-a' size={24} />;
+  if (isLoading) return <LoadingSpinner className='mx-auto' size={24} />;
   if (error)
     return (
       <div>
