@@ -17,12 +17,14 @@ export const barangPengajuanColumns = (
     id_pengajuan: string,
     newKategori: string | undefined,
     newJumlah: string | undefined,
+    newHarga: string | undefined,
     newStatus: string | undefined
   ) => void,
   newData: {
     id_pengajuan: string;
     kategori: string;
     jumlah: string;
+    harga_satuan: string;
     status: string;
   }[]
 ): ColumnDef<BarangPengajuan>[] => [
@@ -57,6 +59,7 @@ export const barangPengajuanColumns = (
             row.row.original.id_pengajuan,
             newKategori,
             undefined,
+            undefined,
             undefined
           )
         }
@@ -79,6 +82,31 @@ export const barangPengajuanColumns = (
     header: 'Satuan',
   },
   {
+    accessorKey: 'harga_satuan',
+    header: 'Harga',
+    cell: (row) => {
+      const currentHarga = newData.find(
+        (item) => item.id_pengajuan === row.row.original.id_pengajuan
+      )?.harga_satuan;
+      console.log('currentHarga', currentHarga);
+      return (
+        <Input
+          defaultValue={currentHarga}
+          className='min-w-16'
+          onBlur={(e) =>
+            handleDataChange(
+              row.row.original.id_pengajuan,
+              undefined,
+              undefined,
+              e.target.value,
+              undefined
+            )
+          }
+        />
+      );
+    },
+  },
+  {
     accessorKey: 'jumlah',
     header: 'Jumlah',
     cell: (row) => {
@@ -95,6 +123,7 @@ export const barangPengajuanColumns = (
               row.row.original.id_pengajuan,
               undefined,
               e.target.value,
+              undefined,
               undefined
             )
           }
@@ -132,6 +161,7 @@ export const barangPengajuanColumns = (
           onValueChange={(newStatus) =>
             handleDataChange(
               row.row.original.id_pengajuan,
+              undefined,
               undefined,
               undefined,
               newStatus

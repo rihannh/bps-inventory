@@ -30,6 +30,7 @@ export default function DetailPengajuan({
         id_pengajuan: item.id_pengajuan,
         kategori: item.kategori,
         jumlah: item.jumlah,
+        harga_satuan: item.harga_satuan,
         status: item.status,
       }));
       // console.log('data:' ,data.data);
@@ -53,6 +54,7 @@ export default function DetailPengajuan({
     id: string,
     newKategori: string | undefined,
     newJumlah: string | undefined,
+    newHarga: string | undefined,
     newStatus: string | undefined
   ) {
     setNewData((prev) =>
@@ -62,6 +64,7 @@ export default function DetailPengajuan({
               ...item,
               kategori: newKategori !== undefined ? newKategori : item.kategori,
               jumlah: newJumlah !== undefined ? newJumlah : item.jumlah,
+              harga_satuan: newHarga != undefined ? newHarga : item.harga_satuan,
               status: newStatus !== undefined ? newStatus : item.status,
             }
           : item
@@ -70,6 +73,7 @@ export default function DetailPengajuan({
   }
   async function submitForm() {
     try {
+      console.log("Data post",newData);
       const response = await base.put('/update_status_pengajuan', newData, {
         headers: {
           'Content-Type': 'application/json',
