@@ -39,6 +39,7 @@ export const admin2Items = [
     contents: [
       {title: 'Data Barang ATK', url: 'data-barang-atk'},
       {title: 'Data Barang ARK', url: 'data-barang-ark'},
+      {title: 'Input Barang Masuk', url: 'input-barang-masuk'},
       {title: 'Pengajuan Barang', url: 'pengajuan-barang'},
       {title: 'Laporan Pengajuan', url: 'laporan-pengajuan'},
     ],

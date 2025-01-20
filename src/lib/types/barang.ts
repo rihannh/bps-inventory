@@ -31,6 +31,13 @@ export type BarangPermintaan = {
   status: string;
 };
 
+export type BarangPembelian = {
+  id_barang: string;
+  tanggal: string;
+  nama_barang: string;
+  jumlah: number;
+};
+
 export type BarangPengajuan = {
   id_pengajuan: string;
   kd_barang: string;
@@ -68,6 +75,14 @@ export type SummaryPengajuan = {
   Approved: number;
   Pending: number;
   Rejected: number;
+};
+
+export type InputKuitansi = {
+  id_pembelian: number;
+  no_kuitansi: string;
+  tanggal: string;
+  sumber: string;
+  jumlah_barang: number;
 };
 
 export type PermintaanFormType = {

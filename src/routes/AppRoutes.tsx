@@ -21,6 +21,7 @@ import DataBarangARKView from '@/container/admin-pengajuan/DataBarangARK';
 import PengajuanBarang from '@/container/admin-pengajuan/PengajuanBarang';
 import SummaryPermintaan from '@/container/operator-ruangan/SummaryPermintaan';
 import SummaryPengajuan from '@/container/operator-ruangan/SummaryPengajuan';
+import InputBarangMasuk from '@/container/admin-pengajuan/InputBarangMasuk';
 
 const router = createBrowserRouter(
   [
@@ -69,6 +70,7 @@ const router = createBrowserRouter(
                 {path: 'data-barang-atk', element: <DataBarangATKView />},
                 {path: 'data-barang-ark', element: <DataBarangARKView />},
                 {path: 'pengajuan-barang', element: <PengajuanBarang />},
+                {path: 'input-barang-masuk', element: <InputBarangMasuk />},
                 {path: 'laporan-pengajuan', element: <LaporanPengajuan />},
               ],
             },
