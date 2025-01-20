@@ -2,6 +2,7 @@ import DataTable from '@/components/DataTable';
 import PembelianForm from '@/components/PembelianForm';
 import { Button } from '@/components/ui/button';
 import {Card} from '@/components/ui/card';
+import { useDialog } from '@/context/dialog';
 import { Dialog, DialogContent, DialogHeader, DialogTrigger } from '@/components/ui/dialog';
 import {LoadingSpinner} from '@/components/ui/loading';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -16,10 +17,11 @@ export default function InputBarangMasuk() {
     queryFn: fetchPembelian,
   });
 
+  const { isDialogOpen, openDialog } = useDialog();
+
   if (isLoading) {
     return <LoadingSpinner size={50} className='mx-auto mt-[25%]' />;
   }
-  
 
   const dataSummaryPembelian = data?.data ?? [];
   console.log(dataSummaryPembelian);
@@ -34,9 +36,9 @@ export default function InputBarangMasuk() {
       <TooltipProvider>
           <Tooltip>
             <TooltipTrigger className='mr-auto lg:mr-0'>
-              <Dialog>
+              <Dialog open={isDialogOpen} onOpenChange={openDialog}>
                 <DialogTrigger>
-                  <Button>
+                  <Button onClick={openDialog}>
                     <PlusCircle /> Buat Pembelian Barang
                   </Button>
                 </DialogTrigger>

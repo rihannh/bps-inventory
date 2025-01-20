@@ -19,3 +19,8 @@ export async function fetchAllBarang(){
   const response = await base.get('/get_barang_all');
   return response.data;
 }
+
+export async function fetchAllSumber(){
+  const response = await base.get('/get_sumber');
+  return response.data;
+}
