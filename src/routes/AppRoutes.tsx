@@ -18,6 +18,8 @@ import DataBarangATK from '@/container/admin/DataBarangATK';
 import DataBarangARK from '@/container/admin/DataBarangARK';
 import DataBarangATKView from '@/container/admin-pengajuan/DataBarangATK';
 import DataBarangARKView from '@/container/admin-pengajuan/DataBarangARK';
+import DataBarangATKOp from '@/container/operator-ruangan/DataBarangATK';
+import DataBarangARKOp from '@/container/operator-ruangan/DataBarangARK';
 import PengajuanBarang from '@/container/admin-pengajuan/PengajuanBarang';
 import SummaryPermintaan from '@/container/operator-ruangan/SummaryPermintaan';
 import SummaryPengajuan from '@/container/operator-ruangan/SummaryPengajuan';
@@ -85,8 +87,8 @@ const router = createBrowserRouter(
               element: <LayoutDashboard />,
               children: [
                 {path: 'dashboard', element: <Dashboard />},
-                {path: 'data-barang-atk', element: <DataBarangATKView />},
-                {path: 'data-barang-ark', element: <DataBarangARKView />},
+                {path: 'data-barang-atk', element: <DataBarangATKOp />},
+                {path: 'data-barang-ark', element: <DataBarangARKOp />},
                 {path: 'permintaan-barang', element: <SummaryPermintaan />},
                 {path: 'permintaan-barang/detail', element: <h1>detail 1</h1>},
                 {path: 'pengajuan-barang', element: <SummaryPengajuan />},

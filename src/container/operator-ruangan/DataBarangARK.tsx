@@ -1,14 +1,14 @@
 import {Card} from '@/components/ui/card';
 import DataTable from '@/components/DataTable';
-import {barangViewColumns} from '@/lib/columns/barang-column-view';
-import { fetchBarangATK } from '@/lib/network/barangServices';
-import { useQuery } from '@tanstack/react-query';
-import { LoadingSpinner } from '@/components/ui/loading';
+import {useQuery} from '@tanstack/react-query';
+import {fetchBarangARK} from '@/lib/network/barangServices';
+import {LoadingSpinner} from '@/components/ui/loading';
+import { barangOperatorColumns } from '@/lib/columns/barang-operator-column-view';
 
-export default function DataBarangATK() {
+export default function DataBarangARK() {
   const {data, isLoading, error} = useQuery({
-    queryKey: ['data-barang-atk'],
-    queryFn: fetchBarangATK,
+    queryKey: ['data-barang-ark'],
+    queryFn: fetchBarangARK,
   });
   console.log(data);
   if (isLoading) return <LoadingSpinner size={50} className='mx-auto mt-[25%]' />;
@@ -20,6 +20,7 @@ export default function DataBarangATK() {
     );
 
   const dataBarang = data?.data ?? [];
+
   return (
     <>
       <Card className='p-6'>
@@ -27,14 +28,10 @@ export default function DataBarangATK() {
           <h1
             className={`mb-6 ml-5 text-2xl font-semibold relative before:absolute before:-left-5 before:w-1 before:bg-violet-500  before:border-0 before:h-full before:rounded-md`}
           >
-            Data Barang ATK
+            Data Barang ARK
           </h1>
         </div>
-        <DataTable 
-          data={dataBarang} 
-          columns={barangViewColumns} 
-          column_name='nama_barang'
-        />
+        <DataTable data={dataBarang} columns={barangOperatorColumns} />
       </Card>
     </>
   );

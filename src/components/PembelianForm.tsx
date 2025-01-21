@@ -41,6 +41,7 @@ export default function PembelianForm() {
 
   const [batchData, setBatchData] = useState<
     Array<{
+      id_barang: string;
       nama_barang: string;
       nama_sumber: string;
       jumlah: number;
@@ -168,7 +169,7 @@ export default function PembelianForm() {
 
   function onSubmit(values: z.infer<typeof pembelianSchema>) {
     const isDuplicate = batchData.some(
-      (item) => item.nama_barang === values.nama_barang
+      (item) => item.id_barang === values.id_barang
     );
   
     if (isDuplicate) {
@@ -217,7 +218,7 @@ export default function PembelianForm() {
       }];
       console.log('Batch Send Data:', sendData);
   
-      return;
+      // return;
       const response = await base.post('/tambah_pembelian', sendData, {
         headers: {
           'Content-Type': 'application/json',

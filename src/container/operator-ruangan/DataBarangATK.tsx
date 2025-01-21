@@ -1,9 +1,9 @@
 import {Card} from '@/components/ui/card';
-import DataTable from '@/components/DataTable';
-import {barangViewColumns} from '@/lib/columns/barang-column-view';
+import DataTable from '@/components/DataTable'; 
 import { fetchBarangATK } from '@/lib/network/barangServices';
 import { useQuery } from '@tanstack/react-query';
 import { LoadingSpinner } from '@/components/ui/loading';
+import { barangOperatorColumns } from '@/lib/columns/barang-operator-column-view';
 
 export default function DataBarangATK() {
   const {data, isLoading, error} = useQuery({
@@ -30,11 +30,7 @@ export default function DataBarangATK() {
             Data Barang ATK
           </h1>
         </div>
-        <DataTable 
-          data={dataBarang} 
-          columns={barangViewColumns} 
-          column_name='nama_barang'
-        />
+        <DataTable data={dataBarang} columns={barangOperatorColumns} />
       </Card>
     </>
   );
