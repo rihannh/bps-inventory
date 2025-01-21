@@ -35,6 +35,7 @@ export default function DetailPembelian({
     <DataTable
       columns={detailPembelianColumns}
       data={dataPembelianBarang}
+      column_name='nama_barang'
     />
   );
 }

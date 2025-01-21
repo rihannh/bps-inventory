@@ -58,6 +58,13 @@ export default function PembelianForm() {
     }>
   >([]);
 
+  const [mainData, setMainData] = useState<{
+    no_kuitansi: string;
+    id_sumber:string;
+    tgl_masuk:string;}>
+    ({no_kuitansi : '',id_sumber : '',tgl_masuk : '',});
+    
+
   const toast = useToast();
   const queryClient = useQueryClient();
 
@@ -178,6 +185,12 @@ export default function PembelianForm() {
         harga: values.harga, 
     };
 
+    const mainData = {
+      no_kuitansi : values.no_kuitansi,
+      id_sumber : values.id_sumber,
+      tgl_masuk : values.tgl_masuk
+    };
+
     const newBatchData = {
       id_barang:values.id_barang,
       nama_barang: values.nama_barang,
@@ -189,38 +202,35 @@ export default function PembelianForm() {
 
     setRequestData((prev) => [...prev, newData]);
     setBatchData((prev) => [...prev, newBatchData]);
+    setMainData(mainData);
 
-    // form.reset({
-    //   ...form.getValues(),
-    //   id_barang: '',
-    //   nama_barang: '',
-    //   kategori: '',
-    //   satuan: '',
-    //   stok: '',
-    //   jumlah: 0,
-    // });
   }
   const handleSubmitBatch = async () => {
     try {
       console.log('Batch Request Data:', requestData);
-      // sendData = {
-      //   no_kuitansi:values.no_kuitansi,
-      //   id_sumber:values.id_sumber,
-      //   tgl_masuk:values.tgl_masuk,
-      // };
-      closeDialog();
+      console.log('Batch Main Data:', mainData);
+      const sendData = [{
+        no_kuitansi:mainData.no_kuitansi,
+        id_sumber:mainData.id_sumber,
+        tgl_masuk:mainData.tgl_masuk,
+        barang:requestData
+      }];
+      console.log('Batch Send Data:', sendData);
+  
       return;
-      const response = await base.post('/tambah_pembelian', requestData, {
+      const response = await base.post('/tambah_pembelian', sendData, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
       console.log('Response:', response.data);
       toast.toast({
-        title: 'Berhasil',
+        title: response.data.status,
         description: response.data.message,
       });
       queryClient.invalidateQueries({queryKey: 'data-pembelian'});
+      
+      closeDialog();
     } catch (error) {
       console.error('Gagal mengupdate data:', error);
       toast.toast({
@@ -234,6 +244,10 @@ export default function PembelianForm() {
   const handleDelete = (indexToDelete: number) => {
     setBatchData((prevBatchData) =>
       prevBatchData.filter((_, index) => index !== indexToDelete)
+    );
+
+    setRequestData((prevRequestData) =>
+      prevRequestData.filter((_, index) => index !== indexToDelete)
     );
   };
 
@@ -328,11 +342,11 @@ export default function PembelianForm() {
               name='jumlah'
               render={({field}) => (
                 <FormItem>
-                  <FormLabel>Jumlah Permintaan</FormLabel>
+                  <FormLabel>Jumlah Pembelian</FormLabel>
                   <FormControl>
                     <Input
                       type='number'
-                      placeholder='Jumlah Permintaan'
+                      placeholder='Jumlah Pembelian'
                       {...field}
                       onChange={(e) => field.onChange(Number(e.target.value))}
                     />
