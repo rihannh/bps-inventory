@@ -45,6 +45,10 @@ export const barangPermintaanColumns = (
     header: 'Satuan',
   },
   {
+    accessorKey: 'stok',
+    header: 'Stok',
+  },
+  {
     accessorKey: 'jumlah',
     header: 'Jumlah',
     cell: (row) => {
