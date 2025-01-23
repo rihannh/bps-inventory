@@ -54,7 +54,7 @@ const router = createBrowserRouter(
                 {path: 'permintaan-barang', element: <PermintaanBarang />},
 
                 {path: 'laporan-pengajuan', element: <LaporanPengajuan />},
-                {path: 'laporan-permintaan', element: <LaporanPermintaan />},
+                {path: 'kartu-kendali', element: <LaporanPermintaan />},
                 {path: 'laporan-stok', element: <LaporanStok />},
               ],
             },
