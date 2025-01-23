@@ -14,10 +14,11 @@ import {
 } from '@/components/ui/form';
 import {format} from 'date-fns';
 import {Popover, PopoverContent, PopoverTrigger} from '@/components/ui/popover';
-import {CalendarIcon} from 'lucide-react';
+import {CalendarIcon, Printer} from 'lucide-react';
 import {Calendar} from '@/components/ui/calendar';
 import {Card} from '@/components/ui/card';
 import DataTable from '@/components/DataTable';
+import { useState } from 'react';
 
 const laporanSchema = z.object({
   tanggal_mulai: z.date({
@@ -36,6 +37,24 @@ export default function LaporanPermintaan() {
       tanggal_selesai: new Date(),
     },
   });
+
+  const [selectedRows, setSelectedRows] = useState<number[]>([]);
+
+  const handleSelectAll = (checked: boolean) => {
+    if (checked) {
+      setSelectedRows(dataBarangPermintaan.map((row) => row.id_permintaan));
+    } else {
+      setSelectedRows([]);
+    }
+  };
+  
+  const handleSelectRow = (id: number) => {
+    setSelectedRows((prev) =>
+      prev.includes(id) ? prev.filter((rowId) => rowId !== id) : [...prev, id]
+    );
+  };
+  
+
 
   function onSubmit(values: z.infer<typeof laporanSchema>) {
     console.log(values);
@@ -122,13 +141,17 @@ export default function LaporanPermintaan() {
               </FormItem>
             )}
           />
-          <Button type='submit'>Submit</Button>
+          <div className='flex gap-2'>
+            <Button type='submit'>Submit</Button>
+            <Button className='bg-green-500'> <Printer /> </Button>
+          </div>
         </form>
       </Form>
       <DataTable
-        columns={laporanPermintaanColumns}
+        columns={laporanPermintaanColumns(selectedRows, handleSelectAll, handleSelectRow)}
         data={dataBarangPermintaan}
       />
     </Card>
   );
 }
+

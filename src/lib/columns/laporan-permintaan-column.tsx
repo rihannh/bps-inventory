@@ -1,49 +1,65 @@
 import {ColumnDef} from '@tanstack/react-table';
 import {BarangPermintaan} from '@/lib/types/barang';
-import {Badge} from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Printer } from 'lucide-react';
 
-export const laporanPermintaanColumns: ColumnDef<BarangPermintaan>[] = [
+export const laporanPermintaanColumns = (
+  selectedRows: number[],
+  handleSelectAll: (checked: boolean) => void,
+  handleSelectRow: (id: number) => void
+): ColumnDef<BarangPermintaan>[] => [
+  {
+    id: "select",
+    header: ({ table }) => (
+      <input
+        type="checkbox"
+        checked={table.getSelectedRowModel().rows.length === table.getFilteredRowModel().rows.length}
+        onChange={(e) => handleSelectAll(e.target.checked)}
+        className="cursor-pointer"
+      />
+    ),
+    cell: ({ row }) => (
+      <input
+        type="checkbox"
+        checked={selectedRows.includes(row.original.id_permintaan)}
+        onChange={() => handleSelectRow(row.original.id_permintaan)}
+        className="cursor-pointer"
+      />
+    ),
+  },
   {
     header: 'No',
     cell: (row) => row.row.index + 1,
-  },
-  {
-    accessorKey: 'tanggal',
-    header: 'Tanggal Permintaan',
-  },
-  {
-    accessorKey: 'kd_barang',
-    header: 'Kode Barang',
   },
   {
     accessorKey: 'nama_barang',
     header: 'Nama Barang',
   },
   {
+    accessorKey: 'barang_masuk',
+    header: 'Jumlah Masuk',
+  },
+  {
+    accessorKey: 'barang_keluar',
+    header: 'Jumlah Keluar',
+  },
+  {
     accessorKey: 'kategori',
-    header: 'Jenis Barang',
+    header: 'Stok Awal',
   },
   {
     accessorKey: 'satuan',
-    header: 'Satuan',
+    header: 'Stok Akhir',
   },
   {
-    accessorKey: 'jumlah',
-    header: 'Jumlah Permintaan',
-  },
-  {
-    accessorKey: 'ruangan',
-    header: 'Ruangan',
-  },
-  {
-    accessorKey: 'status',
-    header: 'Status',
+    header: 'Action',
     cell: (row) => {
-      const status = row.row.original.status;
+      // const id = row.row.original.id_permintaan;
+      // console.log(id);
       return (
-        <Badge variant={status as 'Pending' | 'Approved' | 'Rejected'}>
-          {status}
-        </Badge>
+        <Button className='bg-green-500'>
+          <Printer />
+        </Button>
       );
     },
   },

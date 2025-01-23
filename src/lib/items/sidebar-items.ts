@@ -27,7 +27,7 @@ export const admin1Items = [
     icon: FileText,
     contents: [
       {title: 'Laporan Pengajuan', url: 'laporan-pengajuan'},
-      {title: 'Laporan Permintaan', url: 'laporan-permintaan'},
+      {title: 'Kartu Kendali', url: 'kartu-kendali'},
       {title: 'Laporan Stok', url: 'laporan-stok'},
     ],
   },
