@@ -20,7 +20,7 @@ export type BarangTrans = {
   ruangan: string;
 };
 export type BarangPermintaan = {
-  id_permintaan: string;
+  id_permintaan: number;
   tanggal: string;
   kd_barang: string;
   nama_barang: string;
