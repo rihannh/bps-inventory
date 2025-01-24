@@ -19,26 +19,52 @@ import {Calendar} from '@/components/ui/calendar';
 import {Card} from '@/components/ui/card';
 import DataTable from '@/components/DataTable';
 import { useState } from 'react';
+import { generateKarken } from '@/lib/services/pengajuanService';
+import { KarkenProps } from '@/components/Karken';
+import { fetchDataKarken, fetchDataTableKarken } from '@/lib/services/fetch';
+import { useQuery } from '@tanstack/react-query';
 
 const laporanSchema = z.object({
-  tanggal_mulai: z.date({
+  tgl_mulai: z.date({
     required_error: 'Tanggal Mulai tidak boleh kosong.',
   }),
-  tanggal_selesai: z.date({
+  tgl_selesai: z.date({
     required_error: 'Tanggal Selesai tidak boleh kosong.',
   }),
 });
+
+interface KartuKendaliData {
+  download_url: KarkenProps[];
+  message: string;
+  status: boolean;
+}
 
 export default function LaporanPermintaan() {
   const form = useForm<z.infer<typeof laporanSchema>>({
     resolver: zodResolver(laporanSchema),
     defaultValues: {
-      tanggal_mulai: new Date(),
-      tanggal_selesai: new Date(),
+      tgl_mulai: new Date(),
+      tgl_selesai: new Date(),
     },
   });
 
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
+  const [dataCetak, setDataCetak] = useState<KartuKendaliData['download_url'] | null>(null);
+  // const [dataTable, setDataTable] = useState<ListTransaksi[]>([]);
+  
+
+  const {data: responsePrint} = useQuery({
+    queryKey: ['detail-karken'],
+    queryFn: fetchDataKarken,
+  });
+
+  const dataForKarken = dataCetak ?? [{
+    id_barang: 0,
+    nama_barang: '',
+    kd_barang:'',
+    satuan: '',
+    rows: [],
+  }];
 
   const handleSelectAll = (checked: boolean) => {
     if (checked) {
@@ -53,11 +79,27 @@ export default function LaporanPermintaan() {
       prev.includes(id) ? prev.filter((rowId) => rowId !== id) : [...prev, id]
     );
   };
+
+  function printKarken() {
+    const dataKarken = {dataKarken: dataForKarken } ; // Bungkus data ke dalam objek
+    console.log('data for KAK', dataKarken);
+    generateKarken(dataKarken);
+  }
   
 
 
   function onSubmit(values: z.infer<typeof laporanSchema>) {
-    console.log(values);
+    // console.log(responsePrint);
+
+    const formatedValues = {
+      tgl_mulai: format(values.tgl_mulai, 'yyyy-MM-dd'),
+      tgl_akhir: format(values.tgl_selesai, 'yyyy-MM-dd'),
+    };
+    const responsePrint = fetchDataKarken;
+    const responseTable = fetchDataTableKarken;
+    // setDataTable(responseTable.data.data);
+
+    setDataCetak(responsePrint.download_url);
   }
   return (
     <Card className='p-6'>
@@ -73,7 +115,7 @@ export default function LaporanPermintaan() {
         >
           <FormField
             control={form.control}
-            name='tanggal_mulai'
+            name='tgl_mulai'
             render={({field}) => (
               <FormItem>
                 <FormLabel>Tanggal Mulai</FormLabel>
@@ -108,7 +150,7 @@ export default function LaporanPermintaan() {
           />
           <FormField
             control={form.control}
-            name='tanggal_selesai'
+            name='tgl_selesai'
             render={({field}) => (
               <FormItem>
                 <FormLabel>Tanggal Selesai</FormLabel>
@@ -143,7 +185,7 @@ export default function LaporanPermintaan() {
           />
           <div className='flex gap-2'>
             <Button type='submit'>Submit</Button>
-            <Button className='bg-green-500'> <Printer /> </Button>
+            <Button onClick={printKarken} className='bg-green-500'> <Printer /> </Button>
           </div>
         </form>
       </Form>

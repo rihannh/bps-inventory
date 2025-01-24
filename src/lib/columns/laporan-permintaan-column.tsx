@@ -36,19 +36,15 @@ export const laporanPermintaanColumns = (
     header: 'Nama Barang',
   },
   {
-    accessorKey: 'barang_masuk',
+    accessorKey: 'masuk',
     header: 'Jumlah Masuk',
   },
   {
-    accessorKey: 'barang_keluar',
+    accessorKey: 'keluar',
     header: 'Jumlah Keluar',
   },
   {
-    accessorKey: 'kategori',
-    header: 'Stok Awal',
-  },
-  {
-    accessorKey: 'satuan',
+    accessorKey: 'stok',
     header: 'Stok Akhir',
   },
   {
