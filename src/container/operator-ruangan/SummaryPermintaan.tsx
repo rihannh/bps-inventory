@@ -19,12 +19,16 @@ import PermintaanForm from '@/components/PermintaanForm';
 import {LoadingSpinner} from '@/components/ui/loading';
 import {useQuery} from '@tanstack/react-query';
 import {fetchPermintaanByUser} from '@/lib/services/permintaanService';
+import { useDialog } from '@/context/dialog';
 
 export default function PermintaanBarang() {
   const {data, isLoading, error} = useQuery({
     queryKey: ['data-permintaan-user'],
     queryFn: fetchPermintaanByUser,
   });
+
+  const { isDialogOpen, openDialog, closeDialog } = useDialog();
+
   if (isLoading) {
     return <LoadingSpinner size={50} className='mx-auto mt-[25%]' />;
   }
@@ -49,7 +53,11 @@ export default function PermintaanBarang() {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger className='mr-auto lg:mr-0'>
-              <Dialog>
+              <Dialog open={isDialogOpen}
+              onOpenChange={(open) => {
+                if (open) openDialog();
+                else closeDialog();
+              }}>
                 <DialogTrigger>
                   <Button>
                     <PlusCircle /> Buat Permintaan Barang

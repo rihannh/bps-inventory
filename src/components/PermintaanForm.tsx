@@ -19,6 +19,7 @@ import DataTable from './DataTable';
 import {useState} from 'react';
 import {useToast} from '@/hooks/use-toast';
 import {base} from '@/lib/network/base';
+import { useDialog } from '@/context/dialog';
 
 const permintaanSchema = z.object({
   id_user: z.string(),
@@ -38,6 +39,8 @@ const permintaanSchema = z.object({
 });
 
 export default function PermintaanForm() {
+  const { closeDialog } = useDialog();
+
   const [batchData, setBatchData] = useState<
     Array<{
       id_barang : string,
@@ -205,6 +208,7 @@ export default function PermintaanForm() {
         description: response.data.message,
       });
       queryClient.invalidateQueries({queryKey: 'data-permintaan-user'});
+      closeDialog();
     } catch (error) {
       console.error('Gagal mengupdate data:', error);
       toast.toast({
