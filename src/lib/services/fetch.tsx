@@ -30,9 +30,3 @@ export async function fetchDataKarken(){
   console.log("karken",response.data);
   return response.data;
 }
-
-export async function fetchDataTableKarken(formatedValues){
-  const response = await base.post('/summary_karken',formatedValues);
-  console.log("table",response.data);
-  return response.data;
-}
