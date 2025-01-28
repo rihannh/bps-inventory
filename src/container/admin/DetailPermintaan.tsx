@@ -49,7 +49,7 @@ export default function DetailPermintaan({
   // console.log(dataPermintaanBarang);
 
   function handleDataChange(
-    id: string,
+    id: number,
     newJumlah: string | undefined,
     newStatus: string | undefined
   ) {
