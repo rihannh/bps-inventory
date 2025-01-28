@@ -19,12 +19,15 @@ import DataTable from '@/components/DataTable';
 import {useQuery} from '@tanstack/react-query';
 import { LoadingSpinner } from '@/components/ui/loading';
 import { fetchPengajuanByUser } from '@/lib/services/pengajuanService';
+import { useDialog } from '@/context/dialog';
 
 export default function SummaryPengajuan() {
   const {data, isLoading, error} = useQuery({
     queryKey: ['data-pengajuan-user'],
     queryFn: fetchPengajuanByUser,
   });
+
+  const { isDialogOpen, openDialog, closeDialog } = useDialog();
 
   if (isLoading) {
     return <LoadingSpinner size={50} className='mx-auto mt-[25%]' />;
@@ -39,6 +42,8 @@ export default function SummaryPengajuan() {
 
   const dataSummaryPengajuan = data?.data ?? [];
 
+ 
+
   return (
     <Card className='p-6'>
       <div className='flex flex-col lg:flex-row justify-between items-center'>
@@ -50,7 +55,11 @@ export default function SummaryPengajuan() {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger className='mr-auto lg:mr-0'>
-              <Dialog>
+              <Dialog open={isDialogOpen}
+              onOpenChange={(open) => {
+                if (open) openDialog();
+                else closeDialog();
+              }}>
                 <DialogTrigger>
                   <Button>
                     <PlusCircle /> Buat Pengajuan Barang

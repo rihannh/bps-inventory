@@ -8,6 +8,7 @@ import {useState} from 'react';
 import {useToast} from '@/hooks/use-toast';
 import {base} from '@/lib/network/base';
 import {useQueryClient} from '@tanstack/react-query';
+import { useDialog } from '@/context/dialog';
 
 export interface BatchData {
   nama_barang: string;
@@ -28,6 +29,7 @@ export interface RequestData {
 }
 
 export default function PengajuanForm() {
+  const { closeDialog } = useDialog();
   const toast = useToast();
   const queryClient = useQueryClient();
   const [batchData, setBatchData] = useState<BatchData[]>([]);
@@ -63,6 +65,7 @@ export default function PengajuanForm() {
         description: response.data.message,
       });
       queryClient.invalidateQueries({queryKey: 'data-pengajuan-user'});
+      closeDialog();
     } catch (error) {
       console.error('Gagal mengupdate data:', error);
       toast.toast({
