@@ -89,7 +89,7 @@ export default function LaporanPermintaan() {
       tgl_mulai: format(values.tgl_mulai, 'yyyy-MM-dd'),
       tgl_selesai: format(values.tgl_selesai, 'yyyy-MM-dd'),
     };
-    const responsePrint = await base.post('/generate');
+    const responsePrint = await base.post('/generate',formatedValues);
     const responseTable = await base.post('/summary_karken',formatedValues);
     // setDataTable(responseTable.data.data);
 
