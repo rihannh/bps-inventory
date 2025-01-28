@@ -20,9 +20,9 @@ import {Card} from '@/components/ui/card';
 import DataTable from '@/components/DataTable';
 import { useState } from 'react';
 import { generateKarken } from '@/lib/services/pengajuanService';
-import { KarkenProps } from '@/components/Karken';
-import { fetchDataKarken, fetchDataTableKarken } from '@/lib/services/fetch';
-import { useQuery } from '@tanstack/react-query';
+import { KarkenProps} from '@/components/Karken';
+import { base } from '@/lib/network/base';
+import { BarangKarken } from '@/lib/types/barang';
 
 const laporanSchema = z.object({
   tgl_mulai: z.date({
@@ -39,6 +39,7 @@ interface KartuKendaliData {
   status: boolean;
 }
 
+
 export default function LaporanPermintaan() {
   const form = useForm<z.infer<typeof laporanSchema>>({
     resolver: zodResolver(laporanSchema),
@@ -48,15 +49,8 @@ export default function LaporanPermintaan() {
     },
   });
 
-  const [selectedRows, setSelectedRows] = useState<number[]>([]);
   const [dataCetak, setDataCetak] = useState<KartuKendaliData['download_url'] | null>(null);
-  // const [dataTable, setDataTable] = useState<ListTransaksi[]>([]);
-  
-
-  const {data: responsePrint} = useQuery({
-    queryKey: ['detail-karken'],
-    queryFn: fetchDataKarken,
-  });
+  const [dataTable, setDataTable] = useState<BarangKarken[]>([]);
 
   const dataForKarken = dataCetak ?? [{
     id_barang: 0,
@@ -66,41 +60,47 @@ export default function LaporanPermintaan() {
     rows: [],
   }];
 
-  const handleSelectAll = (checked: boolean) => {
-    if (checked) {
-      setSelectedRows(dataBarangPermintaan.map((row) => row.id_permintaan));
-    } else {
-      setSelectedRows([]);
-    }
-  };
-  
-  const handleSelectRow = (id: number) => {
-    setSelectedRows((prev) =>
-      prev.includes(id) ? prev.filter((rowId) => rowId !== id) : [...prev, id]
-    );
-  };
-
   function printKarken() {
     const dataKarken = {dataKarken: dataForKarken } ; // Bungkus data ke dalam objek
-    console.log('data for KAK', dataKarken);
+    // console.log('data for KAK', dataKarken);
+    generateKarken(dataKarken);
+  }
+
+  function printKarkenSatuan(id_barang : number) {
+    // const dataKarken = {dataKarken: dataForKarken } ; // Bungkus data ke dalam objek
+    console.log('barang',id_barang)
+    
+
+    const filteredData = dataForKarken.filter(item => item.id_barang === id_barang);
+    const dataKarken = { dataKarken: filteredData };
+
+    // console.log('satuan',dataKarken)
     generateKarken(dataKarken);
   }
   
+  
 
 
-  function onSubmit(values: z.infer<typeof laporanSchema>) {
+  async function onSubmit(values: z.infer<typeof laporanSchema>) {
     // console.log(responsePrint);
 
     const formatedValues = {
       tgl_mulai: format(values.tgl_mulai, 'yyyy-MM-dd'),
-      tgl_akhir: format(values.tgl_selesai, 'yyyy-MM-dd'),
+      tgl_selesai: format(values.tgl_selesai, 'yyyy-MM-dd'),
     };
-    const responsePrint = fetchDataKarken;
-    const responseTable = fetchDataTableKarken;
+    const responsePrint = await base.post('/generate');
+    const responseTable = await base.post('/summary_karken',formatedValues);
     // setDataTable(responseTable.data.data);
 
-    setDataCetak(responsePrint.download_url);
+    setDataCetak(responsePrint.data.download_url);
+    setDataTable(responseTable.data.data);
+    // console.log('cek',dataTable);
+    // console.log('karken',responsePrint.data.download_url);
+    
   }
+
+  const dataForTable = dataTable ?? [];
+
   return (
     <Card className='p-6'>
       <h1
@@ -190,8 +190,8 @@ export default function LaporanPermintaan() {
         </form>
       </Form>
       <DataTable
-        columns={laporanPermintaanColumns(selectedRows, handleSelectAll, handleSelectRow)}
-        data={dataBarangPermintaan}
+        columns={laporanPermintaanColumns(printKarkenSatuan)}
+        data={dataForTable}
       />
     </Card>
   );

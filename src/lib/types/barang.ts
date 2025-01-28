@@ -31,6 +31,14 @@ export type BarangPermintaan = {
   status: string;
 };
 
+export type BarangKarken = {
+  id_barang: number;
+  nama_barang: string;
+  total_masuk: number;
+  total_keluar: number;
+  stok: number;
+};
+
 export type BarangPembelian = {
   id_barang: string;
   tanggal: string;

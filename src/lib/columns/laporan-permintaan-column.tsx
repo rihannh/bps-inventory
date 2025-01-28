@@ -1,32 +1,11 @@
 import {ColumnDef} from '@tanstack/react-table';
-import {BarangPermintaan} from '@/lib/types/barang';
+import {BarangKarken} from '@/lib/types/barang';
 import { Button } from '@/components/ui/button';
 import { Printer } from 'lucide-react';
 
 export const laporanPermintaanColumns = (
-  selectedRows: number[],
-  handleSelectAll: (checked: boolean) => void,
-  handleSelectRow: (id: number) => void
-): ColumnDef<BarangPermintaan>[] => [
-  {
-    id: "select",
-    header: ({ table }) => (
-      <input
-        type="checkbox"
-        checked={table.getSelectedRowModel().rows.length === table.getFilteredRowModel().rows.length}
-        onChange={(e) => handleSelectAll(e.target.checked)}
-        className="cursor-pointer"
-      />
-    ),
-    cell: ({ row }) => (
-      <input
-        type="checkbox"
-        checked={selectedRows.includes(row.original.id_permintaan)}
-        onChange={() => handleSelectRow(row.original.id_permintaan)}
-        className="cursor-pointer"
-      />
-    ),
-  },
+  printKarkenSatuan: (id_barang: number) => void
+): ColumnDef<BarangKarken>[] => [
   {
     header: 'No',
     cell: (row) => row.row.index + 1,
@@ -36,11 +15,11 @@ export const laporanPermintaanColumns = (
     header: 'Nama Barang',
   },
   {
-    accessorKey: 'masuk',
+    accessorKey: 'total_masuk',
     header: 'Jumlah Masuk',
   },
   {
-    accessorKey: 'keluar',
+    accessorKey: 'total_keluar',
     header: 'Jumlah Keluar',
   },
   {
@@ -50,10 +29,10 @@ export const laporanPermintaanColumns = (
   {
     header: 'Action',
     cell: (row) => {
-      // const id = row.row.original.id_permintaan;
+      const id = row.row.original.id_barang;
       // console.log(id);
       return (
-        <Button className='bg-green-500'>
+        <Button onClick={() => printKarkenSatuan(id)} className='bg-green-500'>
           <Printer />
         </Button>
       );

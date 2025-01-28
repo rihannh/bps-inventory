@@ -31,8 +31,8 @@ export async function fetchDataKarken(){
   return response.data;
 }
 
-export async function fetchDataTableKarken(){
-  const response = await base.post('/generate');
-  console.log("karken",response.data);
+export async function fetchDataTableKarken(formatedValues){
+  const response = await base.post('/summary_karken',formatedValues);
+  console.log("table",response.data);
   return response.data;
 }
