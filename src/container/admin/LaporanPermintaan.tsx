@@ -106,7 +106,7 @@ export default function LaporanPermintaan() {
       <h1
         className={`mb-6 ml-5 text-2xl font-semibold relative before:absolute before:-left-5 before:w-1 before:bg-violet-500  before:border-0 before:h-full before:rounded-md`}
       >
-        Laporan Permintaan Barang
+        Kartu Kendali
       </h1>
       <Form {...form}>
         <form
