@@ -76,6 +76,16 @@ export default function PengajuanForm() {
     }
   };
 
+  const handleDelete = (indexToDelete: number) => {
+    setBatchData((prevBatchData) =>
+      prevBatchData.filter((_, index) => index !== indexToDelete)
+    );
+
+    setRequestData((prevRequestData) =>
+      prevRequestData.filter((_, index) => index !== indexToDelete)
+    );
+  };
+
   return (
     <div className='flex'>
       <div className='w-2/5 pr-4'>
@@ -100,6 +110,17 @@ export default function PengajuanForm() {
             {header: 'Satuan', accessorKey: 'satuan'},
             {header: 'Stok', accessorKey: 'stok'},
             {header: 'Jumlah', accessorKey: 'jumlah'},
+            {
+              header: 'Aksi',
+              cell: ({ row }) => (
+                <button
+                  onClick={() => handleDelete(row.index)}
+                  className="bg-red-500 text-white px-2 py-1 rounded"
+                >
+                  Hapus
+                </button>
+              ),
+            },
           ]}
           data={batchData}
           column_name='nama_barang'
