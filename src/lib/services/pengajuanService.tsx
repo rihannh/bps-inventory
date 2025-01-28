@@ -65,7 +65,7 @@ export function generateKAK({dataKAK}: {dataKAK: KAKProps}) {
 }
 
 
-export function generateKarken({dataKarken}: {dataKarken: [KarkenProps]}) {
+export function generateKarken({dataKarken}: {dataKarken: KarkenProps[]}) {
   console.log('dataKarken', dataKarken);
   const newWindow = window.open('', '_blank');
   if (newWindow) {

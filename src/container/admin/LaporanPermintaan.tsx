@@ -1,5 +1,4 @@
 import {laporanPermintaanColumns} from '@/lib/columns/laporan-permintaan-column';
-import {dataBarangPermintaan} from '@/lib/data/barang';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useForm} from 'react-hook-form';
 import {z} from 'zod';
@@ -57,6 +56,7 @@ export default function LaporanPermintaan() {
     nama_barang: '',
     kd_barang:'',
     satuan: '',
+    kategori:'ATK',
     rows: [],
   }];
 
@@ -68,10 +68,11 @@ export default function LaporanPermintaan() {
 
   function printKarkenSatuan(id_barang : number) {
     // const dataKarken = {dataKarken: dataForKarken } ; // Bungkus data ke dalam objek
-    console.log('barang',id_barang)
+    // console.log('barang',id_barang)
     
 
     const filteredData = dataForKarken.filter(item => item.id_barang === id_barang);
+    console.log('satuan',filteredData);
     const dataKarken = { dataKarken: filteredData };
 
     // console.log('satuan',dataKarken)
