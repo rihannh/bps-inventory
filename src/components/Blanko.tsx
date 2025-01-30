@@ -117,7 +117,7 @@ export const Blanko = ({data, desc}: BlankoProps) => (
           Badan Pusat Statistik Provinsi Jambi
         </Text>
         <Text style={styles.centeredText}>Permintaan ATK/ARK</Text>
-        <Text>No Bukti: {desc.noSurat}</Text>
+        <Text>No Bukti: {data[0].id_permintaan}</Text>
         <Text style={{marginTop: 10}}>Dari Bidang/Bagian: {desc.ruangan}</Text>
       </View>
 
