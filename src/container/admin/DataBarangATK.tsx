@@ -31,9 +31,12 @@ import {
 } from '@/components/ui/form';
 import {Input} from '@/components/ui/input';
 import DataTable from '@/components/DataTable';
-import {useQuery} from '@tanstack/react-query';
+import {useQuery, useQueryClient} from '@tanstack/react-query';
 import {fetchBarangATK} from '@/lib/network/barangServices';
 import { LoadingSpinner } from '@/components/ui/loading';
+import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
+import { base } from '@/lib/network/base';
 
 const filterSchema = z.object({
   harga_pengajuan: z.number().optional(),
@@ -52,6 +55,12 @@ export default function DataBarangATK() {
     queryKey: ['data-barang-atk'],
     queryFn: fetchBarangATK,
   });
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [file, setFile] = useState<File | null>(null);
+  const toast = useToast();
+  const queryClient = useQueryClient();
+
   if (isLoading) return <LoadingSpinner size={50} className='mx-auto mt-[25%]' />;
   if (error)
     return (
@@ -66,6 +75,46 @@ export default function DataBarangATK() {
   function onSubmit(values: z.infer<typeof filterSchema>) {
     console.log(values);
   }
+
+  // Fungsi untuk mengirim file Excel ke API
+  const handleImportExcel = async (file: File) => {
+    const formData = new FormData();
+    formData.append('file', file); // Tambahkan file ke FormData
+
+    try {
+      const response = await base.post('/import_excel', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data', // Set header untuk file upload
+        },
+      });
+      console.log('File imported successfully:', response.data);
+
+      toast.toast({
+        title: 'Berhasil',
+        description: response.data.message,
+      });
+      // Optional: Refetch data setelah import berhasil
+      queryClient.invalidateQueries({queryKey: 'data-barang-atk'});
+    } catch (error) {
+      console.error('Error importing file:', error);
+      toast.toast({
+        variant: 'destructive',
+        title: 'Gagal Import Data',
+        description: 'Tidak berhasil mengimport data',
+      });
+    }
+  };
+
+  // Fungsi untuk menangani perubahan file
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      handleImportExcel(selectedFile); // Langsung kirim file ke API
+    }
+  };
+
+
 
   return (
     <>
@@ -115,9 +164,16 @@ export default function DataBarangATK() {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Button variant={'green'}>
+                  <Button variant={'green'} onClick={() => document.getElementById('fileInput')?.click()}>
                     <Upload /> Import
                   </Button>
+                  <input
+                    id="fileInput"
+                    type="file"
+                    accept='.xlsx, .xls'
+                    style={{ display: 'none' }}
+                    onChange={handleFileChange}
+                  />
                 </TooltipTrigger>
                 <TooltipContent>Import Excel</TooltipContent>
               </Tooltip>
