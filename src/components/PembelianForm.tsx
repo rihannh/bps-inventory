@@ -49,14 +49,11 @@ export default function PembelianForm() {
   >([]);
 
   const [requestData, setRequestData] = useState<
-    Array<{
-      // no_kuitansi: string;
-      // id_sumber:string;
-      // tgl_masuk:string;
-        id_barang: string;
-        jumlah: number;
-        harga:number;
-    }>
+      Array<{
+          id_barang: string;
+          jumlah: number;
+          harga:number;
+      }>
   >([]);
 
   const [mainData, setMainData] = useState<{
@@ -86,20 +83,6 @@ export default function PembelianForm() {
     queryKey: ['sumber'],
     queryFn: fetchAllSumber,
   });
-
-  // const user = JSON.parse(localStorage.getItem('user') || '{}') as {
-  //   id_user: string;
-  //   username: string;
-  //   jabatan: string;
-  //   data_ruangan: {id_ruangan: string; ruangan: string}[];
-  // };
-  // const ruanganUser = user.data_ruangan;
-  // const ruanganOptions = ruanganUser.map(
-  //   (item: {id_ruangan: string; ruangan: string}) => ({
-  //     value: item.id_ruangan,
-  //     label: item.ruangan,
-  //   })
-  // );
 
   const allBarang = dataAllBarang?.data ?? [];
   const barangOptions = allBarang.map(
