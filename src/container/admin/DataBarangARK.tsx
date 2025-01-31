@@ -34,7 +34,6 @@ import {useQuery, useQueryClient} from '@tanstack/react-query';
 import {fetchBarangARK} from '@/lib/network/barangServices';
 import { LoadingSpinner } from '@/components/ui/loading';
 import { useToast } from '@/hooks/use-toast';
-import { useState } from 'react';
 import { base } from '@/lib/network/base';
 
 const filterSchema = z.object({
@@ -57,7 +56,7 @@ export default function DataBarangARK() {
   });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [file, setFile] = useState<File | null>(null);
+  // const [file, setFile] = useState<File | null>(null);
   const toast = useToast();
   const queryClient = useQueryClient();
 
@@ -109,7 +108,7 @@ export default function DataBarangARK() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
-      setFile(selectedFile);
+      // setFile(selectedFile);
       handleImportExcel(selectedFile); // Langsung kirim file ke API
     }
   };

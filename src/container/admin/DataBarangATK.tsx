@@ -34,7 +34,6 @@ import DataTable from '@/components/DataTable';
 import {useQuery, useQueryClient} from '@tanstack/react-query';
 import {fetchBarangATK} from '@/lib/network/barangServices';
 import { LoadingSpinner } from '@/components/ui/loading';
-import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { base } from '@/lib/network/base';
 
@@ -57,7 +56,7 @@ export default function DataBarangATK() {
   });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [file, setFile] = useState<File | null>(null);
+  // const [file, setFile] = useState<File | null>(null);
   const toast = useToast();
   const queryClient = useQueryClient();
 
@@ -109,7 +108,7 @@ export default function DataBarangATK() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
-      setFile(selectedFile);
+      // setFile(selectedFile);
       handleImportExcel(selectedFile); // Langsung kirim file ke API
     }
   };
