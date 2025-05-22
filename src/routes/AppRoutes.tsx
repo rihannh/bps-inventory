@@ -70,6 +70,7 @@ const router = createBrowserRouter(
                 {path: 'data-barang-atk', element: <DataBarangATKView />},
                 {path: 'data-barang-ark', element: <DataBarangARKView />},
                 {path: 'pengajuan-barang', element: <PengajuanBarang />},
+                {path: 'permintaan-barang', element: <PermintaanBarang />},
                 {path: 'input-barang-masuk', element: <InputBarangMasuk />},
                 {path: 'laporan-pengajuan', element: <LaporanPengajuan />},
               ],
