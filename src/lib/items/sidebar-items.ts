@@ -56,3 +56,14 @@ export const admin3Items = [
     ],
   },
 ];
+export const admin4Items = [
+  {
+    label: 'Dashboard',
+    icon: LayoutDashboard,
+    contents: [
+      {title: 'Data Barang ATK', url: 'data-barang-atk'},
+      // {title: 'Data Barang ARK', url: 'data-barang-ark'},
+      {title: 'Input Barang Masuk', url: 'input-barang-masuk'},
+    ],
+  },
+];
