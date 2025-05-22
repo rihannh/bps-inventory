@@ -45,7 +45,7 @@ const router = createBrowserRouter(
                 {path: 'data-pegawai', element: <DataPegawai />},
                 {path: 'data-admin-pengajuan', element: <DataAdminPengajuan />},
                 {path: 'data-barang-atk', element: <DataBarangATK />},
-                // {path: 'data-barang-ark', element: <DataBarangARK />},
+                {path: 'data-barang-ark', element: <DataBarangARK />},
                 {path: 'data-ruangan', element: <DataRuangan />},
 
                 {path: 'barang-masuk', element: <BarangMasuk />},
@@ -68,7 +68,7 @@ const router = createBrowserRouter(
               children: [
                 {path: 'dashboard', element: <Dashboard />},
                 {path: 'data-barang-atk', element: <DataBarangATKView />},
-                // {path: 'data-barang-ark', element: <DataBarangARKView />},
+                {path: 'data-barang-ark', element: <DataBarangARKView />},
                 {path: 'pengajuan-barang', element: <PengajuanBarang />},
                 {path: 'input-barang-masuk', element: <InputBarangMasuk />},
                 {path: 'laporan-pengajuan', element: <LaporanPengajuan />},
@@ -86,7 +86,7 @@ const router = createBrowserRouter(
               children: [
                 {path: 'dashboard', element: <Dashboard />},
                 {path: 'data-barang-atk', element: <DataBarangATKOp />},
-                // {path: 'data-barang-ark', element: <DataBarangARKOp />},
+                {path: 'data-barang-ark', element: <DataBarangARKOp />},
                 {path: 'permintaan-barang', element: <SummaryPermintaan />},
                 {path: 'permintaan-barang/detail', element: <h1>detail 1</h1>},
                 {path: 'pengajuan-barang', element: <SummaryPengajuan />},
@@ -105,7 +105,7 @@ const router = createBrowserRouter(
               children: [
                 {path: 'dashboard', element: <Dashboard />},
                 {path: 'data-barang-atk', element: <DataBarangATKView />},
-                // {path: 'data-barang-ark', element: <DataBarangARKView />},
+                {path: 'data-barang-ark', element: <DataBarangARKView />},
                 {path: 'input-barang-masuk', element: <InputBarangMasuk />},
               ],
             },
