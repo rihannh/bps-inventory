@@ -155,7 +155,9 @@ export const Karken = ({ data }: { data: KarkenProps }) => {
 
   const totalMasuk = data.rows.reduce((sum, item) => sum + parseFloat(item.masuk || '0'), 0);
   const totalKeluar = data.rows.reduce((sum, item) => sum + parseFloat(item.keluar || '0'), 0);
-  const totalCurrent = data.rows.reduce((sum, item) => sum + parseFloat(item.current_stok || '0'), 0);
+  // const totalCurrent = data.rows.reduce((sum, item) => sum + parseFloat(item.current_stok || '0'), 0);
+  const totalCurrent = parseFloat(data.rows[data.rows.length - 1]?.current_stok || '0');
+
 
 
   return (
