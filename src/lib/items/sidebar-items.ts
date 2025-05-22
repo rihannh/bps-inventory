@@ -40,6 +40,7 @@ export const admin2Items = [
       // {title: 'Data Barang ARK', url: 'data-barang-ark'},
       {title: 'Input Barang Masuk', url: 'input-barang-masuk'},
       {title: 'Pengajuan Barang', url: 'pengajuan-barang'},
+      {title: 'Permintaan Barang', url: 'permintaan-barang'},
       {title: 'Laporan Pengajuan', url: 'laporan-pengajuan'},
     ],
   },
