@@ -30,6 +30,8 @@ export function normalizeRole(role: string){
     return 'admin';
   } else if (role === 'admin_pengajuan') {
     return 'admin-pengajuan';
+  } else if (role === 'admin_pembelian') {
+    return 'admin-pembelian';
   } else{
     return 'operator-ruangan';
   }
