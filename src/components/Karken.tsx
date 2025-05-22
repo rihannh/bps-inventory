@@ -236,6 +236,15 @@ export const Karken = ({ data }: { data: KarkenProps }) => {
           </Text>
         </View>
 
+        <View style={styles.tableRow}>
+            <Text style={[styles.tableColSpan, { width: '60%'}]}>
+              {'Stok Awal'}
+            </Text>
+            <Text style={[styles.tableCol, { width: '20%' }]}>
+              {totalCurrent}
+            </Text>
+          </View>
+
         {data.rows.map((item, index) => (
           <View style={styles.tableRow}>
             <Text style={[styles.tableCol, { width: '5%' }]}>{index + 1}</Text>
